@@ -10,6 +10,10 @@ module.exports=(req,res,next)=>{
             if(decoded.exp<=Date.now()){
                   res.end('Access token has expired',400)
             }  
+        }catch(err){
+            return next(0)
         }
+    }else{
+        res.end('Access token is required',500)
     }
 }
