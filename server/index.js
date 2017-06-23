@@ -7,6 +7,7 @@ server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
+
 const web=require('./api/web')
 const admin=require('./api/admin')
 
