@@ -1,8 +1,9 @@
 <template>
   <div id="app">
       <div class="form">
-              <input type="text" name="" v-model="name">
-              <input type="text" name="" v-model='password'>
+      <Cell><Cinput type="text" name=""  v-model="name"></Cinput></Cell>
+      <Cell><Cinput type="text" name="" title="密码" :titleStyle="{paddingRight:'20px'}" v-model="name"></Cinput></Cell>    
+              
               <input type="button" name="" value="提交" @click='submit'>
       </div>
   </div>
@@ -10,10 +11,13 @@
 
 <script>
 import axios from 'axios'
+import Cell from '../component/formCell/Cell.vue'
+import Cinput from '../component/formCell/Cinput.vue'
 export default {
   name: 'app',
     components: {
-    
+       Cinput,
+       Cell
     },
     data(){
          return{
@@ -27,16 +31,16 @@ export default {
                 console.log(res.data)
             })
         }
+    },
+    watch:{
+        name(newVal){
+          console.log(newVal)
+        }
     }
 }
 
 </script>
 
 <style lang="less">
-   .form input{
-      display: block;
-      width:150px;
-      line-height: 20px;
-      border:1px solid #ddd;
-   }
+
 </style>
