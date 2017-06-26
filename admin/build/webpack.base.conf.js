@@ -2,7 +2,7 @@ var path = require('path')
 var utils = require('./utils')
 
 var projectRoot = path.resolve(__dirname, '../')
-const vuxLoader = require('vux-loader')
+
 
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
@@ -69,13 +69,4 @@ let webpackConfig = {
 }
 
 
-module.exports = vuxLoader.merge(webpackConfig, {
-  plugins: [
-    {
-      name: 'vux-ui'
-    },
-    {
-      name: 'duplicate-style'
-    }
-  ]
-})
+module.exports = webpackConfig

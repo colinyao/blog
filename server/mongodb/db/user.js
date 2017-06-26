@@ -1,11 +1,9 @@
 const UserSchema=require('../schema/user.js')
 const mongoose=require('mongoose')
 
-UserSchema.statics.findUser=(name)=>{
-     Model.find({name:name},function(err,result){
-             console.log(1)
-     })
-}
+// UserSchema.statics.findUser=(name)=>{
+//      Model.find({name:name})
+// }
 
 
 
@@ -13,6 +11,7 @@ UserSchema.statics.findUser=(name)=>{
 
     
 
-const Model=mongoose.model('Model',UserSchema)
+const Model=mongoose.model('user',UserSchema)   //入参:collection,schema
+
 
 module.exports=Model

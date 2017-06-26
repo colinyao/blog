@@ -23,7 +23,7 @@ export default {
     },
     methods:{
         submit(){
-            axios.post('http://localhost:3000/api/login',{name:this.name,password:this.password}).then((res)=>{
+            axios.post('http://localhost:3000/api/register',{name:this.name,password:this.password}).then((res)=>{
                 console.log(res.data)
             })
         }

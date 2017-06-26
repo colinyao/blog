@@ -12,8 +12,11 @@
     "restify": "^4.3.0"
   },
   "devDependencies": {
+    "assert": "^1.4.1",
+    "bluebird": "^3.5.0",
     "cookie": "^0.3.1",
     "moment": "^2.18.1",
+    "restify-clients": "^1.5.0",
     "session": "^0.1.0"
   },
   "scripts": {
