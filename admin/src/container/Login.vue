@@ -1,9 +1,8 @@
 <template>
   <div id="app">
       <div class="form">
-      <Cell><Cinput type="text" name=""  v-model="name"></Cinput></Cell>
-      <Cell><Cinput type="text" name="" title="密码" :titleStyle="{paddingRight:'20px'}" v-model="name"></Cinput></Cell>    
-              
+      <Cell><Cinput type="text"  v-model="name"></Cinput></Cell>
+      <Cell><Cinput type="password" title="密码" :titleStyle="{paddingRight:'20px'}" leftPos="inner" rightPos="outer" v-model="password"><span slot="left" class="icon"><img src="../../static/images/icon/phone.svg"></span></Cinput></Cell>    
               <input type="button" name="" value="提交" @click='submit'>
       </div>
   </div>
@@ -11,8 +10,8 @@
 
 <script>
 import axios from 'axios'
-import Cell from '../component/formCell/Cell.vue'
-import Cinput from '../component/formCell/Cinput.vue'
+import Cell from '../component/cele/Cell.vue'
+import Cinput from '../component/cele/Cinput'
 export default {
   name: 'app',
     components: {
@@ -33,7 +32,7 @@ export default {
         }
     },
     watch:{
-        name(newVal){
+        password(newVal){
           console.log(newVal)
         }
     }
@@ -41,6 +40,13 @@ export default {
 
 </script>
 
-<style lang="less">
-
+<style lang="less" scoped>
+.icon{
+    display: inline-block;
+    height:100%
+}
+.icon img{
+    height:100%;
+    width:auto;
+}
 </style>

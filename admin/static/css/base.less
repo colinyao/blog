@@ -1,17 +1,30 @@
-.flex{
-	display: flex;
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset; //通过boxshadow覆盖输入框在chrome下的黄色背景
 }
+
+.flex {
+    display: flex;
+}
+
 // horizontal vertical center
-.hvc{  
-	.flex;
-	align-items:center;
-	justify-content:center;
+.hvc {
+    .flex;
+    align-items: center;
+    justify-content: center;
 }
-.vc{
-	.flex;
-	text-align: center;
+
+.vc {
+    .flex;
+    align-items: center;
 }
-.hc{
-	.flex;
-	justify-content:center;
+
+.hc {
+    .flex;
+    justify-content: center;
+}
+
+.c_modal_bg{
+    background:rgba(0,0,0,0.6)
 }
