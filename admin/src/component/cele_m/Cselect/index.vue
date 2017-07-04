@@ -1,11 +1,19 @@
 <template>
-    <div  class="c_select" :class="{'on':status}" @click="handleTrigger">
+    <div  class="c_select_m" :class="{'on':status}" @click="handleTrigger">
            <div class="c_select_text">{{currentText}}</div>
-           <transition name="switch_select">
-           <ul v-if="status" class="c_select_options" v-model="currentVal">
-                 <li v-for="o in options" @click="handleSelected(o.value,o.text)">{{o.text}}</li>
-           </ul>
+           <transition name="switch_shade">
+           <div class="c_shade" v-if="status"></div>
            </transition>
+           <transition name="switch_contain">
+           <div class="c_select_contain" v-if="status">
+                <div class="c_select_title">{{title}}</div>
+                <ul  class="c_select_options" v-model="currentVal">
+                      <li v-for="o in options" @click="handleSelected(o.value,o.text)">{{o.text}}</li>
+                 </ul>     
+           
+             </div>
+           </transition>
+
     </div>
 </template>
 <script>
@@ -22,6 +30,9 @@
             },
             options:{
                 type:Array
+            },
+            title:{
+              type:String
             }
         },
         data(){
@@ -61,7 +72,7 @@
     }
 </script>
 <style lang="less">
-     .c_select{
+     .c_select_m{
           position:relative;
           width:200px;
           height:26px;
@@ -89,32 +100,64 @@
                      transform:translate3d(0,-50%,0) rotate3d(0,0,1,180deg);
                 }
           }
-           .c_select_options {
-                position:absolute;
+          .c_shade{
+              position:fixed;
+              top:0;
+              left:0;
+              bottom:0;
+              right:0;
+              background:#000;
+              opacity:0.7;
+              z-index:999;
+              transition:all 0.3s;
+          }
+          .c_select_contain{
+                position:fixed;
                 width:100%;
-                top:100%;
-                left:-1px;
-                border:1px solid #ddd;
-                border-style:solid solid none solid;
-                transition:all 0.5s;
-               li{
-                       
-                       padding:0 3px;
-                       border-bottom: 1px solid #ddd;
-                       line-height: 24px;
-                       cursor:pointer;
-                }
-                li:hover{
-                       color:#fff;
+                max-height:345px;
+                left:0;
+                bottom:0;
+                background: #fff;
+                z-index:1000;
+                transition:all 0.35s;
+                .c_select_title{
+                      text-align: center;
+
+                       line-height: 30px;
+                       font-size:16px;
                        background:#898989;
+                       color:#fff;
+                       box-sizing: border-box;
+
+                }
+               .c_select_options{
+                    position: relative;
+                    max-height: 315px;
+                    width:100%;
+                    border:1px solid #ddd;
+                    transition:all 0.5s;
+                    overflow-y: scroll;
+                    -webkit-overflow-scrolling:touch;
+               li{
+                       border-bottom: 1px solid #ddd;
+                       line-height: 30px;
+                       height:30px;
+                       text-align: center;
+                       cursor:pointer;
+                       box-sizing: border-box;
                 }
             }
-          .switch_select-enter,.switch_select-leave{
-                 transtion:all 0.2s;
           }
-          .switch_select-enter-active,.switch_select-leave-active{
-                opacity:0;
+          .switch_contain-enter,.switch_contain-leave{
+                 transition:all .35s;
           }
+           .switch_contain-enter-active,.switch_contain-leave-active{
+                transform:translate3d(0,100%,0);
+           }
+           .switch_shade-enter-active,.switch_shade-leave-active{
+               opacity:0;
+           }
+
 
 
      }

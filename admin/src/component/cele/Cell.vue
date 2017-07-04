@@ -11,5 +11,6 @@
 <style lang="less">
    .c_cell{
    	  display: block;
+   	  font-size:0;
    }
 </style>

@@ -4,7 +4,11 @@
       <Cell><Cinput type="text"  v-model="name"></Cinput></Cell>
       <Cell><Cinput type="password" title="密码" :titleStyle="{paddingRight:'20px'}" leftPos="inner" rightPos="outer" v-model="password"><span slot="left" class="icon"><img src="../../static/images/icon/phone.svg"></span></Cinput></Cell>    
               <input type="button" name="" value="提交" @click='submit'>
-      <Cell><Ctoggle></Ctoggle></Cell>
+      <Cell><Ctoggle v-model="checkVal" val="123"></Ctoggle></Cell>
+      <Cell><Cselect :options="options" v-model="selected"></Cselect></Cell>
+      <Cell><CselectM :options="options" title="选择" v-model="selected"></CselectM></Cell>
+      <Cell><Cradio val="123"  :options="options" type="1" v-model="checkBox" text="haha"></Cradio></Cell>
+
       </div>
   </div>
 </template>
@@ -14,17 +18,29 @@ import axios from 'axios'
 import Cell from '../component/cele/Cell.vue'
 import Cinput from '../component/cele/Cinput'
 import Ctoggle from '../component/cele/Ctoggle'
+import Cselect from '../component/cele/Cselect/index.vue'
+import CselectM from '../component/cele_m/Cselect/index.vue'
+import Ccheckbox from '../component/cele/Ccheckbox/index.vue'
+import Cradio from '../component/cele/Cradio/index.vue'
 export default {
   name: 'app',
     components: {
        Cinput,
        Cell,
-       Ctoggle
+       Ctoggle,
+       Cselect,
+       CselectM,
+       Ccheckbox,
+       Cradio
     },
     data(){
          return{
               name:'',
-              password:''
+              password:'',
+              checkVal:'',
+              selected:'',
+              checkBox:'',
+              options:[{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3}]
          }
     },
     methods:{
@@ -36,6 +52,15 @@ export default {
     },
     watch:{
         password(newVal){
+          console.log(newVal)
+        },
+        checkVal(newVal){
+          console.log(newVal)
+        },
+        selected(newVal){
+          console.log(newVal)
+        },
+        checkBox(newVal){
           console.log(newVal)
         }
     }

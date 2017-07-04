@@ -190,9 +190,10 @@ export default {
     max-width: 100%;
     flex: 1;
     font-size: 14px;
-    line-height: 22px;
+    line-height: 24px;
     border: 1px solid #ddd;
     border-radius: 3px;
+    padding:0 3px;
     outline: none
 }
 .c_input .c_title {
