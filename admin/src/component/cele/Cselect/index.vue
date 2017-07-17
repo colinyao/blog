@@ -50,7 +50,7 @@
         },
         watch:{
            currentVal(newVal,oldVal){
-                if(this.disabled || this.disabled==='disabled'){
+                if(!!this.disabled){
                     return false
                 }
                 this.currentVal = newVal

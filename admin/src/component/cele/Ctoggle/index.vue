@@ -31,7 +31,7 @@
 		},
 		methods:{
 			handleChecked(){
-				if(this.disabled || this.disabled==='disabled'){
+				if(!!this.disabled){
 					 return false
 				}
                       this.defaultChecked=!this.defaultChecked;

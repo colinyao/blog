@@ -6,7 +6,9 @@
         :readonly="readonly"
         :textareaStyle="textareaStyle"
         :reg="reg"
-        ref="textarea"
+        :disabled="diisabled" 
+        ref="textarea",
+
     ></textarea>
 </template>
 <script>
@@ -29,6 +31,9 @@
             },
             reg:{
                 type:RegExp
+            },
+            disabled:{
+                type:[String,Boolean]
             }
         },
         data(){

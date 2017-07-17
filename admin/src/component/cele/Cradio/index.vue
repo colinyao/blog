@@ -45,7 +45,7 @@
 		},
 		methods:{
 			handleChecked(id){
-				if(this.disabled || this.disabled==='disabled'){
+				if(!!this.disabled){
 					 return false
 				}
                   

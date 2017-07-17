@@ -36,16 +36,16 @@ export default {
         if (this.defaultChecked) this.$emit('input', this.value);
     },
     methods: {
+			handleChecked(){
+				if(!!this.disabled){
+					 return false
+				}
+                      this.defaultChecked=!this.defaultChecked;
+                      this.defaultChecked?this.$emit('input',this.value):this.$emit('input','')
+			}
+		}
+	}
 
-        handleChecked() {
-            if (this.disabled || this.disabled === 'disabled') {
-                return false
-            }
-            this.defaultChecked = !this.defaultChecked;
-            this.defaultChecked ? this.$emit('input', this.value) : this.$emit('input', '')
-        }
-    }
-}
 </script>
 <style lang="less">
 .c_checkbox {

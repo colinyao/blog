@@ -3,6 +3,7 @@ const ip_addr = '127.0.0.1'
 const port =  '3000'
 const server = restify.createServer({name : "server",version:'1.0.0'})
 const assert = require('assert');
+const path=require('path')
 // var clients = require('restify-clients');
 const db=require('./mongodb')
 
@@ -11,6 +12,10 @@ const db=require('./mongodb')
 //   version: '~1.0'
 // });
 
+
+server.get(/\/uploads\/?.*/, restify.serveStatic({
+    directory: __dirname
+}));
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
