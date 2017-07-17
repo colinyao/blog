@@ -8,7 +8,8 @@
       <Cell><Cselect :options="options" v-model="selected"></Cselect></Cell>
       <Cell><CselectM :options="options" title="选择" v-model="selected"></CselectM></Cell>
       <Cell><Cradio val="123"  :options="options" type="1" v-model="checkBox" text="haha"></Cradio></Cell>
-
+      <Cell><Editor height="300px" uploadJson="http://localhost:3000/api/editor/fileUpLoad" ref="editor"></Editor></Cell>
+      <button @click="handleSubmit">提交</button>
       </div>
   </div>
 </template>
@@ -16,12 +17,13 @@
 <script>
 import axios from 'axios'
 import Cell from '../component/cele/Cell.vue'
-import Cinput from '../component/cele/Cinput'
-import Ctoggle from '../component/cele/Ctoggle'
+import Cinput from '../component/cele/Cinput/index.vue'
+import Ctoggle from '../component/cele/Ctoggle/index.vue'
 import Cselect from '../component/cele/Cselect/index.vue'
 import CselectM from '../component/cele_m/Cselect/index.vue'
 import Ccheckbox from '../component/cele/Ccheckbox/index.vue'
 import Cradio from '../component/cele/Cradio/index.vue'
+import Editor from '../component/cele/Editor/Editor.vue'
 export default {
   name: 'app',
     components: {
@@ -31,7 +33,8 @@ export default {
        Cselect,
        CselectM,
        Ccheckbox,
-       Cradio
+       Cradio,
+       Editor
     },
     data(){
          return{
@@ -48,6 +51,10 @@ export default {
             axios.post('http://localhost:3000/api/register',{name:this.name,password:this.password}).then((res)=>{
                 console.log(res.data)
             })
+        },
+        handleSubmit(){
+            this.$refs.editor.setHtml('<h1>asdfasfas</h1');
+
         }
     },
     watch:{

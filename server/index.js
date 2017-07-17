@@ -23,7 +23,9 @@ server.use(restify.plugins.bodyParser());
 const web=require('./api/web')
 const admin=require('./api/admin')
 
-db.on('error',console.error.bind(console,'连接错误:'));
+db.on('error',(res)=>{
+    console.log('数据库连接错误:'+res)
+});
 db.once('open',function(){
   //一次打开记录
 
