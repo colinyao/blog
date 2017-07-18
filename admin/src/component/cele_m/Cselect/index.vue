@@ -48,7 +48,7 @@
         },
         methods:{
             handleTrigger(){
-                 if(this.disabled || this.disabled==='disabled'){
+                 if(!!this.disabled){
                       return false
                  }
                  this.status=!this.status;
@@ -100,17 +100,6 @@
                      transform:translate3d(0,-50%,0) rotate3d(0,0,1,180deg);
                 }
           }
-          .c_shade{
-              position:fixed;
-              top:0;
-              left:0;
-              bottom:0;
-              right:0;
-              background:#000;
-              opacity:0.7;
-              z-index:999;
-              transition:all 0.3s;
-          }
           .c_select_contain{
                 position:fixed;
                 width:100%;
@@ -154,11 +143,5 @@
            .switch_contain-enter-active,.switch_contain-leave-active{
                 transform:translate3d(0,100%,0);
            }
-           .switch_shade-enter-active,.switch_shade-leave-active{
-               opacity:0;
-           }
-
-
-
      }
 </style>

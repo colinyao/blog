@@ -1,14 +1,14 @@
 <template>
 	<div class="c_toggle" :class="{'on':defaultChecked}" @click="handleChecked">
 	        <div class="c_toggle_slide"><span class="c_toggle_on"></span></div>
-		  <input type="checkbox" :name="name" :value="val" class="hidden" :disabled="disabled" :checked="defaultChecked">
+		  <input type="checkbox" :name="name" :value="defaultVal" class="hidden" :disabled="disabled" :checked="defaultChecked">
 	</div>
 </template>
 <script>
 	export default{
 		props:{ 
 			value:{},
-			val:'',
+			defaultVal:'',
 			name:{
 				type:String
 			},
@@ -35,7 +35,7 @@
 					 return false
 				}
                       this.defaultChecked=!this.defaultChecked;
-                      this.defaultChecked?this.$emit('input',this.val):this.$emit('input','')
+                      this.defaultChecked?this.$emit('input',this.defaultVal):this.$emit('input','')
 			}
 		}
 	}

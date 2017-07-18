@@ -27,7 +27,11 @@ select:-webkit-autofill {
     .flex;
     justify-content: center;
 }
-
+.vvc{
+    .vc;
+    justify-content:center;
+    flex-direction:column;
+}
 .c_modal_bg{
     background:rgba(0,0,0,0.6)
 }
@@ -52,4 +56,18 @@ select:-webkit-autofill {
 .border_r_1{
 	border-top:1px solid #eee;
 	transform:scaleX(50%)
+}
+.c_shade{
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background:#000;
+  opacity:0.7;
+  z-index:999;
+  transition:all 0.3s;
+}
+.switch_shade-enter-active,.switch_shade-leave-active{
+   opacity:0;
 }
