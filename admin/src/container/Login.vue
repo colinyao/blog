@@ -9,8 +9,8 @@
       <Cell><CselectM :options="options" title="选择" v-model="selected"></CselectM></Cell>
       <Cell><Cradio val="123"  :options="options" type="1" v-model="checkBox" text="haha"></Cradio></Cell>
       <Cell><Editor height="300px" uploadJson="http://localhost:3000/api/editor/fileUpLoad" ref="editor"></Editor></Cell>
-      <button @click="handleSubmit">提交</button>
-      <Cloading v-model="showLoading" :shadow="false"></Cloading>
+      <button @click="handleSubmit" class="btn">提交</button>
+    <!--   <Cell><Calert v-model="showLoading" title="asdfasdf" text="asfasdfsafsa"></Calert></Cell> -->
       </div>
   </div>
 </template>
@@ -29,7 +29,8 @@ import utils from '../assets/js/utils.js'
 import Colin from '../assets/js/public.js'
 import {API_LOGIN,API_ULET_FILE,API_ULET_ARTICLE} from '../assets/api/index.js'
 import {mapMutations} from 'vuex'
-import Cloading from '../component/cele/Cloading/index.vue'
+
+import Calert from '../component/cele/Calert/index.vue'
 export default {
   name: 'app',
     components: {
@@ -41,7 +42,7 @@ export default {
        Ccheckbox,
        Cradio,
        Editor,
-       Cloading
+       Calert
     },
     data(){
          return{
@@ -63,11 +64,15 @@ export default {
             })
         },
         handleSubmit(){
-            let html=this.$refs.editor.getHtml();
-            Colin.ajax(API_ULET_ARTICLE,{content:html}).then((res)=>{
-                  console.log(res.data)
-            })
+            // let html=this.$refs.editor.getHtml();
+            // Colin.ajax(API_ULET_ARTICLE,{content:html}).then((res)=>{
+            //       console.log(res.data)
+            // })
+            this.showLoading=!this.showLoading
         }
+    },
+    created(){
+       console.log(this.$cele)
     },
     watch:{
         password(newVal){
@@ -95,5 +100,9 @@ export default {
 .icon img{
     height:100%;
     width:auto;
+}
+.btn{
+  position: absolute;
+  z-index:1000000;
 }
 </style>

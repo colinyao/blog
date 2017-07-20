@@ -1,7 +1,7 @@
 <template>
-	<div class="c_toggle" :class="{'on':defaultChecked}" @click="handleChecked">
+	<div class="c_toggle" :class="{'on':currentChecked}" @click="handleChecked">
 	        <div class="c_toggle_slide"><span class="c_toggle_on"></span></div>
-		  <input type="checkbox" :name="name" :value="defaultVal" class="hidden" :disabled="disabled" :checked="defaultChecked">
+		  <input type="checkbox" :name="name" :value="defaultVal" class="hidden" :disabled="disabled" :checked="currentChecked">
 	</div>
 </template>
 <script>
@@ -22,20 +22,20 @@
 		},
 		data(){
 			return{
-                     defaultChecked:'',
+                     currentChecked:'',
         
 			}
 		},
 		created(){
-			this.defaultChecked=this.checked
+			this.currentChecked=this.checked
 		},
 		methods:{
 			handleChecked(){
 				if(!!this.disabled){
 					 return false
 				}
-                      this.defaultChecked=!this.defaultChecked;
-                      this.defaultChecked?this.$emit('input',this.defaultVal):this.$emit('input','')
+                      this.currentChecked=!this.currentChecked;
+                      this.currentChecked?this.$emit('input',this.defaultVal):this.$emit('input','')
 			}
 		}
 	}

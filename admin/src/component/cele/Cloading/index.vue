@@ -1,9 +1,9 @@
 <template>
     <div class="c_loading hvc">
         <transition name="switch_shade">
-            <div class="c_shade" v-if="value && shadow"></div>
+            <div class="c_shade" v-show="currentVal"></div>
         </transition>
-        <div class="c_loading_box vvc" :class="{'transparent':!shadow}"><p>{{tip}}</p></div>
+        <div class="c_loading_box vvc" v-show="currentVal" :class="{'transparent':!shadow}"><p>{{tip}}</p></div>
     </div>
 </template>
 <script>
@@ -22,12 +22,17 @@ export default {
             default:'加载中'
         }
     },
-    components: {
-
-    },
     data() {
         return {
-
+            currentVal: ''
+        }
+    },
+    created() {
+        this.currentVal = this.value
+    },
+    watch:{
+        value(newVal){
+            this.currentVal=newVal
         }
     }
 }

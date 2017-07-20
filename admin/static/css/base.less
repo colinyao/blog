@@ -68,6 +68,12 @@ select:-webkit-autofill {
   z-index:999;
   transition:all 0.3s;
 }
-.switch_shade-enter-active,.switch_shade-leave-active{
-   opacity:0;
+.switch_shade-enter-active,
+.switch_shade-leave-active {
+    transition: all 1s;
+}
+
+.switch_shade-enter,
+.switch_shade-leave-active {
+    opacity:0;
 }
