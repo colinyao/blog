@@ -8,9 +8,12 @@
       <Cell><Cselect :options="options" v-model="selected"></Cselect></Cell>
       <Cell><CselectM :options="options" title="选择" v-model="selected"></CselectM></Cell>
       <Cell><Cradio val="123"  :options="options" type="1" v-model="checkBox" text="haha"></Cradio></Cell>
-      <Cell><Editor height="300px" uploadJson="http://localhost:3000/api/editor/fileUpLoad" ref="editor"></Editor></Cell>
+      <Cell><Previewer :items="previewerList" ref="previewer" ></Previewer></Cell>
       <button @click="handleSubmit" class="btn">提交</button>
     <!--   <Cell><Calert v-model="showLoading" title="asdfasdf" text="asfasdfsafsa"></Calert></Cell> -->
+      <div class="imgbox">
+            <img class="previewer-demo-img"  v-for="(item, index) in smallPhotos" :src="item.src" @click="show(index)"/>
+      </div>
       </div>
   </div>
 </template>
@@ -25,8 +28,10 @@ import CselectM from '../component/cele_m/Cselect/index.vue'
 import Ccheckbox from '../component/cele/Ccheckbox/index.vue'
 import Cradio from '../component/cele/Cradio/index.vue'
 import Editor from '../component/cele/Editor/Editor.vue'
+import Previewer from '../component/cele/Previewer/index.vue'
 import utils from '../assets/js/utils.js'
 import Colin from '../assets/js/public.js'
+import {previewer} from '../assets/mixins/index.js'
 import {API_LOGIN,API_ULET_FILE,API_ULET_ARTICLE} from '../assets/api/index.js'
 import {mapMutations} from 'vuex'
 
@@ -42,8 +47,10 @@ export default {
        Ccheckbox,
        Cradio,
        Editor,
-       Calert
+       Calert,
+       Previewer
     },
+    mixins:[previewer],
     data(){
          return{
               name:'',
@@ -52,16 +59,47 @@ export default {
               selected:'',
               checkBox:'',
               options:[{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3}],
-              showLoading:true
+              showLoading:true,
+              items:[],
+              previewerList:[],
+              smallPhotos:[{
+                  src:'../../static/images/smallimage00.jpg',
+              },{
+                  src:'../../static/images/smallimage01.jpg',
+              },{
+                  src:'../../static/images/smallimage02.jpg',
+              },{
+                  src:'../../static/images/smallimage03.jpg',
+              },{
+                  src:'../../static/images/smallimage04.jpg',
+              }],
+              bigPhotos:[{
+                  src:'../../static/images/bigimage00.jpg',
+              },{
+                  src:'../../static/images/bigimage01.jpg',
+              },{
+                  src:'../../static/images/bigimage02.jpg',
+              },{
+                  src:'../../static/images/bigimage03.jpg',
+              },{
+                  src:'../../static/images/bigimage04.jpg',
+              }
+              ]
          }
     },
     methods:{
         ...mapMutations(['updateUserInfo']),
         submit(){
             axios.post(API_LOGIN,{name:this.name,password:this.password}).then((res)=>{
-
                 this.updateUserInfo(res.data.resultObject)
             })
+        },
+        show(index){
+            this.previewer({
+              index:index,
+              items:this.bigPhotos,
+        })
+           
         },
         handleSubmit(){
             // let html=this.$refs.editor.getHtml();
@@ -72,7 +110,7 @@ export default {
         }
     },
     created(){
-       console.log(this.$cele)
+
     },
     watch:{
         password(newVal){
@@ -100,6 +138,9 @@ export default {
 .icon img{
     height:100%;
     width:auto;
+}
+.imgbox{
+   img{width:60px;height:60px;}
 }
 .btn{
   position: absolute;

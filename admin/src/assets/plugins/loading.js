@@ -1,24 +1,19 @@
 import Vue from 'vue'
-import AlertComponent from '../../component/cele/Calert/index.vue'
+import LoadingComponent from '../../component/cele/Cloading/index.vue'
 let $vm;
 export default {
     install(Vue) {
-        let Alert = Vue.extend(AlertComponent)
-        $vm = new Alert({
+        let Loading = Vue.extend(LoadingComponent)
+        $vm = new Loading({
             el: document.createElement('div')
         })
         document.body.appendChild($vm.$el)
-
-
-        const alert = {
+        const loading = {
             show: (options) => {
-                let title=options.title || '',
-                     text=options.text || '',
-                     shadow=options.shadow || true,
+                let  tip=tip.text || '',
                      onShow=options.onShow || '',
                      onHide=options.onHide || '';
-                 $vm.title=title;
-                 $vm.text=text;
+                 $vm.tip=tip;
                  $vm.currentVal=true
                  $vm.$watch('currentVal',handleWatch)
                  function handleWatch(newVal){
@@ -30,13 +25,13 @@ export default {
             }
         }
 
-        Vue.alert={
-            alert
+        Vue.loading={
+            loading
         }
         
         Vue.mixin({
             created: function() {
-                this.$cele = Vue.alert
+                this.$cele = Vue.loading
             }
         })
     }

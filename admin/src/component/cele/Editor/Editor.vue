@@ -4,8 +4,8 @@
     </div>
 </template>
 <script>
-import '../../../../static/js/kindeditor/kindeditor-all.js'
-import '../../../../static/js/kindeditor/lang/zh-CN.js'
+import '../../../../static/plugins/kindeditor/kindeditor-all.js'
+import '../../../../static/plugins/kindeditor/lang/zh-CN.js'
 export default {
     props: {
         width: {

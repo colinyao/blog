@@ -4,11 +4,11 @@
             <div v-show="currentVal" class="c_shade" :class="{'transparent':!shadow}" @touchmove.prevent></div>
         </transition>
         <transition name="switch_box">
-            <div class="c_alert_contain vhc" v-show="currentVal">
+            <div class="c_alert_contain hvc" v-show="currentVal">
                 <div class="c_alert_box vvc">
                     <p class="title">{{title}}</p>
                     <p class="text">{{text}}</p>
-                    <div class="btn">确定</div>
+                    <div class="btn" @click="handleCertain">确定</div>
                 </div>
             </div>
         </transition>
@@ -44,11 +44,15 @@ export default {
         this.currentVal = this.value
     },
     methods: {
-
+        handleCertain(){
+            this.currentVal=false;
+            this.$emit('onHide',true)
+        }
     },
     watch: {
         value(newVal) {
             this.currentVal = newVal
+            this.currentVal?this.$emit('onShow',true):this.$emit('onHide',true)
         }
     }
 }
