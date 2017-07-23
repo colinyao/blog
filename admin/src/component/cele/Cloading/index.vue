@@ -3,11 +3,13 @@
         <transition name="switch_shade">
             <div class="c_shade" v-show="currentVal"></div>
         </transition>
+
         <div class="c_loading_contain hvc">
             <div class="c_loading_box vvc" v-show="currentVal" :class="{'transparent':!shadow}">
                 <p>{{tip}}</p>
             </div>
         </div>
+
     </div>
 </template>
 <script>
@@ -43,13 +45,16 @@ export default {
 </script>
 <style lang="less">
 .c_loading {
+
     .c_loading_contain {
+
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 1000;
+        z-index: 10000;
+
     }
     .c_loading_box {
         width: 7.6em;
