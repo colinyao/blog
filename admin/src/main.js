@@ -4,9 +4,9 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import App from './App'
 import router from './router'
-import Alert from './assets/plugins/alert.js'
+import {AlertPlugin} from './component/cele/index.js'
 
-Vue.use(Alert)
+Vue.use(AlertPlugin)
 // for Vue 2.0
 //import VueLazyload from 'vue-lazyload'
 import store from './store'

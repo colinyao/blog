@@ -2,40 +2,33 @@
   <div id="app">
       <div class="form">
       <Cell><Cinput type="text"  v-model="name"></Cinput></Cell>
-      <Cell><Cinput type="password" title="密码" :titleStyle="{paddingRight:'20px'}" leftPos="inner" rightPos="outer" v-model="password"><span slot="left" class="icon"><img src="../../static/images/icon/phone.svg"></span></Cinput></Cell>    
+      <Cell><Cinput type="password" title="密码" :titleStyle="{paddingRight:'20px'}" leftPos="inner" rightPos="inner" v-model="password"><span slot="left" class="icon"><img src="../../static/images/icon/phone.svg"></span></Cinput></Cell>    
               <input type="button" name="" value="提交" @click='submit'>
       <Cell><Ctoggle v-model="checkVal" defaultVal="123"></Ctoggle></Cell>
       <Cell><Cselect :options="options" v-model="selected"></Cselect></Cell>
       <Cell><CselectM :options="options" title="选择" v-model="selected"></CselectM></Cell>
       <Cell><Cradio val="123"  :options="options" type="1" v-model="checkBox" text="haha"></Cradio></Cell>
-      <Cell><Previewer :items="previewerList" ref="previewer" ></Previewer></Cell>
-      <button @click="handleSubmit" class="btn">提交</button>
+      <Cell><Previewer :items="previewerList" ref="previewer"></Previewer></Cell>
+
     <!--   <Cell><Calert v-model="showLoading" title="asdfasdf" text="asfasdfsafsa"></Calert></Cell> -->
       <div class="imgbox">
             <img class="previewer-demo-img"  v-for="(item, index) in smallPhotos" :src="item.src" @click="show(index)"/>
       </div>
+     <Crange></Crange>
       </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Cell from '../component/cele/Cell.vue'
-import Cinput from '../component/cele/Cinput/index.vue'
-import Ctoggle from '../component/cele/Ctoggle/index.vue'
-import Cselect from '../component/cele/Cselect/index.vue'
-import CselectM from '../component/cele_m/Cselect/index.vue'
-import Ccheckbox from '../component/cele/Ccheckbox/index.vue'
-import Cradio from '../component/cele/Cradio/index.vue'
-import Editor from '../component/cele/Editor/Editor.vue'
-import Previewer from '../component/cele/Previewer/index.vue'
+import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Crange,previewerMixin} from '../component/cele'
+
 import utils from '../assets/js/utils.js'
 import Colin from '../assets/js/public.js'
-import {previewer} from '../assets/mixins/index.js'
+
 import {API_LOGIN,API_ULET_FILE,API_ULET_ARTICLE} from '../assets/api/index.js'
 import {mapMutations} from 'vuex'
 
-import Calert from '../component/cele/Calert/index.vue'
 export default {
   name: 'app',
     components: {
@@ -47,10 +40,10 @@ export default {
        Ccheckbox,
        Cradio,
        Editor,
-       Calert,
-       Previewer
+       Previewer,
+       Crange
     },
-    mixins:[previewer],
+    mixins:[previewerMixin],
     data(){
          return{
               name:'',
