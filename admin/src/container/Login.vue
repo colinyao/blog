@@ -14,14 +14,14 @@
       <div class="imgbox">
             <img class="previewer-demo-img"  v-for="(item, index) in smallPhotos" :src="item.src" @click="show(index)"/>
       </div>
-     <Crange></Crange>
+     <Range></Range>
       </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Crange,previewerMixin} from '../component/cele'
+import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin} from '../component/cele'
 
 import utils from '../assets/js/utils.js'
 import Colin from '../assets/js/public.js'
@@ -41,7 +41,7 @@ export default {
        Cradio,
        Editor,
        Previewer,
-       Crange
+       Range
     },
     mixins:[previewerMixin],
     data(){

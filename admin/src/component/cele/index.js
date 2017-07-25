@@ -6,7 +6,7 @@ import Cradio from './src/components/Cradio/index.vue'
 import Cselect from './src/components/Cselect/index.vue'
 import Ctextarea from './src/components/Cloading/index.vue'
 import Ctoggle from './src/components/Ctoggle/index.vue'
-import Crange from './src/components/Crange/index.vue'
+import Range from './src/components/Range/index.vue'
 import Editor from './src/components/Editor/index.vue'
 import Previewer from './src/components/Previewer/index.vue'
 import Cell from './src/components/Cell/index.vue'
@@ -28,7 +28,7 @@ export{
     Cselect,
     Ctextarea,
     Ctoggle,
-    Crange,
+    Range,
     Editor,
     Previewer,
     Cell,

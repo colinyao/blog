@@ -16,7 +16,7 @@
             disabled:{
                 type:[String,Boolean]
             },
-            style:{
+            styles:{
                 type:[String,Object]
             }
         },
@@ -29,7 +29,7 @@
         },
         created(){
               this.currentVal=this.value;
-              this.currentStyle=this.style;
+              this.currentStyle=this.styles;
         },
         methods:{
 
