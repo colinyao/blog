@@ -14,14 +14,22 @@
       <div class="imgbox">
             <img class="previewer-demo-img"  v-for="(item, index) in smallPhotos" :src="item.src" @click="show(index)"/>
       </div>
-     <Range></Range>
+     <Cell className="mt20"><Range v-model="range" :rangeBarHeight='2'></Range></Cell>
+     <Cell>
+          <TabBar>
+                <TabBarItem icon="../../static/images/icon/home.png" activeIcon="../../static/images/icon/home-active.png" title="首页"></TabBarItem>
+                <TabBarItem icon="../../static/images/icon/shop.png" activeIcon="../../static/images/icon/shop-active.png" title="商户列表"></TabBarItem>
+                <TabBarItem icon="../../static/images/icon/news.png" activeIcon="../../static/images/icon/news-active.png" title="新闻"></TabBarItem>
+                <TabBarItem icon="../../static/images/icon/personal.png" activeIcon="../../static/images/icon/personal-active.png" title="个人中心"></TabBarItem>
+          </TabBar>
+        </Cell>
       </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin} from '../component/cele'
+import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin,TabBar,TabBarItem} from '../component/cele'
 
 import utils from '../assets/js/utils.js'
 import Colin from '../assets/js/public.js'
@@ -41,7 +49,9 @@ export default {
        Cradio,
        Editor,
        Previewer,
-       Range
+       Range,
+       TabBar,
+       TabBarItem
     },
     mixins:[previewerMixin],
     data(){
@@ -51,6 +61,7 @@ export default {
               checkVal:'',
               selected:'',
               checkBox:'',
+              range:0,
               options:[{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3}],
               showLoading:true,
               items:[],
@@ -117,6 +128,9 @@ export default {
         },
         checkBox(newVal){
           console.log(newVal)
+        },
+        range(newVal){
+          console.log(newVal)
         }
     }
 }
@@ -124,6 +138,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.mt20{
+  margin-top:20px;
+}
 .icon{
     display: inline-block;
     height:100%

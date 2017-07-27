@@ -1,10 +1,13 @@
 <template>
-<div class="c_cell">
+<div class="c_cell" :class="className">
   <slot></slot>
 </div>  
 </template>
 <script>
     export default{
+        props:{
+           className:String
+        },
         data(){
             return{
                 
