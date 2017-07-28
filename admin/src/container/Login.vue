@@ -16,20 +16,45 @@
       </div>
      <Cell className="mt20"><Range v-model="range" :rangeBarHeight='2'></Range></Cell>
      <Cell>
-          <TabBar>
-                <TabBarItem icon="../../static/images/icon/home.png" activeIcon="../../static/images/icon/home-active.png" title="首页"></TabBarItem>
-                <TabBarItem icon="../../static/images/icon/shop.png" activeIcon="../../static/images/icon/shop-active.png" title="商户列表"></TabBarItem>
-                <TabBarItem icon="../../static/images/icon/news.png" activeIcon="../../static/images/icon/news-active.png" title="新闻"></TabBarItem>
-                <TabBarItem icon="../../static/images/icon/personal.png" activeIcon="../../static/images/icon/personal-active.png" title="个人中心"></TabBarItem>
+          <TabBar v-model="tabIndex">
+                <TabBarItem>
+                       <div slot="icon"><img src="../../static/images/icon/home.png" alt=""></div>
+                       <div slot="active-icon"><img  src="../../static/images/icon/home-active.png"></div>
+                       <span slot="title">首页</span>
+                </TabBarItem>
+                <TabBarItem>
+                       <div slot="icon"><img src="../../static/images/icon/shop.png" alt=""></div>
+                       <div slot="active-icon"><img src="../../static/images/icon/shop-active.png"></div>
+                       <span slot="title">首页</span>
+                </TabBarItem>
+                <TabBarItem>
+                       <div slot="icon"><img src="../../static/images/icon/news.png" alt=""></div>
+                       <div slot="active-icon"><img src="../../static/images/icon/news-active.png"></div>
+                       <span slot="title">首页</span>
+                </TabBarItem>
+                <TabBarItem>
+                       <div slot="icon"><img src="../../static/images/icon/personal.png" alt=""></div>
+                       <div slot="active-icon"><img src="../../static/images/icon/personal-active.png"></div>
+                       <span slot="title">首页</span>
+                </TabBarItem>
           </TabBar>
         </Cell>
+        <Cell>
+              <Tab>
+                    <TabItem></TabItem>
+                    <TabItem></TabItem>
+                    <TabItem></TabItem>
+                    <TabItem></TabItem>
+              </Tab>
+        </Cell>
       </div>
+      
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin,TabBar,TabBarItem} from '../component/cele'
+import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin,TabBar,TabBarItem,Tab,TabItem} from '../component/cele'
 
 import utils from '../assets/js/utils.js'
 import Colin from '../assets/js/public.js'
@@ -51,7 +76,9 @@ export default {
        Previewer,
        Range,
        TabBar,
-       TabBarItem
+       TabBarItem,
+       Tab,
+       TabItem
     },
     mixins:[previewerMixin],
     data(){
@@ -66,6 +93,7 @@ export default {
               showLoading:true,
               items:[],
               previewerList:[],
+              tabIndex:0,
               smallPhotos:[{
                   src:'../../static/images/smallimage00.jpg',
               },{
@@ -105,6 +133,7 @@ export default {
         })
            
         },
+
         handleSubmit(){
             // let html=this.$refs.editor.getHtml();
             // Colin.ajax(API_ULET_ARTICLE,{content:html}).then((res)=>{
@@ -130,6 +159,9 @@ export default {
           console.log(newVal)
         },
         range(newVal){
+          console.log(newVal)
+        },
+        tabIndex(newVal){
           console.log(newVal)
         }
     }

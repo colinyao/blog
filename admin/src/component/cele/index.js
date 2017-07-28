@@ -14,8 +14,9 @@ import CselectM from './src/components_m/Cselect/index.vue'
 import AlertPlugin from './assets/plugins/alert.js'
 import HttpPlugin from './assets/plugins/http.js'
 import LoadingPlugin from './assets/plugins/loading.js'
-import TabBar from './src/components/TabBar/tabbar.vue'
-import TabBarItem from './src/components/TabBar/tabbar-item.vue'
+import {TabBar,TabBarItem} from './src/components/tabbar'
+import {Tab,TabItem} from './src/components/tab'
+
 import {
     previewerMixin
 } from './assets/mixins/index.js'
@@ -40,5 +41,7 @@ export{
     HttpPlugin,
     LoadingPlugin,
     TabBar,
-    TabBarItem
+    TabBarItem,
+    Tab,
+    TabItem
 }
