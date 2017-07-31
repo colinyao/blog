@@ -39,12 +39,27 @@
                 </TabBarItem>
           </TabBar>
         </Cell>
-        <Cell>
+        <Cell className="mt20">
               <Tab>
-                    <TabItem></TabItem>
-                    <TabItem></TabItem>
-                    <TabItem></TabItem>
-                    <TabItem></TabItem>
+                    <TabItem>
+                           <div slot="icon"><img src="../../static/images/icon/home.png" alt=""></div>
+                           <div slot="active-icon"><img  src="../../static/images/icon/home-active.png"></div>
+                           <span slot="title">首页</span>
+                    </TabItem>
+                    <TabItem>                           
+                           <div slot="icon"><img src="../../static/images/icon/home.png" alt=""></div>
+                           <div slot="active-icon"><img  src="../../static/images/icon/home-active.png"></div>
+                           <span slot="title">首页</span></TabItem>
+                    <TabItem>
+                          <div slot="icon"><img src="../../static/images/icon/home.png" alt=""></div>
+                           <div slot="active-icon"><img  src="../../static/images/icon/home-active.png"></div>
+                           <span slot="title">首页</span>
+                    </TabItem>
+                    <TabItem>
+                           <div slot="icon"><img src="../../static/images/icon/home.png" alt=""></div>
+                           <div slot="active-icon"><img  src="../../static/images/icon/home-active.png"></div>
+                           <span slot="title">首页</span>
+                    </TabItem>
               </Tab>
         </Cell>
       </div>

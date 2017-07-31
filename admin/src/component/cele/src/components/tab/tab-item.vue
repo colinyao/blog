@@ -1,8 +1,11 @@
 <template>
-      <div class="c_tabbar_item vvc" @click="clickItem">
-             <span class="c_tabbar_icon" v-show="!currentActive" :style="{backgroundImage:'url('+icon+')'}"></span>
-             <span class="c_tabbar_icon" v-show="currentActive" :style="{backgroundImage:'url('+activeIcon+')'}"></span>
-             <span class="c_tabbar_title" :class="{'active':currentActive}" :style="{color:currentActive?activeTitleColor:titleColor}" >{{title}}</span>
+      <div class="c_tab_item vvc" @click="clickItem">
+             <div class="children vvc">
+                    <div class="c_tab_icon" v-show="!currentActive"><slot name="icon" ></slot></div>
+                    <div class="c_tab_icon" v-show="currentActive"><slot name="active-icon" ></slot></div>
+                    <div class="c_tab_title" :class="{'active':currentActive}" :style="{color:currentActive?activeTitleColor:titleColor}"><slot name="title"></slot></div>
+             </div>
+
       </div>
 </template>
 <script>
@@ -46,18 +49,21 @@ import {tabBarItem} from '../../../assets/mixins/index.js'
 @bg:#ddd;
     .c_tab_item{
          height:100%;
+         padding:5px 0;
          flex:1;
+         cursor:pointer;
          span{
              display: block;
          }
-         .c_tabbar_icon{
+         .c_tab_icon img{
                width:22px;
                height:22px;
                background-size:cover;
          }
-         .c_tabbar_title{
+         .c_tab_title{
               font-size:12px;
-              margin-top:2px;
+              margin-top:4px;
+              line-height: 1;
               color:#898989;
               &.active{
                   color:#ff6600;
