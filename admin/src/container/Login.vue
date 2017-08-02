@@ -22,7 +22,7 @@
                        <div slot="active-icon"><img  src="../../static/images/icon/home-active.png"></div>
                        <span slot="title">首页</span>
                 </TabBarItem>
-                <TabBarItem>
+                <TabBarItem :disabled="true">
                        <div slot="icon"><img src="../../static/images/icon/shop.png" alt=""></div>
                        <div slot="active-icon"><img src="../../static/images/icon/shop-active.png"></div>
                        <span slot="title">首页</span>
@@ -40,7 +40,7 @@
           </TabBar>
         </Cell>
         <Cell className="mt20">
-              <Tab>
+              <Tab lineType="child">
                     <TabItem>
                            <div slot="icon"><img src="../../static/images/icon/home.png" alt=""></div>
                            <div slot="active-icon"><img  src="../../static/images/icon/home-active.png"></div>
@@ -63,13 +63,13 @@
               </Tab>
         </Cell>
       </div>
-      
+      <Toast text="没有" v-model="toast"></Toast>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin,TabBar,TabBarItem,Tab,TabItem} from '../component/cele'
+import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin,TabBar,TabBarItem,Tab,TabItem,Toast} from '../component/cele'
 
 import utils from '../assets/js/utils.js'
 import Colin from '../assets/js/public.js'
@@ -93,7 +93,8 @@ export default {
        TabBar,
        TabBarItem,
        Tab,
-       TabItem
+       TabItem,
+       Toast
     },
     mixins:[previewerMixin],
     data(){
@@ -104,6 +105,7 @@ export default {
               selected:'',
               checkBox:'',
               range:0,
+              toast:false,
               options:[{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3}],
               showLoading:true,
               items:[],
@@ -137,9 +139,10 @@ export default {
     methods:{
         ...mapMutations(['updateUserInfo']),
         submit(){
-            axios.post(API_LOGIN,{name:this.name,password:this.password}).then((res)=>{
-                this.updateUserInfo(res.data.resultObject)
-            })
+            // axios.post(API_LOGIN,{name:this.name,password:this.password}).then((res)=>{
+            //     this.updateUserInfo(res.data.resultObject)
+            // })
+            this.toast=!this.toast;
         },
         show(index){
             this.previewer({

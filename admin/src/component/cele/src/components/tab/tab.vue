@@ -1,7 +1,7 @@
 <template>
       <div class="c_tab border_t_1 border_b_1">
               <slot></slot>
-              <div class="line" :style='{left:left,right:right,backgroundColor:activeLineColor||"#ff6600"}'>
+              <div class="line" :class="[_animation?direction?'line-left':'line-right':'']":style='{left:left,right:right,backgroundColor:activeLineColor||"#ff6600"}'>
 
               </div>
       </div>
@@ -12,7 +12,11 @@ export default{
     mixins:[tabBar],
     props:{
        activeLineColor:String,
-       activeType:String //child
+       animation:{
+        type:Boolean,
+        default:true
+      },
+      lineType:String
     }
 }
 </script>
@@ -30,7 +34,12 @@ export default{
               bottom:0;
               height:2px;
               text-align: center;
-
+          }
+          .line-right{
+            transition:left 0.35s cubic-bezier(0,0.35,0.25,1.0) 0.09s,right 0.35s cubic-bezier(0,0.35,0.25,1.0);
+          }
+          .line-left{
+            transition:left 0.35s cubic-bezier(0,0.35,0.25,1.0),right 0.35s cubic-bezier(0,0.35,0.25,1.0) 0.09s;
           }
     
     }

@@ -16,7 +16,7 @@ import HttpPlugin from './assets/plugins/http.js'
 import LoadingPlugin from './assets/plugins/loading.js'
 import {TabBar,TabBarItem} from './src/components/tabbar'
 import {Tab,TabItem} from './src/components/tab'
-
+import Toast  from './src/components/Toast'
 import {
     previewerMixin
 } from './assets/mixins/index.js'
@@ -43,5 +43,6 @@ export{
     TabBar,
     TabBarItem,
     Tab,
-    TabItem
+    TabItem,
+    Toast
 }

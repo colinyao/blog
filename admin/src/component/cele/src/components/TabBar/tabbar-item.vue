@@ -1,5 +1,5 @@
 <template>
-      <div class="c_tabbar_item vvc" @click="clickItem">
+      <div class="c_tabbar_item vvc" @click="clickItem" :class="{'disabled':disabled}">
              <div class="c_tabbar_icon" v-show="!currentActive"><slot name="icon" ></slot></div>
              <div class="c_tabbar_icon" v-show="currentActive"><slot name="active-icon" ></slot></div>
              <div class="c_tabbar_title" :class="{'active':currentActive}" :style="{color:currentActive?activeTitleColor:titleColor}"><slot name="title"></slot></div>
@@ -16,6 +16,7 @@ import {tabBarItem} from '../../../assets/mixins/index.js'
              titleColor:String,
              activeTitleColor:String,
              link:String,
+             disabled:Boolean,
              active:{
                  type:Boolean,
                  default:false
@@ -28,7 +29,9 @@ import {tabBarItem} from '../../../assets/mixins/index.js'
             }
          },
          created(){
-              this.currentActive=this.active
+              if(!this.disabled){
+                 this.currentActive=this.active
+              }
          },
          methods:{
 
@@ -64,6 +67,11 @@ import {tabBarItem} from '../../../assets/mixins/index.js'
               &.active{
                   color:#ff6600;
               }
+         }
+         &.disabled{
+             .c_tabbar_title{
+                 color:#ddd;
+             }
          }
     }
 </style>
