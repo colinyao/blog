@@ -1,7 +1,7 @@
 <template>
       <div class="c_tab border_t_1 border_b_1">
               <slot></slot>
-              <div class="line" :class="[_animation?direction?'line-left':'line-right':'']":style='{left:left,right:right,backgroundColor:activeLineColor||"#ff6600"}'>
+              <div class="line" :class="[currentAnimation?direction?'line-left':'line-right':'']":style='{left:left,right:right,backgroundColor:activeLineColor||"#ff6600"}'>
 
               </div>
       </div>

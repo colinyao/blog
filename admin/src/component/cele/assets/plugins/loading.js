@@ -25,13 +25,11 @@ export default {
             }
         }
 
-        Vue.loading={
-            loading
-        }
+        Vue.plugin=Object.assign({},Vue.plugin,{loading:loading})
         
         Vue.mixin({
             created: function() {
-                this.$cele = Vue.loading
+                this.$cele = Vue.plugin
             }
         })
     }

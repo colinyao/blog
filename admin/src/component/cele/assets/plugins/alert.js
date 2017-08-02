@@ -30,13 +30,11 @@ export default {
             }
         }
 
-        Vue.alert={
-            alert
-        }
+        Vue.plugin=Object.assign({},Vue.plugin,{alert:alert})
         
         Vue.mixin({
             created: function() {
-                this.$cele = Vue.alert
+                this.$cele = Vue.plugin
             }
         })
     }

@@ -1,6 +1,6 @@
 <template>
       <transition name="toast_animate">
-            <div v-if="currentVal" class="c_toast" :class="type"><i></i>{{text}}</div>
+            <div v-show="currentVal" class="c_toast" :class="type"><i></i>{{text}}</div>
       </transition>
            
 </template>

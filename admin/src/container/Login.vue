@@ -63,7 +63,7 @@
               </Tab>
         </Cell>
       </div>
-      <Toast text="没有" v-model="toast"></Toast>
+
   </div>
 </template>
 
@@ -142,7 +142,8 @@ export default {
             // axios.post(API_LOGIN,{name:this.name,password:this.password}).then((res)=>{
             //     this.updateUserInfo(res.data.resultObject)
             // })
-            this.toast=!this.toast;
+            //this.toast=!this.toast;
+            console.log(this)
         },
         show(index){
             this.previewer({

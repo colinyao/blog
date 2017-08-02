@@ -13,7 +13,7 @@ export const tabBar={
               oneWidth:0,
               childLength:0,
               direction:1,
-              _animation:false,
+              currentAnimation:false,
               isFirst:true
           }
      },
