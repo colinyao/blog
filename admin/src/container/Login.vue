@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import "../component/cele/assets/js/datePicker.js"
 import axios from 'axios'
 import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin,TabBar,TabBarItem,Tab,TabItem,Toast} from '../component/cele'
 
@@ -105,7 +106,7 @@ export default {
               selected:'',
               checkBox:'',
               range:0,
-              toast:false,
+              toast:true,
               options:[{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3},{text:'colin',value:1},{text:'harry',value:2},{text:'shelly',value:3}],
               showLoading:true,
               items:[],
@@ -143,7 +144,8 @@ export default {
             //     this.updateUserInfo(res.data.resultObject)
             // })
             //this.toast=!this.toast;
-            console.log(this)
+           this.$cele.toast.show({text:'sdfd'})
+            
         },
         show(index){
             this.previewer({
@@ -189,6 +191,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '../component/cele/static/css/datePicker.css';
 .mt20{
   margin-top:20px;
 }

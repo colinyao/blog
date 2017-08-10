@@ -4,10 +4,10 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import App from './App'
 import router from './router'
-import {AlertPlugin,ToastPlugin} from './component/cele/index.js'
+import {AlertPlugin,ToastMPlugin} from './component/cele/index.js'
 
 Vue.use(AlertPlugin)
-Vue.use(ToastPlugin)
+Vue.use(ToastMPlugin)
 // for Vue 2.0
 //import VueLazyload from 'vue-lazyload'
 import store from './store'

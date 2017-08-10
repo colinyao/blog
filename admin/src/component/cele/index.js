@@ -15,9 +15,12 @@ import AlertPlugin from './assets/plugins/alert.js'
 import HttpPlugin from './assets/plugins/http.js'
 import LoadingPlugin from './assets/plugins/loading.js'
 import ToastPlugin from './assets/plugins/toast.js'
+
 import {TabBar,TabBarItem} from './src/components/tabbar'
 import {Tab,TabItem} from './src/components/tab'
 import Toast  from './src/components/Toast'
+import ToastM  from './src/components_m/Toast'
+import ToastMPlugin from './assets/plugins/toast_m.js'
 import {
     previewerMixin
 } from './assets/mixins/index.js'
@@ -46,5 +49,7 @@ export{
     Tab,
     TabItem,
     Toast,
-    ToastPlugin
+    ToastPlugin,
+    ToastM,
+    ToastMPlugin
 }

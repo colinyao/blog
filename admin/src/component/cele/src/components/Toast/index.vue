@@ -27,6 +27,9 @@
          methods:{
               show(){
                    this.currentVal=true
+                   setTimeout(()=>{
+                          this.hide()
+                   },3000)
               },
               hide(){
                    this.currentVal=false;
