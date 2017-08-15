@@ -78,9 +78,13 @@
      background:#eee;
      cursor:pointer;
 }
-.current-day{
-    background:#ddd;
+.pick_pannel tr td.current-day{
+    background:#20a0ff;
+    color:#fff;
 }
 .prev-month{
     background: #eee;
+}
+.pick_pannel tr td.next-month{
+    color:#ddd;
 }

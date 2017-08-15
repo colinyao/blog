@@ -42,14 +42,18 @@
 
                this.createDateController();
                datePicker.appendChild(this.elements.dateController);
-
+               //日期面板
                var datePannel=document.createElement('div');
                datePannel.className='pick_pannel';
                var dateTable=this.createPannel(data,7);
-               
                datePannel.appendChild(dateTable)
 
-               datePicker.appendChild(datePannel)
+              var yearPannel=document.createElement('div');
+              yearPannel.className='pick_pannel';
+              var yearTable=this.createPannel({month:this.monthArr},4)
+              yearPannel.appendChild(yearTable)
+
+               datePicker.appendChild(datePannel,yearPannel)
                document.body.appendChild(datePicker);
           },
           createDateController(){
