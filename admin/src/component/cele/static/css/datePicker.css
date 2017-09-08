@@ -10,10 +10,12 @@
     z-index:999;
 }
 .dateController{
+    margin:12px 0;
     font-size:0;
     line-height: 20px;
     overflow:hidden;
     text-align: center;
+
 }
 
 .dateController span{
@@ -74,17 +76,29 @@
      font-size:13px;
      color:#898989;
 }
-.pick_pannel tr td:hover{
+.pick_pannel tr td span{
+     display: inline-block;
+     width:100%;
+     height:32px;
+     line-height: 32px;
+}
+.month-pannel tr td,.year-pannel tr td{
+     width:56px;
+     padding:10px 0;
+}
+.pick_pannel tr span:hover{
      background:#eee;
      cursor:pointer;
 }
-.pick_pannel tr td.current-day{
+ .pick_pannel tr td.current-day span{
     background:#20a0ff;
     color:#fff;
 }
-.prev-month{
-    background: #eee;
-}
-.pick_pannel tr td.next-month{
+
+.pick_pannel tr td.prev-month,.pick_pannel tr td.next-month{
     color:#ddd;
+}
+.pick_pannel tr td.prev{
+    background: #eee;
+    color:#333;
 }

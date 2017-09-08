@@ -62,6 +62,9 @@
                     </TabItem>
               </Tab>
         </Cell>
+        <Cell>
+             <Cinput ref="dataInput"></Cinput>
+        </Cell>  
       </div>
 
   </div>
@@ -136,6 +139,19 @@ export default {
               }
               ]
          }
+    },
+    mounted(){
+      console.log(offsetTop(this.$refs.dataInput.$refs.input))
+           new window.DatePicker({target:this.$refs.dataInput.$refs.input})
+           function offsetTop( elements ){ 
+              var top = elements.offsetTop; 
+              var parent = elements.offsetParent; 
+              while( parent != null ){ 
+              top += parent.offsetTop; 
+              parent = parent.offsetParent; 
+              }; 
+              return top; 
+              }; 
     },
     methods:{
         ...mapMutations(['updateUserInfo']),
