@@ -13,8 +13,9 @@ const router = new Router({
         },
         meta: {
             'notKeepAlive': true
-        },
-        children:[{
+        }
+      }, 
+       {
         path: '/view1',
         name: 'login',
         component: function(reslove) {
@@ -41,7 +42,6 @@ const router = new Router({
         meta: {
             'notKeepAlive': true
         }
-    }]
     }]
 })
 export default router

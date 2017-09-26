@@ -224,10 +224,21 @@
                    this.target.addEventListener('focus',function(){
                          self.show()                    
                    })
-                   this.target.addEventListener('blur',function(){
-                         self.hide()
-                   })
               }
+              document.documentElement.addEventListener('click',function(e){
+                    
+              },true)
+              function clickOther()
+              this.elements.datePicker.addEventListener('click',function(e){
+
+                    if(e){
+                      e.stopPropagation();
+                    }else{
+                      window.event.cancelBubble=false;
+                    }
+                    
+ 
+              })
               this.elements.dateController.yearBtn.addEventListener('click',function(){
                      self.switchPannel('.year-pannel')
               },false)

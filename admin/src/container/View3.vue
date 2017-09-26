@@ -3,7 +3,9 @@
 </template>
 <script>
       export default{
-
+        metaInfo: {
+          title: 'View3', // set a title
+        }
       }
 </script>
 <style>

@@ -4,8 +4,10 @@
 </template>
 <script>
       export default{
-
-      }
+        metaInfo: {
+          title: 'View2', // set a title
+        }      
+    }
 </script>
 <style>
     

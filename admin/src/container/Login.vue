@@ -17,25 +17,25 @@
      <Cell className="mt20"><Range v-model="range" :rangeBarHeight='2'></Range></Cell>
      <Cell>
           <TabBar v-model="tabIndex">
-                <TabBarItem>
+                <TabBarItem title="首页" >
                        <div slot="icon"><img src="../../static/images/icon/home.png" alt=""></div>
                        <div slot="active-icon"><img  src="../../static/images/icon/home-active.png"></div>
-                       <span slot="title">首页</span>
+                      
                 </TabBarItem>
-                <TabBarItem :disabled="true">
+                <TabBarItem >
                        <div slot="icon"><img src="../../static/images/icon/shop.png" alt=""></div>
                        <div slot="active-icon"><img src="../../static/images/icon/shop-active.png"></div>
-                       <span slot="title">首页</span>
+                       <span slot="title"><router-link to="/view1">首页</router-link></span>
                 </TabBarItem>
                 <TabBarItem>
                        <div slot="icon"><img src="../../static/images/icon/news.png" alt=""></div>
                        <div slot="active-icon"><img src="../../static/images/icon/news-active.png"></div>
-                       <span slot="title">首页</span>
+                       <span slot="title"><router-link to="/view2">首页</router-link></span>
                 </TabBarItem>
-                <TabBarItem>
+                <TabBarItem title="首页">
                        <div slot="icon"><img src="../../static/images/icon/personal.png" alt=""></div>
                        <div slot="active-icon"><img src="../../static/images/icon/personal-active.png"></div>
-                       <span slot="title">首页</span>
+                     
                 </TabBarItem>
           </TabBar>
         </Cell>
@@ -141,17 +141,9 @@ export default {
          }
     },
     mounted(){
-      console.log(offsetTop(this.$refs.dataInput.$refs.input))
+
            new window.DatePicker({target:this.$refs.dataInput.$refs.input})
-           function offsetTop( elements ){ 
-              var top = elements.offsetTop; 
-              var parent = elements.offsetParent; 
-              while( parent != null ){ 
-              top += parent.offsetTop; 
-              parent = parent.offsetParent; 
-              }; 
-              return top; 
-              }; 
+
     },
     methods:{
         ...mapMutations(['updateUserInfo']),

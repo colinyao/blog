@@ -2,7 +2,7 @@
       <div class="c_tabbar_item vvc" @click="clickItem" :class="{'disabled':disabled}">
              <div class="c_tabbar_icon" v-show="!currentActive"><slot name="icon" ></slot></div>
              <div class="c_tabbar_icon" v-show="currentActive"><slot name="active-icon" ></slot></div>
-             <div class="c_tabbar_title" :class="{'active':currentActive}" :style="{color:currentActive?activeTitleColor:titleColor}"><slot name="title"></slot></div>
+             <div class="c_tabbar_title" :class="{'active':currentActive}" :style="{color:currentActive?activeTitleColor:titleColor}">{{title}}<slot name="title" v-if="!title"></slot></div>
       </div>
 </template>
 <script>
