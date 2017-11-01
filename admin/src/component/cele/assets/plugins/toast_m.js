@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import ToastComponent from '../../src/components_m/Toast/index.vue'
+import ToastComponent from '../../src/components_m/toast/index.vue'
 export default {
     install(Vue){
          let Toast=Vue.extend(ToastComponent);

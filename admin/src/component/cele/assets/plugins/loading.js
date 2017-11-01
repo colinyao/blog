@@ -10,9 +10,7 @@ export default {
         document.body.appendChild($vm.$el)
         const loading = {
             show: (options) => {
-                let  tip=tip.text || '',
-                     onShow=options.onShow || '',
-                     onHide=options.onHide || '';
+                let {text,onShow,onHide}=options;
                  $vm.tip=tip;
                  $vm.currentVal=true
                  $vm.$watch('currentVal',handleWatch)

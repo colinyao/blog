@@ -26,7 +26,7 @@
               this.initialDate();
               this.updateYearArr()
               this.createELe()
-              this.initialPos();
+              
               this.updateState()
               this.bindEvent()
 
@@ -116,6 +116,7 @@
           createELe:function(){    
             //总控制
                var datePicker=this.elements.datePicker=document.createElement('div');
+               datePicker.style.display="none";
                datePicker.className="datePicker"; 
             
                var dateController=this.createDateController();
@@ -225,12 +226,8 @@
                          self.show()                    
                    })
               }
-              document.documentElement.addEventListener('click',function(e){
-                    
-              },true)
-              function clickOther()
-              this.elements.datePicker.addEventListener('click',function(e){
 
+              this.elements.datePicker.addEventListener('click',function(e){
                     if(e){
                       e.stopPropagation();
                     }else{
@@ -269,6 +266,7 @@
               },false)
               this.elements.dayPannel.addEventListener('click',function(e){
                     var target=e.target || e.srcElement;
+                    self.day=target.innerText;
                     if(target.tagName=='SPAN'){
                          if(self.target.tagName=='INPUT'){
                               self.target.value=self.year+'-'+self.month+'-'+self.day;
@@ -319,6 +317,7 @@
                document.querySelector(target).style.display='block'
           },
           show:function(){
+               this.initialPos();
                this.elements.datePicker.style.display="block"
           },
           hide:function(){

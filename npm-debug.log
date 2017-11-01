@@ -1,0 +1,22 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'run', 'dev' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.3
+4 warn invalid config registry="“http://registry.npm.taobao.org”"
+5 warn invalid config Must be a full url with 'http://'
+6 verbose stack Error: ENOENT: no such file or directory, open '/Users/yaobinhan479/blog/package.json'
+6 verbose stack     at Error (native)
+7 verbose cwd /Users/yaobinhan479/blog
+8 error Darwin 16.7.0
+9 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "dev"
+10 error node v6.10.3
+11 error npm  v3.10.10
+12 error path /Users/yaobinhan479/blog/package.json
+13 error code ENOENT
+14 error errno -2
+15 error syscall open
+16 error enoent ENOENT: no such file or directory, open '/Users/yaobinhan479/blog/package.json'
+17 error enoent ENOENT: no such file or directory, open '/Users/yaobinhan479/blog/package.json'
+17 error enoent This is most likely not a problem with npm itself
+17 error enoent and is related to npm not being able to find a file.
+18 verbose exit [ -2, true ]

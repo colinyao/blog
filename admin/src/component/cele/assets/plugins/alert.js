@@ -12,13 +12,9 @@ export default {
 
         const alert = {
             show: (options) => {
-                let title=options.title || '',
-                     text=options.text || '',
-                     shadow=options.shadow || true,
-                     onShow=options.onShow || '',
-                     onHide=options.onHide || '';
+                let {title,content,shadow=true,onShow,onHide}=options;
                  $vm.title=title;
-                 $vm.text=text;
+                 $vm.content=content;
                  $vm.currentVal=true
                  $vm.$watch('currentVal',handleWatch)
                  function handleWatch(newVal){

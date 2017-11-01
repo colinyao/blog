@@ -66,14 +66,14 @@
              <Cinput ref="dataInput"></Cinput>
         </Cell>  
       </div>
-
+      <Modal v-model="modal"><div>asdfasf <div @click="modal=false">关闭</div></div></Modal>
   </div>
 </template>
 
 <script>
 import "../component/cele/assets/js/datePicker.js"
 import axios from 'axios'
-import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin,TabBar,TabBarItem,Tab,TabItem,Toast} from '../component/cele'
+import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin,TabBar,TabBarItem,Tab,TabItem,Toast,Modal} from '../component/cele'
 
 import utils from '../assets/js/utils.js'
 import Colin from '../assets/js/public.js'
@@ -98,7 +98,8 @@ export default {
        TabBarItem,
        Tab,
        TabItem,
-       Toast
+       Toast,
+       Modal,
     },
     mixins:[previewerMixin],
     data(){
@@ -137,7 +138,8 @@ export default {
               },{
                   src:'../../static/images/bigimage04.jpg',
               }
-              ]
+              ],
+              modal:false
          }
     },
     mounted(){
@@ -180,6 +182,7 @@ export default {
         },
         checkVal(newVal){
           console.log(newVal)
+          newVal?this.modal=true:this.modal=false;
         },
         selected(newVal){
           console.log(newVal)

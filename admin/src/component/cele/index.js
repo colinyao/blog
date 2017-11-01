@@ -18,9 +18,10 @@ import ToastPlugin from './assets/plugins/toast.js'
 
 import {TabBar,TabBarItem} from './src/components/tabbar'
 import {Tab,TabItem} from './src/components/tab'
-import Toast  from './src/components/Toast'
-import ToastM  from './src/components_m/Toast'
+import Toast  from './src/components/toast'
+import ToastM  from './src/components_m/toast'
 import ToastMPlugin from './assets/plugins/toast_m.js'
+import Modal from './src/components/Modal/index.vue'
 import {
     previewerMixin
 } from './assets/mixins/index.js'
@@ -51,5 +52,6 @@ export{
     Toast,
     ToastPlugin,
     ToastM,
-    ToastMPlugin
+    ToastMPlugin,
+    Modal
 }

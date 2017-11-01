@@ -7,7 +7,7 @@
             <div class="c_alert_contain hvc" v-show="currentVal">
                 <div class="c_alert_box vvc">
                     <p class="title">{{title}}</p>
-                    <p class="text">{{text}}</p>
+                    <p class="content">{{content}}</p>
                     <div class="btn" @click="handleCertain">确定</div>
                 </div>
             </div>
@@ -18,19 +18,19 @@
 <script>
 export default {
     props: {
-        value: {
+        value: { 
             type: Boolean,
             default: false
         },
-        shadow: {
+        shadow: {   //是否显示遮罩
             type: Boolean,
             default: true
         },
-        title: {
+        title: {   //提示标题
             type: String,
             default: ''
         },
-        text: {
+        content: {   //提示内容
             type: String,
             default: ''
         }
@@ -68,7 +68,7 @@ export default {
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 10000;
+        z-index: 500;
     }
     .c_alert_box {
         background: #fff;
@@ -87,7 +87,7 @@ export default {
             font-size: 18px;
             box-sizing: border-box;
         }
-        .text {
+        .content {
             padding: 0 10px 10px;
             min-height: 50px;
             color: #999;
