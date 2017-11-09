@@ -32,7 +32,11 @@ select:-webkit-autofill {
     justify-content:center;
     flex-direction:column;
 }
-
+.clearfix:before{
+    content:'';
+    display: block;
+    clear:both;
+}
 .hidden{
     display: none!important;
 }
