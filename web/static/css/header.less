@@ -13,9 +13,8 @@
 .menuItemloop(@counter) when (@counter > 0) {
     .menuItemloop((@counter - 1));
     &:nth-of-type(@{counter}){
-        transition-delay:(@counter*200ms)
+        animation-delay:(@counter*100ms)
     }
-    
 }
 .header {
     padding-left:@headerLP;
@@ -41,15 +40,14 @@
         background: rgba(0,0,0,0.7);
         z-index:999;
         opacity:0;
-
-        transition:opacity 0.3s;
+        transform:translateX(0);
+        transition:opacity 0.3s 0.1s;
         li {
             text-align: center;
             font-size: @f14;
             line-height: 30px;
             background: #000;
             transform:translateX(100%);
-            transition:transform 0.3s;
             .menuItemloop(@menuItemCounts);
             a {
                 display: inline-block;
@@ -63,7 +61,10 @@
     .menu.active{
        opacity:1;
        li{
-          transform:translateX(0%)
+          animation-name:menuTransShow;
+          animation-duration:0.2s;
+          animation-direction:alternate;
+          animation-fill-mode:both;
        }
     }  
     .menuBtn{
@@ -160,7 +161,14 @@
 //         transform:none
 //     }
 // }
-
+@-webkit-keyframes menuTransShow{
+    0%{
+         transform:translateX(100%);
+    }
+    100%{
+         transform:translateX(0);
+    }
+}
 @-webkit-keyframes fontBounce {
     0% {
         letter-spacing: 5px;
