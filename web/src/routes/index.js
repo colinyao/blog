@@ -16,8 +16,8 @@ import loadHome from 'bundle-loader?lazy!../views/Home.js';
 // 利用高阶组件Bundle实现按需加载
 
 const Home = () => (
-    <Bundle load={loadHome}>    
-          {(Home) => <Home  />}      
+    <Bundle load={loadHome}>
+          {(Home) => <Home  />}
      </Bundle>
 )
 
@@ -37,11 +37,9 @@ export default class Routes extends Component {
     render() {
         return (
             // Router 下只能包一个子元素
-            <Router>  
-                       <div>              
-                           
+            <Router>
+                       <div>
                             <Route  path='/home' component={Home}></Route>
-                            
                         </div>
             </Router>
 

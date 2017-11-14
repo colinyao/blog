@@ -1,0 +1,5 @@
+export const GET_HOME_INFO='GET_HOME_INFO';
+export const INSERT_HOME_INFO='INSERT_HOME_INFO'
+
+
+
