@@ -9,11 +9,10 @@ class Home extends Component{
             super(props)
        }
        componentWillMount(){
-         console.log(this.props)
              this.props.getHomeInfo();
        }
        componentWillReceiveProps(){
-             console.log(this.props)
+
        }
        render(){
             return(<div className="content">
@@ -23,11 +22,11 @@ class Home extends Component{
 }
 
 Home.propTypes={
-    homeInfo:PropTypes.Object,
+    homeInfo:PropTypes.object,
     getHomeInfo:PropTypes.func
 }
 
 const mapStateToProps=(state)=>({
-     homeInfo:state.goodsReducer
+     homeInfo:state.homeReducer
 })
 export default connect(mapStateToProps,{getHomeInfo})(Home)
