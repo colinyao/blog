@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {getHomeInfo} from '../../actions'
 import ArticalItem from '../../components/ArticalItem'
+import styles from './Home.less'
 import mock from '../../mock/home.js'
 
 class Home extends Component{
@@ -22,7 +23,7 @@ class Home extends Component{
             return <ArticalItem articalInfo={ele} key={i}></ArticalItem>
           }):'';
 
-            return(<div className="content">
+            return(<div className={styles.content}>
                  {articalList}
                 </div>)
        }

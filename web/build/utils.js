@@ -87,15 +87,18 @@ exports.styleLoaders = function (options) {
     var loadersModule=loadersModules[extension]
     output.push({
       test: new RegExp('\\.' + extension + '$'),
+      exclude: path.join(__dirname, '..', 'static/css'),
       use: loadersModule
     })
     output.push({
         test: new RegExp('\\.' + extension + '$'),
+        include: path.join(__dirname, '..', 'static/css'),
         use: loader
     })
+    console.log(path.join(__dirname, '..', 'static/css'))
 
   }
-console.log(JSON.stringify(output))
+//console.log(JSON.stringify(output))
 
   return output
 }
