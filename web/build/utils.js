@@ -14,13 +14,26 @@ exports.cssLoaders = function (options) {
  var  styleLoader={
  	loader: 'style-loader',
  }
-  var cssLoader = {
-    loader: 'css-loader',
-    options: {
-      minimize: process.env.NODE_ENV === 'production',
-      sourceMap: options.sourceMap
-    }
-  }
+ if(options.modules){
+   var cssLoader = {
+     loader: 'css-loader',
+     options: {
+       modules:true,
+       localIdentName:'[name]__[local]-[hash:base64:5]',
+       minimize: process.env.NODE_ENV === 'production',
+       sourceMap: options.sourceMap
+     }
+   }
+ }else{
+   var cssLoader = {
+     loader: 'css-loader',
+     options: {
+       minimize: process.env.NODE_ENV === 'production',
+       sourceMap: options.sourceMap
+     }
+   }
+ }
+
  var postcssLoader={
  	loader:'postcss-loader',
       options: {
@@ -68,16 +81,21 @@ exports.cssLoaders = function (options) {
 exports.styleLoaders = function (options) {
   var output = []
   var loaders = exports.cssLoaders(options)
-
+  var loadersModules= exports.cssLoaders(Object.assign(options,{modules:true}))
   for (var extension in loaders) {
     var loader = loaders[extension]
-
+    var loadersModule=loadersModules[extension]
     output.push({
       test: new RegExp('\\.' + extension + '$'),
-      use: loader
+      use: loadersModule
     })
+    output.push({
+        test: new RegExp('\\.' + extension + '$'),
+        use: loader
+    })
+
   }
+console.log(JSON.stringify(output))
 
   return output
 }
-

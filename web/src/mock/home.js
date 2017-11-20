@@ -13,7 +13,7 @@ export default Mock.mock('http://localhost:8000/home', {
                {
                      'id|+1': 1,
                      title:'@ctitle',
-                     img:'../../static/img/mockImg.jpg',
+                     headImg:'../../static/img/mockImg.jpg',
                      content:'这是文章描述',
                      createDate:'@date'
                }

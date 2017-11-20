@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import Bundle from '../components/Bundle'
 // 利用高阶组件bundle-loader实现按需加载
-import loadHome from 'bundle-loader?lazy!../views/Home.js';
+import loadHome from 'bundle-loader?lazy!../views/Home';
 
 // import loadNews from 'bundle-loader?lazy!../containers/News.js';
 
