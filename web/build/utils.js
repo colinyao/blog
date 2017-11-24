@@ -95,7 +95,7 @@ exports.styleLoaders = function (options) {
         include: path.join(__dirname, '..', 'static/css'),
         use: loader
     })
-    console.log(path.join(__dirname, '..', 'static/css'))
+
 
   }
 //console.log(JSON.stringify(output))

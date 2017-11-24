@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 // import {bindActionCreators} from 'react-redux'
 import {connect} from 'react-redux'
 import {getHomeInfo} from '../../actions'
+
 import ArticalItem from '../../components/ArticalItem'
-import styles from './Home.less'
+
 import mock from '../../mock/home.js'
 
 class Home extends Component{
@@ -12,7 +13,9 @@ class Home extends Component{
             super(props)
        }
        componentWillMount(){
-             this.props.getHomeInfo();
+
+            this.props.getHomeInfo();
+
        }
        componentWillReceiveProps(){
 
@@ -23,7 +26,7 @@ class Home extends Component{
             return <ArticalItem articalInfo={ele} key={i}></ArticalItem>
           }):'';
 
-            return(<div className={styles.content}>
+            return(<div className="content">
                  {articalList}
                 </div>)
        }
@@ -38,4 +41,5 @@ Home.propTypes={
 const mapStateToProps=(state)=>({
      homeInfo:state.homeReducer
 })
+
 export default connect(mapStateToProps,{getHomeInfo})(Home)

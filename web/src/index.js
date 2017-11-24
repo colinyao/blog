@@ -8,4 +8,5 @@ import { Provider } from 'react-redux'
 import App from './views/App';
 
 // Render the main component into the dom
+
 render(<Provider store={store}><App></App></Provider>, document.getElementById('app'));

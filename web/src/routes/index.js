@@ -9,7 +9,7 @@ import {
 import Bundle from '../components/Bundle'
 // 利用高阶组件bundle-loader实现按需加载
 import loadHome from 'bundle-loader?lazy!../views/Home';
-
+import Test from '../views/Test'
 // import loadNews from 'bundle-loader?lazy!../containers/News.js';
 
 
@@ -40,6 +40,7 @@ export default class Routes extends Component {
             <Router>
                        <div>
                             <Route  path='/home' component={Home}></Route>
+                            <Route  path='/test' component={Test}></Route>
                         </div>
             </Router>
 
