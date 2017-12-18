@@ -9,7 +9,7 @@ export default Mock.mock('http://localhost:8000/home', {
                    gender:'male',
                    profession:'前端工程师'
              },
-             'articalList|20':[
+             'articalList|8':[
                {
                      'id|+1': 1,
                      title:'@ctitle',

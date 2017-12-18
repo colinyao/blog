@@ -1,3 +1,30 @@
+@import '../../../static/css/variable.less';
 .content{
-  padding:0 15px;
+  padding:0 @contentPadding;
+  display: flex;
+  flex-direction: column;
+}
+.mainContent{
+  flex:1;
+}
+.aside{
+   margin-left:20px;
+   width:280px;
+}
+
+
+
+@media screen and(min-width:480px){
+    .content{
+      padding:0 @contentPadding*2;
+    }
+}
+@media screen and(min-width:768px){
+  .content{
+     flex-direction: row;
+     padding:0 @contentPadding;
+  }
+}
+@media  screen and(min-width:992px) {
+
 }

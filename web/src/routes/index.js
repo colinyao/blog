@@ -3,7 +3,7 @@ import React, {
     Component
 } from 'react';
 import {
-    HashRouter as Router,
+    BrowserRouter as Router,
     Route
 } from 'react-router-dom';
 import Bundle from '../components/Bundle'

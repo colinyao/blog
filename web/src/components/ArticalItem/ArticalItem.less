@@ -1,8 +1,38 @@
+@import '../../../static/css/variable.less';
 .articalItem{
   margin-top:10px;
+  padding:15px;
   box-shadow:0 0 3px 1px #000;
 }
 .img{
   width:80px;
   height:80px;
+  margin-right:10px;
+  background: yellow;
+}
+.articalInfo{
+    display: flex;
+    flex-direction:column;
+}
+.title{
+  font-size:18px;
+}
+.abstract{
+    font-size:14px;
+}
+.additional{
+    font-size:12px;
+    align-self:flex-end;
+}
+
+@media screen and(min-width:480px){
+
+}
+@media screen and(min-width:768px){
+    .articalItem{
+      margin-top:20px;
+    }
+}
+@media  screen and(min-width:992px) {
+
 }

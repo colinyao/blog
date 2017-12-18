@@ -10,8 +10,9 @@ var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
   // Add needed plugins here
   // add hot-reload related code to entry chunks
 Object.keys(baseConfig.entry).forEach(function(name) {
-  baseConfig.entry[name] = ['./build/dev-client'].concat(baseConfig.entry[name])
+  baseConfig.entry[name] = ['webpack-hot-middleware/client'].concat(baseConfig.entry[name])
 })
+
 
 let config = merge(baseConfig, {
   cache: true,

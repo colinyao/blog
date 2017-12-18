@@ -2,9 +2,7 @@
 import * as api from '../api'
 export const getHomeInfo=()=>(dispatch,getState)=>{
     //当articalList长度为0时触发请求
-  
-    if(!getState().homeReducer.articalList.length){
-
+   if(!getState().homeReducer.articalList.length){
       api.home.getHomeInfo().then((res)=>{
             dispatch({
                  type:'INSERT_HOME_INFO',
@@ -12,8 +10,4 @@ export const getHomeInfo=()=>(dispatch,getState)=>{
             })
       })
     }
-
-
-
-
 }

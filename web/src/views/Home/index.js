@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {getHomeInfo} from '../../actions'
 
 import ArticalItem from '../../components/ArticalItem'
-
+import style from './Home.less'
 import mock from '../../mock/home.js'
 
 class Home extends Component{
@@ -26,8 +26,13 @@ class Home extends Component{
             return <ArticalItem articalInfo={ele} key={i}></ArticalItem>
           }):'';
 
-            return(<div className="content">
-                 {articalList}
+            return(<div className={style.content}>
+
+                   <div className={style.mainContent}>
+                       <div className={style.areaTitle}><p>文章推荐</p></div>
+                       {articalList}
+                   </div>
+                   <div className={style.aside}></div>
                 </div>)
        }
 
