@@ -13,7 +13,7 @@ export default class ArticalItem extends Component{
       let {title,headImg,content,createDate}=this.props.articalInfo
       return(
          <div className={classNames('flex',styles.articalItem)}>
-             <div className={styles.img}></div>
+             <div className={styles.img}><img src={headImg} alt=""/></div>
              <div className={classNames(styles.articalInfo,'flexFull')}>
                    <h3 className={styles.title}>{title}</h3>
                    <p className={styles.abstract}>{content}</p>

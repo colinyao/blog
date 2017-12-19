@@ -1,4 +1,13 @@
-import axios from 'axios'
+import  * as mock from '../mock'
+import axios from 'axios';
+const host=process.env.Node_ENV==='production'?'/':'http://localhost:8000/';
+let fetch=(url)=>{
+    return axios(url)
+}
+
 export const home={
-      getHomeInfo:()=>axios.post('http://localhost:8000/home')
+      getHomeInfo:()=>fetch(host+'home')
+}
+export const userInfo={
+      getUserInfo:()=>fetch(host+'user')
 }

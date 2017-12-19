@@ -1,4 +1,5 @@
 import 'core-js/fn/object/assign';
+import 'isomorphic-fetch';
 import React from 'react';
 import {
     render

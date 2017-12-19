@@ -11,3 +11,6 @@ export const getHomeInfo=()=>(dispatch,getState)=>{
       })
     }
 }
+export const getUserInfo=()=>(dispatch,getState)=>{
+      
+}

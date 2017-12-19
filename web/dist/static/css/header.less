@@ -21,7 +21,7 @@
     padding-right:@headerRP;
     justify-content: space-between;
     background: #000;
-
+    height: @menuHeight;
     .logo {
         width:@logoWidth;
         height:@logoHeight;
@@ -29,12 +29,9 @@
         background-position: left center;
         background-size: auto 100%;
     }
-    .banner{
-
-    }
-
-    .menuNavigation{
+    .menu{
         display: none;
+        //display: block;
         position:fixed;
         top:@menuHeight;
         bottom:0;
@@ -59,8 +56,9 @@
                 white-space: nowrap;
             }
        }
+
     }
-    .menuNavigation.active{
+    .menu.active{
        display: block;
        opacity:1;
        li{
@@ -100,53 +98,37 @@
 }
 @media  screen and(min-width:768px) {
     .header {
-        padding-left:0;
-        padding-right:0;
-
+        padding-left:@headerLP*2;
+        padding-right:@headerRP*2;
+        height: @menuHeight*2;
         .menuBtn{
              display: none;
-        }
-        .banner{
-            padding-left:@headerLP*2;
-            padding-right:@headerRP*2;
-            box-sizing: border-box;
-            height: @menuHeight*2;
         }
        .logo {
             width: @logoWidth*2;
             height: @logoHeight*2;
         }
-        .menuNavigation{
-            display: block;
-            position:inherit;
-            width:100%;
-            opacity:1;
-            padding-left:@headerLP*2;
-            padding-right:@headerRP*2;
-            background:#24292e;
-        }
         .menu {
             display: flex;
-            width: 100%;
+            width: @menuWidth;
             height: 100%;
-    
+            position:inherit;
+            opacity:1;
             li {
-                width:100px;
-                font-size: @f16;
-                background: transparent;
+                flex: 1;
+                font-size: @f18;
                 transform:translateX(0%);
                 a {
-                    line-height: @menuHeight;
+                    line-height: @menuHeight*2;
                 }
             }
             li.active {
-                background: #008acd;
+                background: #ff39a0;
                 a {
                     color: @menuItemActiveColor;
                 }
             }
         }
-
         // .logo:hover{
         //       transform-origin:left center;
         //       animation:logoDropDown 2s 1 cubic-bezier(0.25,1.6,0.5,0.25);

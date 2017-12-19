@@ -1,5 +1,6 @@
 @import '../../../static/css/variable.less';
 .content{
+  margin-top:30px;
   padding:0 @contentPadding;
   display: flex;
   flex-direction: column;
@@ -8,10 +9,19 @@
   flex:1;
 }
 .aside{
-   margin-left:20px;
+   margin-left:30px;
    width:280px;
 }
-
+.aside>div{
+    margin-top:20px;
+    width:100%;
+    border:1px solid #eee;
+}
+.avator{
+    width:100px;
+    height:100px;
+    border-radius: 100%;
+}
 
 
 @media screen and(min-width:480px){

@@ -89,7 +89,8 @@
     "webpack-bundle-analyzer": "^2.8.2",
     "webpack-dev-server": "^2.4.5",
     "webpack-hot-middleware": "^2.18.0",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "isomorphic-fetch":"2.2.1"
   },
   "dependencies": {
     "core-js": "^2.4.1",
