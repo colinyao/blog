@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {getHomeInfo} from '../../actions'
 import classNames from 'classnames'
-import ArticalItem from '../../components/ArticalItem'
-import style from './Home.less'
+import {ArticalItem,Label} from '../../components'
+import styles from './Home.less'
 
 
 class Home extends Component{
@@ -19,22 +19,30 @@ class Home extends Component{
 
        }
        render(){
-          let {homeInfo}=this.props,
+          let {homeInfo,userInfo}=this.props,
               articalList=homeInfo.articalList.length?homeInfo.articalList.map((ele,i)=>{
             return <ArticalItem articalInfo={ele} key={i}></ArticalItem>
           }):'';
 
-            return(<div className={style.content}>
+            return(<div className={styles.content}>
 
-                   <div className={style.mainContent}>
-                       <div className={style.areaTitle}><p>文章推荐</p></div>
+                   <div className={styles.mainContent}>
+                       <div className={styles.areaTitle}><p>文章推荐</p></div>
                        {articalList}
                    </div>
-                   <div className={style.aside}>
-                           <div className={style.personlArea}>
-                                   <div className={style.avator}><img src="" alt=""/></div>
+
+                  
+                     <div className={styles.aside}>
+                           <div className={styles.personlArea}>
+                                   <div className="vc">
+                                         <div className={styles.avator} style={{backgroundImage:'url('+userInfo.avator+')'}}></div>
+                                         <p className="ml20">{userInfo.name}</p>                               
+                                   </div>
+                                   <div className={classNames('mt10',styles.motto)}>座右铭：{userInfo.motto}</div>
+                                   <div className="label"></div>
                            </div>
-                    </div>
+
+                     </div>
                 </div>)
        }
 
@@ -42,11 +50,13 @@ class Home extends Component{
 
 Home.propTypes={
     homeInfo:PropTypes.object,
+    userInfo:PropTypes.object,
     getHomeInfo:PropTypes.func
 }
 
 const mapStateToProps=(state)=>({
-     homeInfo:state.homeReducer
+     homeInfo:state.homeReducer,
+     userInfo:state.userInfoReducer
 })
 
 export default connect(mapStateToProps,{getHomeInfo})(Home)

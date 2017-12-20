@@ -3,8 +3,9 @@ import {createStore,applyMiddleware} from 'redux';
 
 import thunk from 'redux-thunk'
 import homeReducer from './home'
-
+import userInfoReducer from './userInfo.js'
 const reducers=combineReducers({
+    userInfoReducer,
     homeReducer
 })
 const middleware = [ thunk ]

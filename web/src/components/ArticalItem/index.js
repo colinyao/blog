@@ -10,16 +10,19 @@ export default class ArticalItem extends Component{
        // console.log(this.props)
     }
     render(){
-      let {title,headImg,content,createDate}=this.props.articalInfo
+      let {title,headImg,content,createDate,messages,reads}=this.props.articalInfo
       return(
          <div className={classNames('flex',styles.articalItem)}>
              <div className={styles.img}><img src={headImg} alt=""/></div>
              <div className={classNames(styles.articalInfo,'flexFull')}>
                    <h3 className={styles.title}>{title}</h3>
                    <p className={styles.abstract}>{content}</p>
-                   <p className={styles.additional}>{createDate}</p>
+                   <ul className={styles.additional}>
+                       <li className={styles.reads}><span>{reads}</span></li>
+                       <li className={styles.messages}><span>{messages}</span></li>
+                       <li>{createDate}</li>
+                   </ul>
              </div>
-
          </div>
       )
     }

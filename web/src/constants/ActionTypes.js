@@ -1,5 +1,6 @@
 export const GET_HOME_INFO='GET_HOME_INFO';
 export const INSERT_HOME_INFO='INSERT_HOME_INFO'
-
+export const GET_USER_INFO='GET_USER_INFO'
+export const INSERT_USER_INFO='INSERT_USER_INFO'
 
 

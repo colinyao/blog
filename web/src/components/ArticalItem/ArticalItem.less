@@ -10,7 +10,7 @@
   margin-right:10px;
   img{
     width:100%;
-    hieght:100%;
+    hieght:auto;
   }
 }
 .articalInfo{
@@ -26,6 +26,36 @@
 .additional{
     font-size:12px;
     align-self:flex-end;
+    &>li{
+        display: inline-block;
+        vertical-align: middle;
+        span{
+            display: inherit;
+            vertical-align: middle;
+        }
+        margin-left:10px;
+    }
+}
+.reads,.messages{
+      &:before{
+         content:'';
+         display: inline-block;
+         vertical-align: middle;
+         height:20px;
+         width:20px;
+         margin-right:6px;
+         background-size:100% 100%;
+     }
+}
+.reads{
+    &:before{
+         background-image:url(../../../static/img/reads.svg)
+    }
+}
+.messages{
+    &:before{
+         background-image:url(../../../static/img/messages.svg)
+    }
 }
 
 @media screen and(min-width:480px){
