@@ -17,20 +17,26 @@ select:-webkit-autofill {
     align-items: center;
     justify-content: center;
 }
-
+// vertical center
 .vc {
     .flex;
     align-items: center;
 }
-
+// horizontal center
 .hc {
     .flex;
     justify-content: center;
 }
+
 .vvc{
     .vc;
     justify-content:center;
     flex-direction:column;
+}
+.flexColumn{
+    .flex;
+    flex-direction:column;
+    flex-flow:column;
 }
 .sb{
     .flex;
@@ -40,6 +46,12 @@ select:-webkit-autofill {
 .flexFull{
   flex:1;
 }
+.line1{
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
 .clearfix:before{
     content:'';
     display: block;
@@ -84,6 +96,9 @@ select:-webkit-autofill {
 }
 .mb30{
     margin-bottom:30px;
+}
+.ml10{
+    margin-left:10px;
 }
 .ml20{
     margin-left:20px

@@ -10,23 +10,33 @@ export default class ArticalItem extends Component{
        // console.log(this.props)
     }
     render(){
-      let {title,headImg,content,createDate,messages,reads}=this.props.articalInfo
+      let {title,headImg,content,createDate,messages,reads}=this.props.articalInfo,
+           {type,_classNames,_styles={}}=this.props;
+
       return(
-         <div className={classNames('flex',styles.articalItem)}>
-             <div className={styles.img}><img src={headImg} alt=""/></div>
-             <div className={classNames(styles.articalInfo,'flexFull')}>
-                   <h3 className={styles.title}>{title}</h3>
-                   <p className={styles.abstract}>{content}</p>
-                   <ul className={styles.additional}>
-                       <li className={styles.reads}><span>{reads}</span></li>
-                       <li className={styles.messages}><span>{messages}</span></li>
-                       <li>{createDate}</li>
-                   </ul>
+         <div className={classNames(styles.articalItem,_classNames)} style={_styles}>
+             <div className='flex'>
+                     {type=='1'?<h3 className={styles.title}>{title}</h3>:''}
+                <div className={styles.img}><img src={headImg} alt=""/></div>
+                     <div className={classNames(styles.articalInfo,'flexFull')}>
+                           <div className="flexColumn flexFull">
+                                  {type!='1'?<h3 className={styles.title}>{title}</h3>:''}
+                                   <p className={classNames(styles.abstract)}>{content}</p>                      
+                           </div>
+                           <ul className={styles.additional}>
+                               <li className={styles.reads}><span>{reads}</span></li>
+                               <li className={styles.messages}><span>{messages}</span></li>
+                               <li>{createDate}</li>
+                           </ul>
+                     </div>            
              </div>
+
          </div>
       )
     }
 }
 ArticalItem.propTypes={
-  articalInfo:PropTypes.object.isRequired
+  articalInfo:PropTypes.object.isRequired,
+  _classNames:PropTypes.string,
+  _styles:PropTypes.string
 }

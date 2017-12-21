@@ -21,25 +21,25 @@ class Home extends Component{
        render(){
           let {homeInfo,userInfo}=this.props,
               articalList=homeInfo.articalList.length?homeInfo.articalList.map((ele,i)=>{
-            return <ArticalItem articalInfo={ele} key={i}></ArticalItem>
+            return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i}></ArticalItem>
           }):'';
-
+  
             return(<div className={styles.content}>
 
                    <div className={styles.mainContent}>
-                       <div className={styles.areaTitle}><p>文章推荐</p></div>
+                       <div className={classNames('mb10',styles.areaTitle)}><h3>文章推荐</h3></div>
                        {articalList}
-                   </div>
-
-                  
-                     <div className={styles.aside}>
-                           <div className={styles.personlArea}>
-                                   <div className="vc">
+                   </div>                  
+                   <div className={styles.aside}>
+                          <div className={styles.personlArea}>
+                                  <div className="flex">
                                          <div className={styles.avator} style={{backgroundImage:'url('+userInfo.avator+')'}}></div>
-                                         <p className="ml20">{userInfo.name}</p>                               
+                                         <div className="ml10 flexFull">
+                                              <p>{userInfo.name}</p>
+                                              <p className={styles.motto}>{userInfo.motto}</p>
+                                          </div>                               
                                    </div>
-                                   <div className={classNames('mt10',styles.motto)}>座右铭：{userInfo.motto}</div>
-                                   <div className="label"></div>
+                                   {Array.isArray(userInfo.labels)?userInfo.labels.map((ele,index)=><Label text={ele} key={index} _classNames={styles.label}></Label>):''}
                            </div>
 
                      </div>

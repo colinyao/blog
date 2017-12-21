@@ -9,6 +9,7 @@ export const putHomeArticalList=Mock.mock('http://localhost:8000/home', {
                      avator:Mock.Random.image( '200x200'),
                      signature:Mock.Random.cparagraph( 3 ),
                      motto:Mock.Random.cparagraph(1),
+                     'labels|5':[Mock.Random.word(3,5)],
                      login:true
               },
              'articalList|8':[
