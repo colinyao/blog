@@ -27,9 +27,9 @@ export default class Header extends Component{
                  <div className={classNames('menuNavigation',{active:this.state.menuShow})}>
                       <ul className={classNames('menu')}>
                              <li className="active"><a href="">首 页</a></li>
-                             <li><a href="">关于我</a></li>
-                             <li><a href="">项 目</a></li>
-                             <li><a href="">留 言</a></li>
+                             <li><a href="">标签</a></li>
+                             <li><a href="">归档</a></li>
+                             <li><a href="">分享</a></li>
                        </ul>
                  </div>
 

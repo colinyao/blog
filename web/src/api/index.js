@@ -1,17 +1,17 @@
 import  * as mock from '../mock'
 import axios from 'axios';
 const host=process.env.Node_ENV==='production'?'/':'http://localhost:8000/';
-let fetch=(url)=>{
+let fetch=(url,ops)=>{
     return new Promise((resolve,reject)=>{
-          axios(url).then((res)=>{
+          axios.post(url,{ops}).then((res)=>{
                resolve(res.data)
           })
     }) 
 }
 
-export const home={
-      getHomeInfo:()=>fetch(host+'home')
-}
-export const userInfo={
-      getUserInfo:()=>fetch(host+'user')
-}
+export const getArticalList=(ops)=>fetch(host+'home',ops)
+
+
+export const getUserInfo=(ops)=>fetch(host+'user',ops)
+
+export const getCollection=()=>fetch(host+'collectionInfo')

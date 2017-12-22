@@ -2,11 +2,11 @@ import { combineReducers } from 'redux'
 import {createStore,applyMiddleware} from 'redux';
 
 import thunk from 'redux-thunk'
-import homeReducer from './home'
-import userInfoReducer from './userInfo.js'
+import articalListReducer from './articalList'
+import collectionReducer from './collection'
 const reducers=combineReducers({
-    userInfoReducer,
-    homeReducer
+    collectionInfo:collectionReducer,
+    articalList:articalListReducer
 })
 const middleware = [ thunk ]
 const store=createStore(reducers,applyMiddleware(...middleware));

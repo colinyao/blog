@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import PropTypes from 'prop-types'
 //import {bindActionCreators} from 'react-redux'
 import {connect} from 'react-redux'
-import {getHomeInfo} from '../../actions'
+import {queryArticalList,queryCollection} from '../../actions'
 import classNames from 'classnames'
 import {ArticalItem,Label} from '../../components'
 import styles from './Home.less'
@@ -11,35 +11,47 @@ import styles from './Home.less'
 class Home extends Component{
        constructor(props){
             super(props)
+            this.state={
+                pageIndex:1
+            }
        }
        componentWillMount(){
-            this.props.getHomeInfo();
+            this.props.queryArticalList({type:'totalList',pageIndex:this.state.pageIndex});
+
+            //this.props.queryCollection()
        }
        componentWillReceiveProps(){
 
        }
        render(){
-          let {homeInfo,userInfo}=this.props,
-              articalList=homeInfo.articalList.length?homeInfo.articalList.map((ele,i)=>{
-            return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i}></ArticalItem>
-          }):'';
-  
+          let {articalList,collectionInfo:{userInfo:userInfo}}=this.props,
+              totalList=(typeof articalList.totalList==='object'&&articalList.totalList[this.state.pageIndex])?articalList.totalList[this.state.pageIndex].map((ele,i)=>{
+                 return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i}></ArticalItem>
+              }):'';
+              console.log(this.props)
+
             return(<div className={styles.content}>
 
                    <div className={styles.mainContent}>
-                       <div className={classNames('mb10',styles.areaTitle)}><h3>文章推荐</h3></div>
-                       {articalList}
+                       {totalList}
                    </div>                  
                    <div className={styles.aside}>
                           <div className={styles.personlArea}>
-                                  <div className="flex">
+                                  <div className='flex'>
                                          <div className={styles.avator} style={{backgroundImage:'url('+userInfo.avator+')'}}></div>
-                                         <div className="ml10 flexFull">
+                                         <div className='ml10 flexFull'>
                                               <p>{userInfo.name}</p>
                                               <p className={styles.motto}>{userInfo.motto}</p>
                                           </div>                               
                                    </div>
-                                   {Array.isArray(userInfo.labels)?userInfo.labels.map((ele,index)=><Label text={ele} key={index} _classNames={styles.label}></Label>):''}
+                                  
+                           </div>
+                           <div className={styles.aside_item}>
+                                 <h4>标签分类</h4>
+                                 {Array.isArray(userInfo.labels)?userInfo.labels.map((ele,index)=><Label text={ele} key={index} _classNames={styles.label}></Label>):''}
+                           </div> 
+                           <div>
+                             
                            </div>
 
                      </div>
@@ -49,14 +61,15 @@ class Home extends Component{
 }
 
 Home.propTypes={
-    homeInfo:PropTypes.object,
-    userInfo:PropTypes.object,
-    getHomeInfo:PropTypes.func
+    articalList:PropTypes.object.isRequired,
+    collectionInfo:PropTypes.object.isRequired,
+    questArticalList:PropTypes.func,
+    queryCollection:PropTypes.func
 }
 
 const mapStateToProps=(state)=>({
-     homeInfo:state.homeReducer,
-     userInfo:state.userInfoReducer
+     articalList:state.articalList,
+     collectionInfo:state.collectionInfo
 })
 
-export default connect(mapStateToProps,{getHomeInfo})(Home)
+export default connect(mapStateToProps,{queryArticalList})(Home)

@@ -1,26 +1,38 @@
-// import * as types from '../constants/ActionTypes'
+import {SET_ARTICALLIST,SET_COLLECTIONINFO_INFO} from '../constants/ActionTypes'
 import * as api from '../api'
-export const getHomeInfo=()=>(dispatch,getState)=>{
+export const queryArticalList=(ops)=>(dispatch,getState)=>{
     //当articalList长度为0时触发请求
-   if(!getState().homeReducer.articalList.length){
-      api.home.getHomeInfo().then((res)=>{
-            if(res.resultObject.userInfo.login){
-              dispatch({
-                  type:'INSERT_USER_INFO',
-                  payload:res.resultObject.userInfo
-               })             
-            }
-            dispatch({
-                 type:'INSERT_HOME_INFO',
-                 payload:res.resultObject
-            })
-      })
-    }
+      let state=getState();
+      if(typeof state.articalList[ops.type] !=='obect' || !state.articalList[ops.type][ops.pageIndex]){
+           api.getArticalList(ops).then((res)=>{
+                dispatch({
+                     type:SET_ARTICALLIST,
+                     payload:{
+                      type:ops.type,
+                      list:{[ops.pageIndex]:res.resultObject.list}
+                    }
+                })
+          })       
+      }
 }
-export const getUserInfo=()=>(dispatch,getState)=>{
-      api.home.getUserInfo().then((res)=>{
+
+/*
+信息集合
+{
+    userInfo:{
+        name:'',
+        avator:''
+        motto:''
+    },
+    lables:[''],
+    latestArticals:[],
+    recommendBlogs:[]
+}
+*/
+export const queryCollection=()=>(dispatch,getState)=>{
+      api.getCollection().then((res)=>{
            dispatch({
-              type:'INSERT_USER_INFO',
+              type:SET_COLLECTIONINFO_INFO,
               payload:res.resultObject
            })
       })

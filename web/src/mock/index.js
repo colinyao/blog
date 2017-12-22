@@ -3,21 +3,12 @@ import Mock from 'mockjs'
 export const putHomeArticalList=Mock.mock('http://localhost:8000/home', {
         resultCode: '200',
         resultObject: {
-              userInfo:{
-                     name:Mock.Random.cname(),
-                     sex:'1',
-                     avator:Mock.Random.image( '200x200'),
-                     signature:Mock.Random.cparagraph( 3 ),
-                     motto:Mock.Random.cparagraph(1),
-                     'labels|5':[Mock.Random.word(3,5)],
-                     login:true
-              },
-             'articalList|8':[
+             'list|10':[
                {
                      'id|+1': 1,
                      title:'@ctitle',
                      headImg:Mock.Random.image( '200x200'),
-                     content:Mock.Random.cparagraph(  ),
+                     abstract:Mock.Random.cparagraph(  ),
                      createDate:'@date',
                      reads:Mock.Random.integer(0,10000),
                      messages:Mock.Random.integer(0,200),
@@ -25,13 +16,37 @@ export const putHomeArticalList=Mock.mock('http://localhost:8000/home', {
              ]
         }
 });
-export const putUserInfo=Mock.mock('http://localhost:8000/user',{
+/*
+    userInfo:{
+        name:'',
+        avator:''
+        motto:''
+    },
+    lables:[''],
+    latestArticals:[],
+    recommendBlogs:[]
+*/
+export const putCollectionInfo=Mock.mock('http://localhost:8000/collectionInfo',{
       resultCode:'200',
       resultObject:{
-           name:Mock.Random.cname(),
-           sex:'1',
-           avator:Mock.Random.image( '200x200'),
-           signature:Mock.Random.cparagraph( 3 ),
-   
+           userInfo:{
+               name:Mock.Random.cname(),
+               avator:Mock.Random.image( '200x200'),
+               motto:Mock.Random.cparagraph( 2 )
+           },
+           'lables|5':[Mock.Random.string(3,8)],
+           'latestArticals|5':[{
+                     'id|+1': 1,
+                     title:'@ctitle',
+                     createDate:'@date'
+               }],
+            'recommendBlogs|5':[{
+                 title:'@title',
+                 url:''
+            }]
+
       }
+})
+export const putUserInfo=Mock.mock('http://localhost:8000/user',{
+
 })
