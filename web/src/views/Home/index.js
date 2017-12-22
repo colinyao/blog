@@ -18,17 +18,17 @@ class Home extends Component{
        componentWillMount(){
             this.props.queryArticalList({type:'totalList',pageIndex:this.state.pageIndex});
 
-            //this.props.queryCollection()
+            this.props.queryCollection()
        }
        componentWillReceiveProps(){
 
        }
        render(){
-          let {articalList,collectionInfo:{userInfo:userInfo}}=this.props,
+          let {articalList,collectionInfo}=this.props,
               totalList=(typeof articalList.totalList==='object'&&articalList.totalList[this.state.pageIndex])?articalList.totalList[this.state.pageIndex].map((ele,i)=>{
                  return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i}></ArticalItem>
               }):'';
-              console.log(this.props)
+              let userInfo=collectionInfo
 
             return(<div className={styles.content}>
 
@@ -72,4 +72,4 @@ const mapStateToProps=(state)=>({
      collectionInfo:state.collectionInfo
 })
 
-export default connect(mapStateToProps,{queryArticalList})(Home)
+export default connect(mapStateToProps,{queryArticalList,queryCollection})(Home)
