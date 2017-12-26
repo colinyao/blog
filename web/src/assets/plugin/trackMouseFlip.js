@@ -12,7 +12,7 @@
       init:function(options){
          this.defaultOptions={
             element:'',  //NodeList
-            rotateRange:'10'
+            rotateRange:8
          }
 
          this.options=this.combine(this.defaultOptions,options);
@@ -22,28 +22,41 @@
       },
       bindEvent:function(){
           var self=this,ops=this.options;
-          //鼠标进入
 
-          //鼠标移动
+
+
 
           ops.element.forEach(function(ele){
             (function(_ele){
+              _ele.style.transformOrigin="50%,50%";
+              _ele.style.webkitTransformOrigin="50%,50%";
+              //鼠标进入
+              _ele.addEventListener('mouseenter',function(e){
+
+              },true)
+              //鼠标移动
               _ele.addEventListener('mousemove',function(e){
-                 var offsetPos=self.offsetPos(e.target),  //元素离窗口偏差
+                 var offsetPos=self.offsetPos(e.currentTarget),  //元素离窗口偏差
                      currentPos={x:e.clientX,y:e.clientY},  //鼠标离窗口的偏差
                      currentSize={x:e.currentTarget.offsetWidth,y:e.currentTarget.offsetHeight},  //元素宽高度
-                     offsetDisRect={x:1-(currentPos.x-offsetPos.x)/(currentSize.x/2),y:1-(currentPos.y-offsetPos.y)/(currentSize.y/2)},//鼠标停留位置，离元素中心偏差
+                     offsetDisRect={x:(currentSize.x/2+offsetPos.x-currentPos.x)/(currentSize.x/2),y:(currentSize.y/2+offsetPos.y-currentPos.y)/(currentSize.y/2)},//鼠标停留位置，离元素中心偏差
                      radio=self.calculateRadio(offsetDisRect);
 
-                     _ele.style.transform="rotate3d("+offsetDisRect.x+","+offsetDisRect.y+",0,"+ops.rotateRange+"deg)";
-                     _ele.style.webkitTransform="rotate3d("+offsetDisRect.x+","+offsetDisRect.y+",0,"+ops.rotateRange+"deg)";
+                     _ele.style.transform="rotateX("+radio.y*ops.rotateRange+"deg) rotateY("+radio.x*ops.rotateRange+"deg) translateZ(50px)";
+                     _ele.style.webkitTransform="rotateX("+radio.y*ops.rotateRange+"deg) rotateY("+radio.x*ops.rotateRange+"deg) translateZ(50px)";
+
+              },true)
+              //鼠标移出
+              _ele.addEventListener('mouseleave',function(e){
+
+
 
               },true)
             })(ele)
           })
 
 
-          //鼠标移出
+
       },
       offsetPos(obj){
          var x=obj.offsetLeft;
@@ -56,16 +69,18 @@
          return{x:x,y:y}
       },
       calculateRadio(offsetDisRect){
-         return {radioX:offsetDisRect.x*30,radioY:offsetDisRect.y*30}
+
+
+         return {x:-(offsetDisRect.x*offsetDisRect.x*offsetDisRect.x),y:offsetDisRect.y*offsetDisRect.y*offsetDisRect.y}
       },
       rotating(radio){
 
       },
       combine(){
-
-         var objs=[].slice.apply(arguments);
-         var len=objs.length,newObj={},_newObj={};
-
+         var objs=[].slice.apply(arguments),
+             len=objs.length,
+             newObj={},
+             _newObj={};
          if(len){
             for(var i in objs[0]){
               newObj[i]=objs[0][i]
