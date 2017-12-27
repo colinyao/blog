@@ -28,7 +28,7 @@ class Home extends Component{
               totalList=(typeof articalList.totalList==='object'&&articalList.totalList[this.state.pageIndex])?articalList.totalList[this.state.pageIndex].map((ele,i)=>{
                  return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i}></ArticalItem>
               }):'';
-              let userInfo=collectionInfo
+          let {userInfo={},labels=[],latestArticals=[]}=collectionInfo
 
             return(<div className={styles.content}>
 
@@ -48,11 +48,15 @@ class Home extends Component{
                            </div>
                            <div className={styles.aside_item}>
                                  <h4>标签分类</h4>
-                                 {Array.isArray(userInfo.labels)?userInfo.labels.map((ele,index)=><Label text={ele} key={index} _classNames={styles.label}></Label>):''}
+                                 {Array.isArray(labels)?labels.map((ele,index)=><Label text={ele} key={index} _classNames={styles.label}></Label>):''}
                            </div> 
-                           <div>
-                             
+                           <div className={styles.aside_item}>
+                                  <h4>最新文章</h4>
+                                  <ul className={styles.latestArticals}>
+                                         {latestArticals.map((ele,index)=><li key={index}><span>{ele.title}</span><span>{ele.createDate}</span></li>)}
+                                  </ul>
                            </div>
+               
 
                      </div>
                 </div>)

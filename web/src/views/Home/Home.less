@@ -19,6 +19,11 @@
     border:1px solid #eee;
     box-sizing: border-box;
 }
+.aside_item{
+    h4{
+       margin-bottom:8px;
+   }
+}
 .avator{
     width:80px;
     height:80px;
@@ -32,7 +37,22 @@
   margin-right:5px;
 }
 .articalItem{
-   border-top:1px solid #eee
+   border-top:1px solid #eee;
+}
+.latestArticals{
+    li{
+        display: flex;
+        font-size:14px;
+        line-height: 22px;
+        >span:first-child{
+           flex:1;
+           .line1;
+        }
+        >span:last-child{
+              font-size:12px;
+        }
+      }
+
 }
 @media screen and(min-width:480px){
     .content{

@@ -10,7 +10,7 @@ export default class ArticalItem extends Component{
        // console.log(this.props)
     }
     render(){
-      let {title,headImg,content,createDate,messages,reads}=this.props.articalInfo,
+      let {title,headImg,abstract,createDate,messages,reads}=this.props.articalInfo,
            {type,_classNames,_styles={}}=this.props;
 
       return(
@@ -22,7 +22,7 @@ export default class ArticalItem extends Component{
                              <div className={classNames(styles.articalInfo,'flexFull')}>
                                    <div className="flexColumn flexFull">
                                           {type=='1'?<h3 className={styles.title}>{title}</h3>:''}
-                                           <p className={classNames(styles.abstract)}>{content}</p>                      
+                                           <p className={classNames(styles.abstract)}>{abstract}</p>                      
                                    </div>
                                    <ul className={styles.additional}>
                                        <li className={styles.reads}><span>{reads}</span></li>

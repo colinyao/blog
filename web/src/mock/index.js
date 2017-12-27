@@ -34,8 +34,8 @@ export const putCollectionInfo=Mock.mock('http://localhost:8000/collectionInfo',
                avator:Mock.Random.image( '200x200'),
                motto:Mock.Random.cparagraph( 2 )
            },
-           'lables|5':[Mock.Random.string(3,8)],
-           'latestArticals|5':[{
+           'labels|5':[Mock.Random.string(3,8)],
+           'latestArticals|8':[{
                      'id|+1': 1,
                      title:'@ctitle',
                      createDate:'@date'
