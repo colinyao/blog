@@ -9,15 +9,16 @@ class Test extends Component{
        componentDidMount(){
          new trackMouseFilp({element:document.querySelectorAll('.wrap')})
        }
+
        componentWillReceiveProps(){
 
        }
        render(){
 
 
-            return(<div className="content">
+            return(<div className="content" style={style.content}>
                     <div className="wrap" style={style.wrap}>
-                         <div style={style.content}><div style={style.test}>test</div><div style={style.test1}>test</div></div>
+                         <div style={style.ele}><div style={style.test}>test</div><div style={style.test1}>test</div></div>
                     </div>
                 </div>)
        }
@@ -25,14 +26,17 @@ class Test extends Component{
 }
 
 let style={
+  content:{
+    perspective:'2000px'
+  },
   wrap:{
       width:'200px',
       height:'200px',
       margin:'100px 100px',
-      perspective:'1000px',
+      transformStyle:'preserve-3d',
       background:'#ff1100'
   },
-  content:{
+  ele:{
       width:'100%',
       height:'100%',
   },
