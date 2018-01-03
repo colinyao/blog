@@ -10,12 +10,12 @@
    var TrackMouseFlip=Class.create();
    TrackMouseFlip.prototype={
       init:function(options){
-         this.defaultOptions={
+         var defaultOptions={
             element:'',  //NodeList
             rotateRange:8
          }
 
-         this.options=this.combine(this.defaultOptions,options);
+         this.options=this.combine(defaultOptions,options);
 
 
          this.bindEvent();

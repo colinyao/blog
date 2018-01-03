@@ -7,6 +7,7 @@ import classNames from 'classnames'
 import {ArticalItem,Label} from '../../components'
 import styles from './Home.less'
 
+var Pagination=require('../../assets/plugin/pagination.js')
 
 class Home extends Component{
        constructor(props){
@@ -17,11 +18,14 @@ class Home extends Component{
        }
        componentWillMount(){
             this.props.queryArticalList({type:'totalList',pageIndex:this.state.pageIndex});
-
+           
             this.props.queryCollection()
        }
        componentWillReceiveProps(){
 
+       }
+       componentDidMount(){
+           new Pagination({container:document.getElementById('pagination')})
        }
        render(){
           let {articalList,collectionInfo}=this.props,
@@ -34,6 +38,7 @@ class Home extends Component{
 
                    <div className={styles.mainContent}>
                        {totalList}
+                       <div id="pagination"></div>
                    </div>                  
                    <div className={styles.aside}>
                           <div className={styles.personlArea}>
@@ -44,7 +49,7 @@ class Home extends Component{
                                               <p className={styles.motto}>{userInfo.motto}</p>
                                           </div>                               
                                    </div>
-                                  
+                                   
                            </div>
                            <div className={styles.aside_item}>
                                  <h4>标签分类</h4>
