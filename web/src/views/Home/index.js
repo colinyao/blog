@@ -18,14 +18,17 @@ class Home extends Component{
        }
        componentWillMount(){
             this.props.queryArticalList({type:'totalList',pageIndex:this.state.pageIndex});
-           
+            
             this.props.queryCollection()
        }
        componentWillReceiveProps(){
 
        }
        componentDidMount(){
-           new Pagination({container:document.getElementById('pagination')})
+           var pagination=new Pagination({container:document.getElementById('pagination'),total:20})
+           pagination.addListener('change',(index)=>{
+              
+           })
        }
        render(){
           let {articalList,collectionInfo}=this.props,
