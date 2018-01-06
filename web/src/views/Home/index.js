@@ -13,21 +13,26 @@ class Home extends Component{
        constructor(props){
             super(props)
             this.state={
-                pageIndex:1
+                pageIndex:1,
+                a:1
             }
        }
        componentWillMount(){
-            this.props.queryArticalList({type:'totalList',pageIndex:this.state.pageIndex});
-            
+            this.props.queryArticalList({type:'totalList',pageIndex:1});
             this.props.queryCollection()
        }
        componentWillReceiveProps(){
-
+       
        }
        componentDidMount(){
-           var pagination=new Pagination({container:document.getElementById('pagination'),total:20})
+           var pagination=new Pagination({container:document.getElementById('pagination'),total:6})
            pagination.addListener('change',(index)=>{
-              
+                if(typeof this.props.articalList.totalList==='object'&& this.props.articalList.totalList[index]){
+                    this.setState({pageIndex:index})
+                }else{
+                    this.pageIndex=index;
+                }
+                this.props.queryArticalList({type:'totalList',pageIndex:index});
            })
        }
        render(){
@@ -41,7 +46,7 @@ class Home extends Component{
 
                    <div className={styles.mainContent}>
                        {totalList}
-                       <div id="pagination"></div>
+                       <div id="pagination" className={styles.pagination}></div>
                    </div>                  
                    <div className={styles.aside}>
                           <div className={styles.personlArea}>

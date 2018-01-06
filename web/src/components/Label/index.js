@@ -1,10 +1,10 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import styles from './Label.less'
 import classNames from 'classnames'
 const colorList=['#FFC0CB','#DC143C','#FF69B4','#DA70D6','#8B008B','#9400D3','#4169E1','#1E90FF','#00BFFF','#5F9EA0','#008B8B','#3CB371','#32CD32','#ADFF2F','#FFD700','#FFA500','#CD853F','#A0522D','#FF4500','#FF0000','#800000'];
 const range=colorList.length;
-export default class Label extends Component{
+export default class Label extends PureComponent{
     constructor(props){
        super(props)
     }

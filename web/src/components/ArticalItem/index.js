@@ -1,8 +1,8 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import styles from './ArticalItem.less'
-export default class ArticalItem extends Component{
+export default class ArticalItem extends PureComponent{
     constructor(props){
        super(props)
     }
@@ -12,7 +12,6 @@ export default class ArticalItem extends Component{
     render(){
       let {title,headImg,abstract,createDate,messages,reads}=this.props.articalInfo,
            {type,_classNames,_styles={}}=this.props;
-
       return(
          <div className={classNames(styles.articalItem,_classNames)} style={_styles}>
              <div>
