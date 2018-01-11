@@ -8,7 +8,7 @@ export default class Bundle extends Component{
         if (nextProps.load !== this.props.load) {
           this.load(nextProps)
         }
-      }    
+      }
     load(props) {
         this.setState({
           mod: null
@@ -24,6 +24,5 @@ export default class Bundle extends Component{
               return false
             return this.props.children(this.state.mod)
           }
-    
-}
 
+}

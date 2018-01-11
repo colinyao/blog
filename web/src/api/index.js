@@ -6,12 +6,10 @@ let fetch=(url,ops)=>{
           axios.post(url,{ops}).then((res)=>{
                resolve(res.data)
           })
-    }) 
+    })
 }
 
 export const getArticalList=(ops)=>fetch(host+'home',ops)
-
-
-export const getUserInfo=(ops)=>fetch(host+'user',ops)
-
 export const getCollection=()=>fetch(host+'collectionInfo')
+export const getArticalDetail=(ops)=>fetch(host+'getArticalDetail',ops)
+export const getArchive=()=>fetch(host+'getArchive')

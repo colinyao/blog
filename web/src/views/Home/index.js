@@ -16,13 +16,15 @@ class Home extends Component{
                 pageIndex:1,
                 a:1
             }
+
+
        }
        componentWillMount(){
             this.props.queryArticalList({type:'totalList',pageIndex:1});
             this.props.queryCollection()
        }
-       componentWillReceiveProps(){
-       
+       componentWillReceiveProps(nextProps){
+
        }
        componentDidMount(){
            var pagination=new Pagination({container:document.getElementById('pagination'),total:6})
@@ -35,10 +37,14 @@ class Home extends Component{
                 this.props.queryArticalList({type:'totalList',pageIndex:index});
            })
        }
+       _clickItem(id){
+
+          this.props.history.push('/detail/'+id)
+       }
        render(){
           let {articalList,collectionInfo}=this.props,
               totalList=(typeof articalList.totalList==='object'&&articalList.totalList[this.state.pageIndex])?articalList.totalList[this.state.pageIndex].map((ele,i)=>{
-                 return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i}></ArticalItem>
+                 return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i} onClick={this._clickItem.bind(this,ele.id)}></ArticalItem>
               }):'';
           let {userInfo={},labels=[],latestArticals=[]}=collectionInfo
 
@@ -47,7 +53,7 @@ class Home extends Component{
                    <div className={styles.mainContent}>
                        {totalList}
                        <div id="pagination" className={styles.pagination}></div>
-                   </div>                  
+                   </div>
                    <div className={styles.aside}>
                           <div className={styles.personlArea}>
                                   <div className='flex'>
@@ -55,21 +61,21 @@ class Home extends Component{
                                          <div className='ml10 flexFull'>
                                               <p>{userInfo.name}</p>
                                               <p className={styles.motto}>{userInfo.motto}</p>
-                                          </div>                               
+                                          </div>
                                    </div>
-                                   
+
                            </div>
                            <div className={styles.aside_item}>
                                  <h4>标签分类</h4>
                                  {Array.isArray(labels)?labels.map((ele,index)=><Label text={ele} key={index} _classNames={styles.label}></Label>):''}
-                           </div> 
+                           </div>
                            <div className={styles.aside_item}>
                                   <h4>最新文章</h4>
                                   <ul className={styles.latestArticals}>
                                          {latestArticals.map((ele,index)=><li key={index}><span>{ele.title}</span><span>{ele.createDate}</span></li>)}
                                   </ul>
                            </div>
-               
+
 
                      </div>
                 </div>)

@@ -8,19 +8,22 @@ import {
 } from 'react-router-dom';
 import Bundle from '../components/Bundle'
 // 利用高阶组件bundle-loader实现按需加载
-import loadHome from 'bundle-loader?lazy!../views/Home';
-import Test from '../views/Test'
+import Home from 'bundle-loader?lazy!../views/Home';
+import Detail from 'bundle-loader?lazy!../views/Detail'
+import Archive from 'bundle-loader?lazy!../views/Archive'
 // import loadNews from 'bundle-loader?lazy!../containers/News.js';
 
 
 // 利用高阶组件Bundle实现按需加载
 
-const Home = () => (
-    <Bundle load={loadHome}>
-          {(Home) => <Home  />}
-     </Bundle>
-)
 
+const loadComponent=(loadHome)=>{
+   return (props)=>(
+     <Bundle load={loadHome}>
+         {(Component) => <Component {...props}/>}
+    </Bundle>
+   )
+}
 
 
 // 包装 组合
@@ -35,12 +38,14 @@ const Home = () => (
 export default class Routes extends Component {
 
     render() {
+
         return (
             // Router 下只能包一个子元素
             <Router>
                        <div>
-                            <Route  path='/home' component={Home}></Route>
-                            <Route  path='/test' component={Test}></Route>
+                            <Route  path='/home' component={loadComponent(Home)}></Route>
+                            <Route  path='/detail' component={loadComponent(Detail)}></Route>
+                            <Route  path='/archive' component={loadComponent(Archive)}></Route>
                         </div>
             </Router>
 
