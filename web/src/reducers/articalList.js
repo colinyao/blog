@@ -1,8 +1,11 @@
-import {SET_ARTICALLIST} from '../constants/ActionTypes.js'
+import {SET_ARTICALLIST,SET_PAGEINDEX} from '../constants/ActionTypes.js'
 const initalState={
     /*
-    type:{
-        'pageIndex':[artical]
+    total:{
+        'pageIndex':pageIndex,
+        list:{
+              pageIndex:[artical]
+        }
     }
     */
 }
@@ -19,12 +22,25 @@ action params
 const articalListReducer=(state=initalState,action)=>{
       switch (action.type) {
         case SET_ARTICALLIST:    
-           let {type,list}=action.payload;
-           let artical=state[type]?Object.assign({},state[type],list):list;
-          return Object.assign({},state,{[type]:artical})
+           var {type,list,pageIndex}=action.payload;
+           // if(state[type]&&state[type]['list']){
+           //    state[type]=Object.assign({},state[type],{list:Object.assign(state[type]['list'],list),pageIndex:pageIndex})
+           // }else{
+           //    state[type]={}
+           //    state[type]={
+           //        pageIndex:pageIndex,
+           //        list:list
+           //    }
+           // }
+
+          return Object.assign({},state,state[type]&&state[type]['list']?{[type]:{'list':Object.assign({},state[type]['list'],list),'pageIndex':pageIndex}}:{[type]:{'pageIndex':pageIndex,'list':list}})
           break;
+        case SET_PAGEINDEX:
+           var {type,pageIndex}=action.payload;
+           return Object.assign({},state,{[type]:{...state[type],pageIndex:pageIndex}});
+           break;
         default:
-          return state
+           return state
       }
 }
 

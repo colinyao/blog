@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import PropTypes from 'prop-types'
 //import {bindActionCreators} from 'react-redux'
 import {connect} from 'react-redux'
-import {queryArticalList,queryCollection} from '../../actions'
+import {bindActionCreators} from 'redux'
+import {queryArticalList,queryCollection,setPageIndex} from '../../actions'
 import classNames from 'classnames'
 import {ArticalItem,Label} from '../../components'
 import styles from './Home.less'
@@ -12,10 +13,7 @@ var Pagination=require('../../assets/plugin/pagination.js')
 class Home extends Component{
        constructor(props){
             super(props)
-            this.state={
-                pageIndex:1,
-                a:1
-            }
+
 
 
        }
@@ -29,12 +27,13 @@ class Home extends Component{
        componentDidMount(){
            var pagination=new Pagination({container:document.getElementById('pagination'),total:6})
            pagination.addListener('change',(index)=>{
-                if(typeof this.props.articalList.totalList==='object'&& this.props.articalList.totalList[index]){
-                    this.setState({pageIndex:index})
+                 let {articalList}=this.props
+                if(typeof articalList.totalList==='object'&&typeof articalList.totalList.list==='object'&&articalList.totalList.list[index]){
+
+                    this.props._setPageIndex({type:'totalList',pageIndex:index})
                 }else{
-                    this.pageIndex=index;
+                   this.props.queryArticalList({type:'totalList',pageIndex:index})
                 }
-                this.props.queryArticalList({type:'totalList',pageIndex:index});
            })
        }
        _clickItem(id){
@@ -42,12 +41,12 @@ class Home extends Component{
           this.props.history.push('/detail/'+id)
        }
        render(){
+         
           let {articalList,collectionInfo}=this.props,
-              totalList=(typeof articalList.totalList==='object'&&articalList.totalList[this.state.pageIndex])?articalList.totalList[this.state.pageIndex].map((ele,i)=>{
+              totalList=(typeof articalList.totalList==='object'&&typeof articalList.totalList.list==='object'&&articalList.totalList.list[articalList.totalList.pageIndex])?articalList.totalList.list[articalList.totalList.pageIndex].map((ele,i)=>{
                  return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i} onClick={this._clickItem.bind(this,ele.id)}></ArticalItem>
               }):'';
           let {userInfo={},labels=[],latestArticals=[]}=collectionInfo
-
             return(<div className={styles.content}>
 
                    <div className={styles.mainContent}>
@@ -75,8 +74,6 @@ class Home extends Component{
                                          {latestArticals.map((ele,index)=><li key={index}><span>{ele.title}</span><span>{ele.createDate}</span></li>)}
                                   </ul>
                            </div>
-
-
                      </div>
                 </div>)
        }
@@ -94,5 +91,7 @@ const mapStateToProps=(state)=>({
      articalList:state.articalList,
      collectionInfo:state.collectionInfo
 })
-
-export default connect(mapStateToProps,{queryArticalList,queryCollection})(Home)
+const mapDispatchToProps=(dispatch)=>({
+      ...bindActionCreators({_setPageIndex:setPageIndex,queryCollection,queryArticalList},dispatch),
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

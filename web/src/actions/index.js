@@ -1,14 +1,16 @@
-import {SET_ARTICALLIST,SET_COLLECTIONINFO_INFO} from '../constants/ActionTypes'
+import {SET_ARTICALLIST,SET_COLLECTIONINFO_INFO,SET_PAGEINDEX,SET_ARCHIVE} from '../constants/ActionTypes'
 import * as api from '../api'
 export const queryArticalList=(ops)=>(dispatch,getState)=>{
     //当articalList长度为0时触发请求
       let state=getState();
-      if(typeof state.articalList[ops.type] !=='object' || !state.articalList[ops.type][ops.pageIndex]){
+      if(typeof state.articalList[ops.type] !=='object' || typeof state.articalList[ops.type]['list'] !=='object' || !state.articalList[ops.type]['list'][ops.pageIndex]){
+
            api.getArticalList(ops).then((res)=>{
                 dispatch({
                      type:SET_ARTICALLIST,
                      payload:{
                       type:ops.type,
+                      pageIndex:ops.pageIndex,
                       list:{[ops.pageIndex]:res.rst.list}
                     }
                 })
@@ -45,3 +47,8 @@ export const queryArchive=()=>(dispatch,getState)=>{
            })
       })
 }
+
+export const setPageIndex=(ops)=>({
+    type:'SET_PAGEINDEX',
+    payload:ops
+})
