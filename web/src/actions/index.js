@@ -32,20 +32,28 @@ export const queryArticalList=(ops)=>(dispatch,getState)=>{
 }
 */
 export const queryCollection=()=>(dispatch,getState)=>{
-      api.getCollection().then((res)=>{
-           dispatch({
-              type:SET_COLLECTIONINFO_INFO,
-              payload:res.rst
+     let state=getState()
+     if(!state.collection.load){
+           api.getCollection().then((res)=>{
+               dispatch({
+                  type:SET_COLLECTIONINFO_INFO,
+                  payload:res.rst
+               })
            })
-      })
+     }
+
 }
 export const queryArchive=()=>(dispatch,getState)=>{
-      api.getArchive().then((res)=>{
-           dispatch({
-              type:SET_ARCHIVE,
-              payload:res.rst
-           })
-      })
+      let state=getState()
+      if(!state.archive.load){
+            api.getArchive().then((res)=>{
+                   dispatch({
+                      type:SET_ARCHIVE,
+                      payload:res.rst
+                   })
+            })
+      }
+
 }
 
 export const setPageIndex=(ops)=>({

@@ -41,13 +41,13 @@ export default class Routes extends Component {
 
         return (
             // Router 下只能包一个子元素
-            <Router>
+       
                        <div>
-                            <Route  path='/home' component={loadComponent(Home)}></Route>
-                            <Route  path='/detail' component={loadComponent(Detail)}></Route>
-                            <Route  path='/archive' component={loadComponent(Archive)}></Route>
+                            <Route exact path='/home' component={loadComponent(Home)}></Route>
+                            <Route path='/detail' component={loadComponent(Detail)}></Route>
+                            <Route exact path='/archive' component={loadComponent(Archive)}></Route>
                         </div>
-            </Router>
+
 
         )
 

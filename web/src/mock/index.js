@@ -171,10 +171,11 @@ export const putArchive=Mock.mock('http://localhost:8000/getArchive',{
   msg:'ok',
   'rst|5':[{
      date:'@date',
-     num:Mock.Random.integer(0,10),
-     list:[{
+     num:5,
+     'list|5':[{
        'id|+1':1,
-       'title':'@ctitle'
+       'title':'@ctitle',
+       createDate:'@date'
      }]
   }]
 })

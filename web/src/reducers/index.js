@@ -4,9 +4,11 @@ import {createStore,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk'
 import articalListReducer from './articalList'
 import collectionReducer from './collection'
+import archiveReducer from './archive'
 const reducers=combineReducers({
     collectionInfo:collectionReducer,
-    articalList:articalListReducer
+    articalList:articalListReducer,
+    archive:archiveReducer
 })
 const middleware = [ thunk ]
 const store=createStore(reducers,applyMiddleware(...middleware));

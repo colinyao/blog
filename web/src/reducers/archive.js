@@ -1,13 +1,17 @@
 import {SET_ARCHIVE} from '../constants/ActionTypes.js'
 const initalState={
-
+      list:[]
 }
+     // date:'@date',
+     // num:5,
+     // 'list|5':[{
+     //   'id|+1':1,
+     //   'title':'@ctitle'
 
-
-const articalListReducer=(state=initalState,action)=>{
+const archiveReducer=(state=initalState,action)=>{
       switch (action.type) {
         case SET_ARCHIVE:    
-          return Object.assign({},state,action.payload)
+          return {...state,list:[...state.list,...action.payload],load:true}
           break;
         default:
           return state
@@ -15,4 +19,4 @@ const articalListReducer=(state=initalState,action)=>{
 }
 
 
-export default articalListReducer
+export default archiveReducer
