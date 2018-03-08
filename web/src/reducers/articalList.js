@@ -21,7 +21,7 @@ action params
 
 const articalListReducer=(state=initalState,action)=>{
       switch (action.type) {
-        case SET_ARTICALLIST:    
+        case SET_ARTICALLIST:
            var {type,list,pageIndex}=action.payload;
            // if(state[type]&&state[type]['list']){
            //    state[type]=Object.assign({},state[type],{list:Object.assign(state[type]['list'],list),pageIndex:pageIndex})

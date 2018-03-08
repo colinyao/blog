@@ -31,3 +31,9 @@
     overflow:hidden;
     text-overflow:ellipsis;
 }
+.font-dpr(@fontSize){
+   font-size:@fontSize;
+   [data-dpr='2'] &{
+       font-size:@fontSize*2
+   }
+}

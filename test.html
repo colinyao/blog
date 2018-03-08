@@ -7,17 +7,63 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
-<h1 style="font-size:200px">这时一个标题</h1>
-<p>这是一个段落</p>
 
-<ul>
-<li></li>
-<li></li>
-<li></li>
-</ul>
 </body>
 <script>
+var data=[{a:{b:1}},{c:2}]
 
+const arrayProto = Array.prototype
+const arrayMethods = Object.create(arrayProto);
+[
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
+]
+.forEach(function (method) {
+  // cache original method
+  const original = arrayProto[method]
+  def(arrayMethods, method, function mutator () {
+    // avoid leaking arguments:
+    // http://jsperf.com/closure-with-arguments
+    let i = arguments.length
+    const args = new Array(i)
+    while (i--) {
+      args[i] = arguments[i]
+    }
+		console.log(arguments)
+    const result = original.apply(this, args)
+
+    let inserted
+    switch (method) {
+      case 'push':
+        inserted = args
+        break
+      case 'unshift':
+        inserted = args
+        break
+      case 'splice':
+        inserted = args.slice(2)
+        break
+    }
+    //if (inserted) ob.observeArray(inserted)
+    // notify change
+    
+    return result
+  })
+})
+function def (obj, key, val, enumerable) {
+  Object.defineProperty(obj, key, {
+    value: val,
+    enumerable: !!enumerable,
+    writable: true,
+    configurable: true
+  })
+}
+data.__proto__=arrayMethods;
 
 </script>
 </html>

@@ -1,17 +1,17 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import FastClick from 'fastclick'
+import Vue from '../node_modules/vue/dist/vue.js'
+// import FastClick from 'fastclick'
 import App from './App'
-import router from './router'
-import {AlertPlugin,ToastMPlugin} from './component/cele/index.js'
-import MetaInfo from 'vue-meta-info'
-Vue.use(AlertPlugin)
-Vue.use(ToastMPlugin)
-Vue.use(MetaInfo)
-// for Vue 2.0
-//import VueLazyload from 'vue-lazyload'
-import store from './store'
+// import router from './router'
+// import {AlertPlugin,ToastMPlugin} from './component/cele/index.js'
+// import MetaInfo from 'vue-meta-info'
+// Vue.use(AlertPlugin)
+// Vue.use(ToastMPlugin)
+// Vue.use(MetaInfo)
+// // for Vue 2.0
+// //import VueLazyload from 'vue-lazyload'
+// import store from './store'
 //Vue.use(VueLazyload, {
 //error: 'https://test-iobs02.pingan.com.cn/download/pamap-gr-dmz-dev/3d06e8d9edc743ef9537af392df2481bS?e=1492167771&token=CCV9dFVIDF2Y0D22YI6KJDYWdCCIIFF0:SDIEg-owgO91G9pJTCjpHbp55qg=',
 //loading: 'https://test-iobs02.pingan.com.cn/download/pamap-gr-dmz-dev/3d06e8d9edc743ef9537af392df2481bS?e=1492167771&token=CCV9dFVIDF2Y0D22YI6KJDYWdCCIIFF0:SDIEg-owgO91G9pJTCjpHbp55qg=',
@@ -21,7 +21,7 @@ import store from './store'
 
 
 
-FastClick.attach(document.body)
+// FastClick.attach(document.body)
 
 /* eslint-disable no-new */
 new Vue({

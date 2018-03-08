@@ -1,4 +1,4 @@
-import {SET_ARTICALLIST,SET_COLLECTIONINFO_INFO,SET_PAGEINDEX,SET_ARCHIVE} from '../constants/ActionTypes'
+import {SET_ARTICALLIST,SET_COLLECTIONINFO_INFO,SET_PAGEINDEX,SET_ARCHIVE,SET_TOPICAL} from '../constants/ActionTypes'
 import * as api from '../api'
 export const queryArticalList=(ops)=>(dispatch,getState)=>{
     //当articalList长度为0时触发请求
@@ -33,7 +33,8 @@ export const queryArticalList=(ops)=>(dispatch,getState)=>{
 */
 export const queryCollection=()=>(dispatch,getState)=>{
      let state=getState()
-     if(!state.collection.load){
+
+     if(!state.collectionInfo.load){
            api.getCollection().then((res)=>{
                dispatch({
                   type:SET_COLLECTIONINFO_INFO,
@@ -41,7 +42,6 @@ export const queryCollection=()=>(dispatch,getState)=>{
                })
            })
      }
-
 }
 export const queryArchive=()=>(dispatch,getState)=>{
       let state=getState()
@@ -55,7 +55,19 @@ export const queryArchive=()=>(dispatch,getState)=>{
       }
 
 }
+export const queryTopical=()=>(dispatch,getState)=>{
+      let state=getState()
+      
+      if(!state.topical.load){
+            api.getTopical().then((res)=>{
+                   dispatch({
+                      type:SET_TOPICAL,
+                      payload:res.rst
+                   })
+            })
+      }
 
+}
 export const setPageIndex=(ops)=>({
     type:'SET_PAGEINDEX',
     payload:ops

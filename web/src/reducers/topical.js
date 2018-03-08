@@ -1,4 +1,4 @@
-import {SET_ARCHIVE} from '../constants/ActionTypes.js'
+import {SET_TOPICAL} from '../constants/ActionTypes.js'
 const initalState={
       list:[]
 }
@@ -8,9 +8,10 @@ const initalState={
      //   'id|+1':1,
      //   'title':'@ctitle'
 
-const archiveReducer=(state=initalState,action)=>{
+const topicalReducer=(state=initalState,action)=>{
+
       switch (action.type) {
-        case SET_ARCHIVE:
+        case SET_TOPICAL:
           return {...state,list:[...state.list,...action.payload],load:true}
           break;
         default:
@@ -19,4 +20,4 @@ const archiveReducer=(state=initalState,action)=>{
 }
 
 
-export default archiveReducer
+export default topicalReducer

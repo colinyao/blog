@@ -1,6 +1,6 @@
 import {SET_COLLECTIONINFO_INFO} from '../constants/ActionTypes.js'
 const initalState={
-    
+
 }
            // userInfo:{
            //     name:Mock.Random.cname(),

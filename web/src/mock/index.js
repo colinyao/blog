@@ -179,3 +179,16 @@ export const putArchive=Mock.mock('http://localhost:8000/getArchive',{
      }]
   }]
 })
+export const putTopical=Mock.mock('http://localhost:8000/getTopical',{
+  code:'200',
+  msg:'ok',
+  'rst|5':[{
+     topic:'@ctitle',
+     num:5,
+     'list|5':[{
+       'id|+1':1,
+       'title':'@ctitle',
+       createDate:'@date'
+     }]
+  }]
+})

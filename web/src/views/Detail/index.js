@@ -10,8 +10,11 @@ class Detail extends Component{
       }
   }
   componentWillMount(){
-
+     window.scrollTo(0,0)
      this._getDetail();
+  }
+  componentDidMount(){
+
   }
   _getDetail(){
       getArticalDetail().then(res=>{

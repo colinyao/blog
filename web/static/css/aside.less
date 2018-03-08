@@ -1,0 +1,59 @@
+@import './variable.less';
+.aside{
+   margin-left:30px;
+   width:280px;
+   display: none;
+}
+.aside>div{
+    margin-top:20px;
+    padding:10px;
+    width:100%;
+    border:1px solid #eee;
+    box-sizing: border-box;
+}
+.aside-aside_item{
+    h4{
+       margin-bottom:8px;
+   }
+}
+.aside-avator{
+    width:80px;
+    height:80px;
+    background-position: center center;
+    background-size:contain
+}
+.aside-motto{
+    font-size:@f12;
+}
+.aside-label{
+  margin-right:5px;
+}
+.aside-articalItem{
+   border-bottom:1px solid #eee;
+}
+.aside-latestArticals{
+    li{
+        display: flex;
+        font-size:14px;
+        line-height: 22px;
+        >span:first-child{
+           flex:1;
+           .line1;
+        }
+        >span:last-child{
+              font-size:12px;
+        }
+      }
+}
+
+@media screen and(min-width:480px){
+
+}
+@media screen and(min-width:768px){
+  .aside{
+    display: block;
+  }
+}
+@media  screen and(min-width:992px) {
+
+}
