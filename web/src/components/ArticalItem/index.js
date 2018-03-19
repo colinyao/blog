@@ -10,9 +10,11 @@ export default class ArticalItem extends PureComponent{
        // console.log(this.props)
     }
     _onClick(){
-        this.props.onClick()
+         this.props.onClick()
+
     }
     render(){
+      console.log('renderItem')
       let {title,headImg,abstract,createDate,messages,reads}=this.props.articalInfo,
            {type,_classNames,_styles={}}=this.props;
       return(
@@ -37,6 +39,7 @@ export default class ArticalItem extends PureComponent{
 
          </div>
       )
+              debugger
     }
 }
 ArticalItem.propTypes={

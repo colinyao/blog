@@ -2,70 +2,22 @@
 .content{
   margin-top:30px;
   margin-bottom:30px;
-  padding:0 @contentPadding;
+  // padding:0 @contentPadding;
   display: flex;
   flex-direction: column;
 }
-.mainContent{
-  flex:1;
-}
-.aside{
-   margin-left:30px;
-   width:280px;
-   display: none;
-}
-.aside>div{
-    margin-top:20px;
-    padding:10px;
-    width:100%;
-    border:1px solid #eee;
-    box-sizing: border-box;
-}
-.aside_item{
-    h4{
-       margin-bottom:8px;
-   }
-}
-.avator{
-    width:80px;
-    height:80px;
-    background-position: center center;
-    background-size:contain
-}
-.motto{
-    font-size:@f12;
-}
-.label{
-  margin-right:5px;
-}
-.articalItem{
-   border-bottom:1px solid #eee;
-}
-.latestArticals{
-    li{
-        display: flex;
-        font-size:14px;
-        line-height: 22px;
-        >span:first-child{
-           flex:1;
-           .line1;
-        }
-        >span:last-child{
-              font-size:12px;
-        }
-      }
 
-}
+
 .pagination{margin-top:20px;text-align: center;}
 @media screen and(min-width:480px){
     .content{
-      padding:0 @contentPadding*2;
+      // padding:0 @contentPadding*2;
     }
 }
 @media screen and(min-width:768px){
   .content{
      flex-direction: row;
-     padding:0 @contentPadding;
+     // padding:0 @contentPadding;
   }
   .aside{
     display: block;

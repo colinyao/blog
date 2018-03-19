@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {queryArticalList,queryCollection,setPageIndex} from '../../actions'
 import classNames from 'classnames'
-import {ArticalItem} from '../../components'
+import {ArticalItem,Label} from '../../components'
 import styles from './Home.less'
 
 var Pagination=require('../../assets/plugin/pagination.js')
@@ -13,17 +13,20 @@ var Pagination=require('../../assets/plugin/pagination.js')
 class Home extends Component{
        constructor(props){
             super(props)
+
+
+
        }
        componentWillMount(){
             this.props.queryArticalList({type:'totalList',pageIndex:1});
-            this.props.queryCollection()
+
        }
        componentWillReceiveProps(nextProps){
 
        }
        componentDidMount(){
            var pagination=new Pagination({container:document.getElementById('pagination'),total:20})
-           pagination.addListener('change',(index)=>{  //监听页码变化
+           pagination.addListener('change',(index)=>{
                  let {articalList}=this.props
                 if(typeof articalList.totalList==='object'&&typeof articalList.totalList.list==='object'&&articalList.totalList.list[index]){
 
@@ -34,19 +37,42 @@ class Home extends Component{
            })
        }
        _clickItem(id){
+<<<<<<< Updated upstream
           this.props.history.push('/detail/'+id)
+=======
+
+          //this.props.history.push('/detail/'+id)
+          this.setState({})
+          debugger
+>>>>>>> Stashed changes
        }
        render(){
-
+          console.log('renderHome')
+  
           let {articalList,collectionInfo}=this.props,
               totalList=(typeof articalList.totalList==='object'&&typeof articalList.totalList.list==='object'&&articalList.totalList.list[articalList.totalList.pageIndex])?articalList.totalList.list[articalList.totalList.pageIndex].map((ele,i)=>{
                  return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i} onClick={this._clickItem.bind(this,ele.id)}></ArticalItem>
               }):'';
+              // if(!this.state.totalList.length&&typeof articalList.totalList==='object'&& typeof articalList.totalList.list==='object'&&articalList.totalList.list[articalList.totalList.pageIndex]){
+              //         new Promise((resolve,reject)=>{
+              //             ArticalItem(resolve)
+              //         }).then((res)=>{
+              //           Com=res;
+              //           this.setState({
+              //             totalList:[<Com />]
+              //           })
+              //         })
+              //     }
           let {userInfo={},labels=[],latestArticals=[]}=collectionInfo
-            return(<div className="mainContent">
+            return(<div className={styles.content}>
+
+                   <div className={styles.mainContent}>
                        {totalList}
                        <div id="pagination" className={styles.pagination}></div>
-                    </div>)
+                   </div>
+
+                </div>)
+
        }
 
 }
