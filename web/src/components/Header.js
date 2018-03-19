@@ -12,6 +12,12 @@ export default class Header extends PureComponent{
     componentWillMount(){
 
     }
+    shouldComponentUpdate(nextProps, nextState){
+        if(this.state.menuShow!==nextState.menuShow){
+            return true
+        }
+        return false
+    }
     _showMenu(){
          this.setState({menuShow:!this.state.menuShow})
     }

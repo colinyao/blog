@@ -1,32 +1,18 @@
 <template>
-  <div id="app">
-        <!-- <keep-alive v-if="!$route.meta.notKeepAlive">
+  <div class="wrapper" id="app">
+        <keep-alive v-if="!$route.meta.notKeepAlive">
         <router-view></router-view>
         </keep-alive>
-        <router-view v-if="$route.meta.notKeepAlive"></router-view> -->
-        {{message.msg}}
-        {{msg.a}}
+        <router-view v-if="$route.meta.notKeepAlive"></router-view>
   </div>
 </template>
 
 <script>
 export default {
   name: 'app',
-  props:['message'],
-  components: {
+    components: {
 
-  },
-  data(){
-    return{
-        msg:{
-           a:'1233'
-        }
     }
-  },
-  mounted(){
-    console.log(this)
-    window.b=this.message
-  }
 }
 
 </script>

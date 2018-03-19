@@ -10,10 +10,21 @@ import 'isomorphic-fetch';
 export default class App extends Component{
        constructor(props){
             super(props)
+            this.state={
+                msg:'0'
+            }
+       }
+       componentDidMount(){
+
+
+       }
+       test(){
+
        }
        render(){
+          console.log('render')
             return(
-                <Router>
+                <Router forceRefresh={true}>
                      <div className="wrapper">
                          <Header></Header>
                          <div className="contentBox flex">

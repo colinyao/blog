@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+      #controller{
+          float:right
+      }
+      *{
+        margin:0;padding:0;
+      }
+  </style>
+</head>
+<body>
+  <iframe  id="iframe" src="./edit.html" frameborder="0" style="border:1px solid #000;width:375px;height:559px"></iframe>
+  <div id="controller">
+    <div id="components">
+        <div class='com' id="com1">
+            <p>我是组件1</p>
+        </div>
+        <div class='com' id="com2" >
+            <p>我是组建2</p>
+            <image src="https://pic2.zhimg.com/09eb1cd00_xs.jpg"></image>
+        </div>
+    </div>
+
+    <textarea name="" id="scriptContent">
+
+    </textarea>
+    <div id="addScript">addScript</div>
+  </div>
+
+</body>
+<script>
+var components=document.querySelector('#components')
+var iframe=document.querySelector('#iframe')
+var scriptContent=document.querySelector('#scriptContent')
+components.addEventListener('click',function(e){
+   var com=getCom(e.target)
+   var cont=document.createElement('div');
+   cont.className="pos";
+   cont.style='position:absolute;top:0;left:0;'
+   cont.appendChild(com.cloneNode(true))
+   console.log(iframe.contentWindow.document.body)
+   iframe.contentWindow.document.querySelector('#container').appendChild(cont)
+   cont=null;
+})
+addScript.addEventListener('click',function(e){
+   var content=scriptContent.value;
+   var script=document.createElement('script')
+   script.innerText=content
+   iframe.contentWindow.document.body.appendChild(script)
+})
+function getCom(dom){
+     console.log(dom.parentNode)
+    if(dom.parentNode.className==='com'){
+        return dom.parentNode
+    }else{
+        return getCom(dom.parentNode)
+    }
+}
+
+</script>
+</html>

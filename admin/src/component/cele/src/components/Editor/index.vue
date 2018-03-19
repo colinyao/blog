@@ -98,7 +98,8 @@ export default {
             afterFocus: this.handleFocus,
             afterBlur: this.handleBlur,
             afterUpload: this.handleUpload,
-            uploadJson: this.uploadJson //文件上传地址
+            uploadJson: this.uploadJson, //文件上传地址,
+            
         }
         KindEditor.ready((K) => {
             this.editor = K.create('#editor_id', options)

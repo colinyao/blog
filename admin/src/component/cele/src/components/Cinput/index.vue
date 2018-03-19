@@ -3,72 +3,72 @@
         <div class="vc" v-if="leftPos=='outer'">
             <slot name="left"></slot>
             <span class="c_title" v-if="title" :style="titleStyle">{{title}}</span>
-            
+
         </div>
-        <div class="c_border vc">
+        <div class="vc flexfull" :class="{'c_border':border}">
             <div class="vc" v-if="leftPos=='inner'">
                 <slot name="left"></slot>
                 <span class="c_title" v-if="title" :style="titleStyle">{{title}}</span>
             </div>
-            
-            <input v-if="defaultType=='number'" 
-                type="number" 
+
+            <input v-if="defaultType=='number'"
+                type="number"
                 :maxlength="max"
                 :name="name"
                 :readonly="readonly"
                 :disabled="disabled"
-                v-model='currentVal' 
-                ref='input' 
-                :placeholder='placeholder' 
-                @foucs='handleFocus' 
+                v-model='currentVal'
+                ref='input'
+                :placeholder='placeholder'
+                @foucs='handleFocus'
                 @blur='handleBlur'
             />
-            <input v-else-if="defaultType=='tel'" 
+            <input v-else-if="defaultType=='tel'"
                 type="tel"
                 :maxlength="max"
                 :name="name"
                 :readonly="readonly"
                 :disabled="disabled"
-                 v-model='currentVal' 
-                 ref='input' 
-                 :placeholder='placeholder' 
-                 @foucs='handleFocus' 
-                 @blur='handleBlur' 
+                 v-model='currentVal'
+                 ref='input'
+                 :placeholder='placeholder'
+                 @foucs='handleFocus'
+                 @blur='handleBlur'
              />
-            <input v-else-if="defaultType=='email'" 
-                type="email" 
+            <input v-else-if="defaultType=='email'"
+                type="email"
                 :maxlength="max"
                 :name="name"
                 :readonly="readonly"
                 :disabled="disabled"
-                v-model='currentVal' 
-                ref='input' 
-                :placeholder='placeholder' 
-                @foucs='handleFocus' 
-                @blur='handleBlur' 
+                v-model='currentVal'
+                ref='input'
+                :placeholder='placeholder'
+                @foucs='handleFocus'
+                @blur='handleBlur'
             />
-            <input v-else-if="defaultType=='password'" 
-                type="password" 
+            <input v-else-if="defaultType=='password'"
+                type="password"
                 :maxlength="max"
                 :name="name"
                 :readonly="readonly"
                 :disabled="disabled"
-                v-model='currentVal' 
-                ref='input' 
-                :placeholder='placeholder' 
-                @foucs='handleFocus' 
-                @blur='handleBlur' 
+                v-model='currentVal'
+                ref='input'
+                :placeholder='placeholder'
+                @foucs='handleFocus'
+                @blur='handleBlur'
             />
-            <input v-else type="text" 
+            <input v-else type="text"
                 :maxlength="max"
                 :name="name"
                 :readonly="readonly"
                 :disabled="disabled"
-                v-model='currentVal' 
-                ref='input' 
-                :placeholder='placeholder' 
-                @foucs='handleFocus' 
-                @blur='handleBlur' 
+                v-model='currentVal'
+                ref='input'
+                :placeholder='placeholder'
+                @foucs='handleFocus'
+                @blur='handleBlur'
             />
 
 
@@ -127,6 +127,10 @@ export default {
         },
         name:{
             type:String
+        },
+        border:{
+            type:Boolean,
+            default:true
         }
 
     },
@@ -137,7 +141,7 @@ export default {
             showPassword: false
         }
     },
-    created() {  
+    created() {
         this.currentVal = this.value;
         this.defaultType = this.type;
 
@@ -183,6 +187,9 @@ export default {
     width: 100%;
     font-size: 0;
 }
+.flexfull{
+  flex:1
+}
 .c_border{
     flex:1;
 }
@@ -193,7 +200,7 @@ export default {
     line-height: 24px;
     border: 1px solid #ddd;
     border-radius: 3px;
-    padding:0 3px;
+    padding:3px 5px;
     outline: none
 }
 .c_input .c_title {
@@ -229,6 +236,7 @@ export default {
     display: inline-block;
     width: 20px;
     height: 20px;
+    margin-left:3px;
     background-size: 100% auto;
     cursor: pointer;
     background-position: center center;

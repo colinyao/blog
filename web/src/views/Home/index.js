@@ -34,7 +34,6 @@ class Home extends Component{
            })
        }
        _clickItem(id){
-
           this.props.history.push('/detail/'+id)
        }
        render(){

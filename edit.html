@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta Cache-control="no-cache">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <style>
+         html{
+           font-size:37.5px;
+         }
+         *{
+           margin:0;padding:0;
+           cursor: default
+         }
+         .container{
+            width:375px;
+            height:559px;
+            background:#fff;
+         }
+         .selected{
+             border:1px solid #000;
+             transform:translate(-1px,-1px)
+         }
+    </style>
+</head>
+<body>
+
+<div id="container">
+
+
+</div>
+
+</body>
+<script>
+  var container=document.querySelector('#container')
+  var com,x,y,_x,_y;
+
+  container.addEventListener('mousedown',function(e){
+    com=getCom(e.target)
+    var selected=document.querySelector('.selected')
+    if(selected){
+      selected.className=selected.className.replace('selected','')
+    }
+    com.className=com.className+' selected'
+     x=e.clientX;
+     y=e.clientY;
+     console.log(com)
+     document.addEventListener('mousemove',mousemove)
+  })
+
+  document.addEventListener('mouseup',function(e){
+    e.preventDefault()
+    document.removeEventListener('mousemove',mousemove)
+    com=null
+  })
+
+  function mousemove(e){
+
+       e.preventDefault()
+       console.log(com)
+        if(com){
+
+             _x=e.clientX;
+             _y=e.clientY;
+              console.log(com.offsetLeft)
+            com.style.left=com.offsetLeft+_x-x+'px';
+            com.style.top=com.offsetTop+_y-y+'px';
+            x=_x;
+            y=_y;
+        }
+     }
+
+
+  function getCom(dom){
+
+    if(!!~dom.parentNode.className.indexOf('pos')){
+        return dom.parentNode
+    }else{
+        return getCom(dom.parentNode)
+    }
+}
+</script>
+</html>

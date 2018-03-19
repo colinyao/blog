@@ -8,41 +8,52 @@ const router = new Router({
     routes: [{
         path: '/',
         name: 'login',
-        component: function(reslove) {
-            require(['../container/Login.vue'], reslove)
+        component: function(resolve) {
+            require(['../container/Login.vue'], resolve)
         },
         meta: {
             'notKeepAlive': true
         }
-      }, 
-       {
-        path: '/view1',
-        name: 'login',
-        component: function(reslove) {
-            require(['../container/View1.vue'], reslove)
-        },
-        meta: {
-            'notKeepAlive': true
-        }
-    },{
-        path: '/view2',
-        name: 'login',
-        component: function(reslove) {
-            require(['../container/View2.vue'], reslove)
-        },
-        meta: {
-            'notKeepAlive': true
-        }
-    },{
-        path: '/view3',
-        name: 'login',
-        component: function(reslove) {
-            require(['../container/View3.vue'], reslove)
-        },
-        meta: {
-            'notKeepAlive': true
-        }
-    }]
+      },{
+          path: '/manage',
+          name: 'manage',
+          component: function(resolve) {
+              require(['../container/Manage.vue'], resolve)
+          },
+          meta: {
+              'notKeepAlive': true
+          },
+          children:[
+            {
+              path: '/',
+              name: 'listSort',
+              component: function(resolve) {
+                  require(['../container/manage/ListSort.vue'], resolve)
+              },
+              meta: {
+                  'notKeepAlive': true
+              }
+            },
+            {
+              path: 'edit',
+              name: 'edit',
+              component: function(resolve) {
+                  require(['../container/manage/Edit.vue'], resolve)
+              },
+              meta: {
+                  'notKeepAlive': true
+              }
+            }
+          ]
+        },{
+          path: '/example',
+          name: 'login',
+          component: function(resolve) {
+              require(['../container/example.vue'], resolve)
+          },
+          meta: {
+              'notKeepAlive': true
+          }
+        }]
 })
 export default router
-
