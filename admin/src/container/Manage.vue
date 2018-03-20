@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper flex">
+  <div class="wrapper">
     <div class="mainMenu">
          <div class="top"></div>
          <ul>
@@ -29,11 +29,14 @@ export default{
 </script>
 <style lang="less" scoped>
 .wrapper{
-    min-height: 100%;
+  position: relative;
 }
 .mainMenu{
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
     width:120px;
-
     background:#41c4ff;
     box-sizing: border-box;
     .top{
@@ -51,6 +54,6 @@ export default{
     }
 }
 .content{
-   flex:1;
+   padding-left:120px;
 }
 </style>

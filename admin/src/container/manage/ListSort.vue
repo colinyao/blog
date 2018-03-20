@@ -88,16 +88,8 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
        },
        methods:{
          _toEdit(id){
-             this.$router.push({path:'/edit'})
+             this.$router.push({path:'/edit',query:{id:id}})
          }
-       },
-       watch:{
-          checkAll:{
-              handler(newValue){
-                  console.log(newValue)
-              },
-              deep:true
-          }
        }
    }
 </script>

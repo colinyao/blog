@@ -13,9 +13,7 @@ var Pagination=require('../../assets/plugin/pagination.js')
 class Home extends Component{
        constructor(props){
             super(props)
-
-
-
+            this._clickItem=this._clickItem.bind(this)
        }
        componentWillMount(){
             this.props.queryArticalList({type:'totalList',pageIndex:1});
@@ -37,21 +35,14 @@ class Home extends Component{
            })
        }
        _clickItem(id){
-<<<<<<< Updated upstream
-          this.props.history.push('/detail/'+id)
-=======
 
-          //this.props.history.push('/detail/'+id)
-          this.setState({})
-          debugger
->>>>>>> Stashed changes
+          this.props.history.push('/detail/'+id)
+
        }
        render(){
-          console.log('renderHome')
-  
           let {articalList,collectionInfo}=this.props,
               totalList=(typeof articalList.totalList==='object'&&typeof articalList.totalList.list==='object'&&articalList.totalList.list[articalList.totalList.pageIndex])?articalList.totalList.list[articalList.totalList.pageIndex].map((ele,i)=>{
-                 return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i} onClick={this._clickItem.bind(this,ele.id)}></ArticalItem>
+                 return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i} onClick={this._clickItem}></ArticalItem>
               }):'';
               // if(!this.state.totalList.length&&typeof articalList.totalList==='object'&& typeof articalList.totalList.list==='object'&&articalList.totalList.list[articalList.totalList.pageIndex]){
               //         new Promise((resolve,reject)=>{
@@ -65,13 +56,11 @@ class Home extends Component{
               //     }
           let {userInfo={},labels=[],latestArticals=[]}=collectionInfo
             return(<div className={styles.content}>
-
-                   <div className={styles.mainContent}>
-                       {totalList}
-                       <div id="pagination" className={styles.pagination}></div>
-                   </div>
-
-                </div>)
+                       <div className={styles.mainContent}>
+                           {totalList}
+                           <div id="pagination" className={styles.pagination}></div>
+                       </div>
+                   </div>)
 
        }
 

@@ -1,37 +1,67 @@
 <template>
 <div class="c_markdown">
-  <div id="my-editormd">
-    <textarea name="content"  style="display:none;"></textarea>
-  </div>
+    <button @click="uploadimg">upload</button>
+    <mavon-editor  style="height: 500px" ref=md :ishljs = "true"  v-model="value" @imgAdd="$imgAdd" @save="_save" />
+
 </div>
 </template>
 <script>
-import '../../../static/js/zepto.min'
-var editor=require('../../../static/plugins/markdown/editormd.js')
+import { mavonEditor } from 'mavon-editor'
+import axios from 'axios'
+import 'mavon-editor/dist/css/index.css'
   export default{
+     components:{
+       mavonEditor
+     },
      data(){
        return{
-
+         value:'',
+         img_file: {}
        }
      },
      mounted(){
-       let Editor =editormd("my-editormd", {//注意1：这里的就是上面的DIV的id属性值
-          width   : "90%",
-          height  : 640,
-          syncScrolling : "single",
-          path    : "/static/js/markdown/lib/",//注意2：你的路径
-          saveHTMLToTextarea : true,//注意3：这个配置，方便post提交表单
 
-         /**上传图片相关配置如下*/
-         imageUpload : true,
-         imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-         imageUploadURL : "/smart-api/upload/editormdPic/",//注意你后端的上传图片服务地址
-      });
+     },
+     methods:{
+        $imgAdd(pos, $file){
+            // 缓存图片信息
+            this.img_file[pos] = $file;
+        },
+        $imgDel(pos){
+            delete this.img_file[pos];
+        },
+        uploadimg($e){
+            // 第一步.将图片上传到服务器.
+            var formdata = new FormData();
+            for(var _img in this.img_file){
+                formdata.append(_img, this.img_file[_img]);
+            }
+            axios({
+                url: 'server url',
+                method: 'post',
+                data: formdata,
+                headers: { 'Content-Type': 'multipart/form-data' },
+            }).then((res) => {
+                /**
+                 * 例如：返回数据为 [[pos: url], [pos, url]...]
+                 * pos 为原图片标志（./0）
+                 * url 为上传后图片的url地址
+                 */
+                 // 第二步.将返回的url替换到文本原位置![...](./0) -> ![...](url)
+                for (var i in res) {
+                    // $vm.$img2Url 详情见本页末尾
+                    $vm.$img2Url(res[i][0],res[i][1]);
+                }
+            })
+        },
+        _save(value,render){
+            console.log(value)
+        }
      }
   }
 </script>
 
 <style lang="less">
-@import '../../../static/plugins/markdown/css/editormd.css';
+
 
 </style>

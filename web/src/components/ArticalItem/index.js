@@ -9,16 +9,16 @@ export default class ArticalItem extends PureComponent{
     componentDidMount(){
        // console.log(this.props)
     }
-    _onClick(){
-         this.props.onClick()
 
+    _onClick(id){
+         this.props.onClick(id)
     }
     render(){
-      console.log('renderItem')
-      let {title,headImg,abstract,createDate,messages,reads}=this.props.articalInfo,
+
+      let {title,headImg,abstract,createDate,messages,reads,id}=this.props.articalInfo,
            {type,_classNames,_styles={}}=this.props;
       return(
-         <div className={classNames(styles.articalItem,_classNames)} style={_styles} onClick={this._onClick.bind(this)}>
+         <div className={classNames(styles.articalItem,_classNames)} style={_styles} onClick={this._onClick.bind(this,id)}>
              <div>
                      {type!='1'?<h3 className={styles.title}>{title}</h3>:''}
                      <div className={classNames("flex",type!='1'?'mt10':'')}>
@@ -39,7 +39,7 @@ export default class ArticalItem extends PureComponent{
 
          </div>
       )
-              debugger
+
     }
 }
 ArticalItem.propTypes={

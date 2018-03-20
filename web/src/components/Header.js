@@ -2,7 +2,8 @@ import React,{PureComponent} from 'react'
 import classNames from 'classnames'
 import {NavLink} from 'react-router-dom'
 import '../../static/css/header.less'
-export default class Header extends PureComponent{
+import {withRouter} from 'react-router'
+class Header extends PureComponent{
     constructor(props){
           super(props)
           this.state={
@@ -12,12 +13,14 @@ export default class Header extends PureComponent{
     componentWillMount(){
 
     }
-    shouldComponentUpdate(nextProps, nextState){
-        if(this.state.menuShow!==nextState.menuShow){
-            return true
-        }
-        return false
-    }
+    // shouldComponentUpdate(nextProps, nextState){
+    //     if(this.state.menuShow!==nextState.menuShow){
+    //         return true
+    //     }
+    //
+    //
+    //     return false
+    // }
     _showMenu(){
          this.setState({menuShow:!this.state.menuShow})
     }
@@ -42,3 +45,4 @@ export default class Header extends PureComponent{
             )
     }
 }
+export default withRouter(Header)

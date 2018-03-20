@@ -73,7 +73,7 @@
 <script>
 import "../component/cele/assets/js/datePicker.js"
 import axios from 'axios'
-import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Editor,Previewer,Range,previewerMixin,TabBar,TabBarItem,Tab,TabItem,Toast,Modal} from '../component/cele'
+import {Cell,Cinput,Ctoggle,Cselect,CselectM,Ccheckbox,Cradio,Previewer,Range,previewerMixin,TabBar,TabBarItem,Tab,TabItem,Toast,Modal} from '../component/cele'
 
 import utils from '../assets/js/utils.js'
 import Colin from '../assets/js/public.js'
@@ -91,7 +91,6 @@ export default {
        CselectM,
        Ccheckbox,
        Cradio,
-       Editor,
        Previewer,
        Range,
        TabBar,

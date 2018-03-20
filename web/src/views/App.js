@@ -7,6 +7,7 @@ import Aside from '../components/Aside.js'
 import Routes from '../routes/index.js'
 import {BrowserRouter as Router,Link} from 'react-router-dom'
 import 'isomorphic-fetch';
+const supportsHistory = 'pushState' in window.history
 export default class App extends Component{
        constructor(props){
             super(props)
@@ -18,13 +19,10 @@ export default class App extends Component{
 
 
        }
-       test(){
 
-       }
        render(){
-          console.log('render')
             return(
-                <Router forceRefresh={true}>
+                <Router forceRefresh={!supportsHistory}>
                      <div className="wrapper">
                          <Header></Header>
                          <div className="contentBox flex">

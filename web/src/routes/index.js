@@ -19,6 +19,7 @@ import Topical from 'bundle-loader?lazy!../views/Topical'
 
 
 const loadComponent=(loadHome)=>{
+
    return (props)=>(
      <Bundle load={loadHome}>
          {(Component) => <Component {...props}/>}
@@ -44,10 +45,10 @@ export default class Routes extends Component {
             // Router 下只能包一个子元素
 
                        <div className="flexFull">
-                            <Route exact path='/home' component={loadComponent(Home)}></Route>
-                            <Route exact path='/topical' component={loadComponent(Topical)}></Route>
+                            <Route path='/home' component={loadComponent(Home)}></Route>
+                            <Route path='/topical' component={loadComponent(Topical)}></Route>
                             <Route path='/detail' component={loadComponent(Detail)}></Route>
-                            <Route exact path='/archive' component={loadComponent(Archive)}></Route>
+                            <Route path='/archive' component={loadComponent(Archive)}></Route>
                         </div>
 
 

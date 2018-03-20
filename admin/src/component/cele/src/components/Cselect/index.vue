@@ -97,8 +97,10 @@
                 border:1px solid #ddd;
                 border-style:solid solid none solid;
                 transition:all 0.5s;
+                z-index:999;
+                background:#fff;
                li{
-                       
+
                        padding:0 3px;
                        border-bottom: 1px solid #ddd;
                        line-height: 24px;
