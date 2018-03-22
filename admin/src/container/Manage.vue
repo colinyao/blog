@@ -6,13 +6,12 @@
               <li v-for="item in menus" class="selected">{{item.name}}</li>
          </ul>
     </div>
-    <div class="content">
+    <div class="container">
        <keep-alive v-if="!$route.meta.notKeepAlive">
        <router-view></router-view>
        </keep-alive>
        <router-view v-if="$route.meta.notKeepAlive"></router-view>
     </div>
-
   </div>
 </template>
 <script>
@@ -53,7 +52,7 @@ export default{
         background:#005da6;
     }
 }
-.content{
+.container{
    padding-left:120px;
 }
 </style>

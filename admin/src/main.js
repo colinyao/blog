@@ -4,8 +4,9 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import App from './App'
 import router from './router'
-import {AlertPlugin,ToastMPlugin} from './component/cele/index.js'
+import {HttpPlugin,AlertPlugin,ToastMPlugin} from './component/cele/index.js'
 import MetaInfo from 'vue-meta-info'
+Vue.use(HttpPlugin)
 Vue.use(AlertPlugin)
 Vue.use(ToastMPlugin)
 Vue.use(MetaInfo)

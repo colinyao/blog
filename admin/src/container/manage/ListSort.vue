@@ -3,7 +3,8 @@
          <div class="controlPanel">
               <div class="btn ml10">新增</div>
               <div class="btn danger ml10 mr10">删除</div>
-              <Cselect :options="sortOptions"></Cselect>
+              <Cselect :options="sortOptions" v-model="searchCondition.type"></Cselect>
+              <div class="btn ml10" @click="_searchList">搜索</div>
          </div>
          <div class="listContainer">
                <ul class="list_title">
@@ -20,16 +21,16 @@
                 </li>
                </ul>
               <ul class="list_items" v-if="checkAll.length">
-                   <li v-for="(item,index) in list" @click="_toEdit(item.id)">
+                   <li v-for="(item,index) in list">
                        <div class="selected">
-                         <Ccheckbox v-model="checkAll[index]" :option="item.id"></Ccheckbox>
+                         <Ccheckbox v-model="checkAll[index]" :option="item._id"></Ccheckbox>
                        </div>
                        <div class="order">{{index+1}}</div>
                        <div class="title">{{item.title}}</div>
-                       <div class="createDate">{{item.createDate}}</div>
+                       <div class="createDate">{{item.update_time}}</div>
                        <div class="opreate">
-                           <span class="btn">修改</span>
-                           <span class="btn delete danger">删除</span>
+                           <span class="btn" @click="_toEdit(item._id)">修改</span>
+                           <span class="btn delete danger" @click="_toDelete(item._id)">删除</span>
                        </div>
                    </li>
               </ul>
@@ -50,45 +51,42 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
        },
        computed:{
           checkAllOptions(){
-              let list=this.list.map((ele)=>(ele.id))
+              let list=this.list.map((ele)=>(ele._id))
               return list
           },
        },
        data(){
           return{
-             sortOptions:[{text:'JS',value:1}],
+             sortOptions:[{text:'js',value:'js'}],
+             searchCondition:{pageIndex:1,type:''},
              checkAll:[],
              list:[
-                 {title:'学好JS，走遍天下都不怕',id:1,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:2,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:3,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:4,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:5,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:6,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:7,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:8,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:9,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:10,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:11,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:12,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:13,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:14,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:15,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:16,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:17,createDate:'2017-10'},
-                 {title:'学好JS，走遍天下都不怕',id:18,createDate:'2017-10'},
-             ]
+             ],
+             pagination:''
           }
        },
+       created(){
+           this._searchList();
+       },
        mounted(){
-         var pagination=new Pagination({container:document.getElementById('pagination'),total:20})
-         pagination.addListener('change',(index)=>{  //监听页码变化
 
+         this.pagination=new Pagination({container:document.getElementById('pagination'),total:0})
+         this.pagination.addListener('change',(index)=>{  //监听页码变化
+
+             this.searchCondition.pageIndex=index;
+             this._searchList()
          })
        },
        methods:{
+         _searchList(){
+            this.$http.post('http://localhost:3000/api/editor/searchList',{formData:this.searchCondition}).then(res=>{
+                 console.log(res.data)
+                 this.list=res.data.rst.list;
+                 this.pagination.update({total:res.data.rst.total})
+            })
+         },
          _toEdit(id){
-             this.$router.push({path:'/edit',query:{id:id}})
+             this.$router.push({path:'manage/edit',query:{id:id}})
          }
        }
    }
@@ -160,6 +158,9 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
      }
      .createDate{
        font-size:12px;
+     }
+     .title{
+       cursor:pointer;
      }
   }
   .order{

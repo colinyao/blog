@@ -10,15 +10,16 @@ export default class ArticalItem extends PureComponent{
        // console.log(this.props)
     }
 
-    _onClick(id){
-         this.props.onClick(id)
+    _onClick(e,id){
+        console.log(e.target)
+         //this.props.onClick(id)
     }
     render(){
 
       let {title,headImg,abstract,createDate,messages,reads,id}=this.props.articalInfo,
            {type,_classNames,_styles={}}=this.props;
       return(
-         <div className={classNames(styles.articalItem,_classNames)} style={_styles} onClick={this._onClick.bind(this,id)}>
+         <div className={classNames(styles.articalItem,_classNames)} style={_styles} onClick={this._onClick}>
              <div>
                      {type!='1'?<h3 className={styles.title}>{title}</h3>:''}
                      <div className={classNames("flex",type!='1'?'mt10':'')}>

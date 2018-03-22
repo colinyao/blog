@@ -26,59 +26,62 @@
 </head>
 <body>
 
-<div id="container">
+<div id="container" style="width:200px;height:200px;background:#000">
+   <div class="child" style="width:100px;height:100px;background:#ff1100">
 
+   </div>
 
 </div>
 
 </body>
 <script>
-  var container=document.querySelector('#container')
-  var com,x,y,_x,_y;
 
-  container.addEventListener('mousedown',function(e){
-    com=getCom(e.target)
-    var selected=document.querySelector('.selected')
-    if(selected){
-      selected.className=selected.className.replace('selected','')
-    }
-    com.className=com.className+' selected'
-     x=e.clientX;
-     y=e.clientY;
-     console.log(com)
-     document.addEventListener('mousemove',mousemove)
-  })
-
-  document.addEventListener('mouseup',function(e){
-    e.preventDefault()
-    document.removeEventListener('mousemove',mousemove)
-    com=null
-  })
-
-  function mousemove(e){
-
-       e.preventDefault()
-       console.log(com)
-        if(com){
-
-             _x=e.clientX;
-             _y=e.clientY;
-              console.log(com.offsetLeft)
-            com.style.left=com.offsetLeft+_x-x+'px';
-            com.style.top=com.offsetTop+_y-y+'px';
-            x=_x;
-            y=_y;
-        }
-     }
-
-
-  function getCom(dom){
-
-    if(!!~dom.parentNode.className.indexOf('pos')){
-        return dom.parentNode
-    }else{
-        return getCom(dom.parentNode)
-    }
-}
+//   var container=document.querySelector('#container')
+//   var com,x,y,_x,_y;
+//
+//   container.addEventListener('mousedown',function(e){
+//     com=getCom(e.target)
+//     var selected=document.querySelector('.selected')
+//     if(selected){
+//       selected.className=selected.className.replace('selected','')
+//     }
+//     com.className=com.className+' selected'
+//      x=e.clientX;
+//      y=e.clientY;
+//      console.log(com)
+//      document.addEventListener('mousemove',mousemove)
+//   })
+//
+//   document.addEventListener('mouseup',function(e){
+//     e.preventDefault()
+//     document.removeEventListener('mousemove',mousemove)
+//     com=null
+//   })
+//
+//   function mousemove(e){
+//
+//        e.preventDefault()
+//        console.log(com)
+//         if(com){
+//
+//              _x=e.clientX;
+//              _y=e.clientY;
+//               console.log(com.offsetLeft)
+//             com.style.left=com.offsetLeft+_x-x+'px';
+//             com.style.top=com.offsetTop+_y-y+'px';
+//             x=_x;
+//             y=_y;
+//         }
+//      }
+//
+//
+//   function getCom(dom){
+//
+//     if(!!~dom.parentNode.className.indexOf('pos')){
+//         return dom.parentNode
+//     }else{
+//         return getCom(dom.parentNode)
+//     }
+// }
 </script>
 </html>

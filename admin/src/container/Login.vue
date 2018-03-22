@@ -5,7 +5,7 @@
                <div class="content">
                     <Cell class="mt10"><Cinput type="text"   leftPos="inner" :border="false" rightPos="inner" v-model="formData.userName"><span slot="left" class="icon"><img src="../../static/images/icon/user.svg"></span></Cinput></Cell>
                     <Cell class="mt10"><Cinput type="password"   leftPos="inner" :border="false" rightPos="inner" v-model="formData.password"><span slot="left" class="icon"><img src="../../static/images/icon/password.svg"></span></Cinput></Cell>
-                    <div class="btn">登录</div>
+                    <div class="btn" @click="_login">登录</div>
                </div>
           </div>
     </div>
@@ -26,7 +26,9 @@ import {Cell,Cinput} from '../component/cele'
          }
      },
      methods:{
-
+        _login(e){
+              console.log(e)
+        }
      }
 
   }

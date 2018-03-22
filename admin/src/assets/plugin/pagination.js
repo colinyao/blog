@@ -30,14 +30,16 @@
     }
     Pagination.prototype = {
         constructor: Pagination,
+        initStatus:false,
         init() {
-            if (this.options.total > 1) {
+            if (this.options.total > 1&&!this.initStatus) {
                 this.createELe();
                 this.bindEvent()
+                this.initStatus=true
             }
         },
         createELe() {
-            var that = this,
+            var  that = this,
                  container = document.createDocumentFragment(),
                  ul = document.createElement('ul'),
                  leftBtn = [{ text:this.options.btnText?'<上一页':'<', className: 'prevBtn' }],
@@ -176,7 +178,6 @@
                    that.createELe();
                    that.trigger('change', current)
                 }
-
             }
             this.options.container.addEventListener('click', click);
         },
@@ -192,6 +193,14 @@
                 that.listener[event].forEach(function(fn) {
                     fn.apply(fn, args)
                 })
+            }
+        },
+        update(options){
+            this.options=merge(this.options,options);
+            this.createELe();
+            if(!this.initStatus){
+                this.bindEvent();
+                this.initStatus=false;
             }
         }
     }

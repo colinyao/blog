@@ -1,3 +1,4 @@
+require('babel-polyfill')
 const restify = require('restify')
 const ip_addr = '127.0.0.1'
 const port =  '3000'
@@ -6,13 +7,13 @@ const assert = require('assert');
 const path=require('path')
 // var clients = require('restify-clients');
 const db=require('./mongodb')
-
+const utils=require('./utils')
 // var client = clients.createJsonClient({
 //   url: 'http://localhost:3000',
 //   version: '~1.0'
 // });
 
-
+utils.formatDate();
 server.get(/\/uploads\/?.*/, restify.serveStatic({
     directory: __dirname
 }));
