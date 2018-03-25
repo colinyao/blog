@@ -23,7 +23,7 @@ export default class ArticalItem extends PureComponent{
              <div>
                      {type!='1'?<h3 className={styles.title}>{title}</h3>:''}
                      <div className={classNames("flex",type!='1'?'mt10':'')}>
-                             <div className={styles.img}><img src={headImg} alt=""/></div>
+                             {headImg?<div className={styles.img}><img src={headImg} alt=""/></div>:''}
                              <div className={classNames(styles.articalInfo,'flexFull')}>
                                    <div className="flexColumn flexFull">
                                           {type=='1'?<h3 className={styles.title}>{title}</h3>:''}

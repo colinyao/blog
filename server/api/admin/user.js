@@ -28,10 +28,8 @@ const methods = {
     },
     login:(req, res, next) => {
 
-        let name = req.body.name;
+        let name = req.body.userName;
         let password = req.body.password;
-        //console.log(UserModel)
-
         UserModel.find({ name: name }).then((result) => {
                 result.length ?
                 result.password === password ?

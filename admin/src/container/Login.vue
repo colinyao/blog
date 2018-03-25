@@ -13,6 +13,7 @@
 
 <script>
 import {Cell,Cinput} from '../component/cele'
+import {mapMutations} from 'vuex'
   export default{
      components:{
         Cell,Cinput
@@ -26,8 +27,13 @@ import {Cell,Cinput} from '../component/cele'
          }
      },
      methods:{
-        _login(e){
-              console.log(e)
+        ...mapMutations(['updateUserInfo']),
+        _login(){
+            this.$http.post('http://localhost:3000/api/login',this.formData).then(res=>{
+                 if(res.data.code=='200'){
+                     this.updateUserInfo({'token':res.data.rst.token})
+                 }
+            })
         }
      }
 

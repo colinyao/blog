@@ -8,7 +8,7 @@ export const putHomeArticalList=Mock.mock('http://localhost:8000/home', {
                {
                      'id|+1': 1,
                      title:'@ctitle',
-                     headImg:Mock.Random.image( '200x200'),
+                     //headImg:Mock.Random.image( '200x200'),
                      abstract:Mock.Random.cparagraph(  ),
                      createDate:'@date',
                      reads:Mock.Random.integer(0,10000),

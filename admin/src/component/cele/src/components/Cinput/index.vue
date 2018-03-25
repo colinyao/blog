@@ -168,7 +168,7 @@ export default {
     },
     watch: {
         value(newVal) {
-            this.currentValue = newVal
+            this.currentVal = newVal
         },
         currentVal(newVal, oldVal) {
             if (this.reg) {

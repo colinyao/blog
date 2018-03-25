@@ -10,7 +10,7 @@ Vue.use(HttpPlugin)
 Vue.use(AlertPlugin)
 Vue.use(ToastMPlugin)
 Vue.use(MetaInfo)
-
+import axios from 'axios'
 // // for Vue 2.0
 // //import VueLazyload from 'vue-lazyload'
 import store from './store'
@@ -19,7 +19,17 @@ import store from './store'
 //loading: 'https://test-iobs02.pingan.com.cn/download/pamap-gr-dmz-dev/3d06e8d9edc743ef9537af392df2481bS?e=1492167771&token=CCV9dFVIDF2Y0D22YI6KJDYWdCCIIFF0:SDIEg-owgO91G9pJTCjpHbp55qg=',
 //try: 1 // default 1
 //})
-
+axios.interceptors.request.use(
+    config => {
+         console.log(store)
+        if (store.state.userInfo&&store.state.userInfo.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+            config.headers.Authorization = `token ${store.state.userInfo.token}`;
+        }
+        return config;
+    },
+    err => {
+        return Promise.reject(err);
+});
 
 
 

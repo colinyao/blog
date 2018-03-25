@@ -12,6 +12,7 @@ server.post('/api/editor/articleUpLoad',upLoad.articleUpLoad)
 server.post('/api/editor/fileUpLoad',upLoad.fileUpLoad)
 server.post('/api/editor/multipleImgUpLoad',upLoad.multipleImgUpLoad)
 
-server.post('/api/editor/searchList',search.searchArtical)
+server.post('/api/editor/searchList',search.searchList)
+server.post('/api/editor/searchArtical',search.searchArtical)
 }
 module.exports=routes;

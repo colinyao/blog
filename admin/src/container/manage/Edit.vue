@@ -33,8 +33,15 @@ import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
      },
      created(){
         this.formData.id=this.$route.query.id;
+        if(this.formData.id)this.initData();
      },
      methods:{
+       initData(){
+          this.$http.post('http://localhost:3000/api/editor/searchArtical',{_id:this.formData.id}).then(res=>{
+              this.formData=res.data.rst
+              
+          })
+       },
        uploadimg($vm){
            // 第一步.将图片上传到服务器.
            var formdata = new FormData();

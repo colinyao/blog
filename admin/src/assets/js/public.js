@@ -95,15 +95,6 @@ const Colin = {
         serialize(params, obj, traditional)
         return params.join('&').replace(/%20/g, '+')
     },
-    updateStoreAndSS(key,state,options){
-        let keys=key.split('.'),new_key='state';
-        keys.forEach((ele,i)=>{
-             new_key+="['"+ele+"']";
-        })
-        new_key=eval(keys);
-        new_key=Object.assign({},new_key,options);
-        Colin.setSS('state',state)
-    },
     ajax(url,data='',method='post'){
            return axios({
                 method:method,

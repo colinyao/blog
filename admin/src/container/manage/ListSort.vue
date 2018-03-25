@@ -1,8 +1,8 @@
 <template>
     <div class="content">
          <div class="controlPanel">
-              <div class="btn ml10">新增</div>
-              <div class="btn danger ml10 mr10">删除</div>
+              <div class="btn ml10" @click="_toEdit">新增</div>
+              <div class="btn danger ml10 mr10" @click="_deleteAll">删除</div>
               <Cselect :options="sortOptions" v-model="searchCondition.type"></Cselect>
               <div class="btn ml10" @click="_searchList">搜索</div>
          </div>
@@ -70,23 +70,28 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
        },
        mounted(){
 
-         this.pagination=new Pagination({container:document.getElementById('pagination'),total:0})
-         this.pagination.addListener('change',(index)=>{  //监听页码变化
 
-             this.searchCondition.pageIndex=index;
-             this._searchList()
-         })
        },
        methods:{
          _searchList(){
             this.$http.post('http://localhost:3000/api/editor/searchList',{formData:this.searchCondition}).then(res=>{
-                 console.log(res.data)
                  this.list=res.data.rst.list;
-                 this.pagination.update({total:res.data.rst.total})
+                 if(!this.pagination&&res.data.rst.total){
+                   this.pagination=new Pagination({container:document.getElementById('pagination'),total:res.data.rst.total})
+                   this.pagination.addListener('change',(index)=>{  //监听页码变化
+                       this.searchCondition.pageIndex=index;
+                       this._searchList()
+                   })
+                 }else{
+                   this.pagination.update({total:res.data.rst.total})
+                 }
             })
          },
          _toEdit(id){
              this.$router.push({path:'manage/edit',query:{id:id}})
+         },
+         _deleteAll(){
+
          }
        }
    }
