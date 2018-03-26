@@ -5,7 +5,12 @@
        </div>
 </template>
 <script>
+import FastClick from 'fastclick'
+import View4 from './View4.vue'
       export default{
+        components:{
+          View4
+        },
         metaInfo: {
           title: 'View1', // set a title
         },

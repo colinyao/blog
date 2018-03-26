@@ -1,4 +1,3 @@
-const jwtAuth = require('../../jwt/jwtAuth.js')
 const jwtCreate = require('../../jwt/jwtCreate.js')
 const UserModel = require('../../mongodb/db/user.js')
 
@@ -27,7 +26,6 @@ const methods = {
 
     },
     login:(req, res, next) => {
-
         let name = req.body.userName;
         let password = req.body.password;
         UserModel.find({ name: name }).then((result) => {

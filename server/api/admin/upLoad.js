@@ -1,4 +1,3 @@
-const jwtAuth = require('../../jwt/jwtAuth.js')
 const ArticalModel = require('../../mongodb/db/artical.js')
 const config=require('../../utils/index.js')
 const fs = require('fs')

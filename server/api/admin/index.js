@@ -1,10 +1,9 @@
 const user=require('./user.js')
-const crossDomain = require('../../middleware/crossDomain.js')
-
+const jwtAuth=require('../../jwt/jwtAuth')
 const upLoad=require('./upLoad.js')
 const search=require('./search.js')
 const routes=(server)=>{
-server.use(crossDomain)
+server.use('/api/editor',jwtAuth)  //验证token
 server.post('/api/register' , user.register)
 server.post('/api/login' , user.login)
 

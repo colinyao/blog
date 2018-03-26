@@ -14,6 +14,7 @@
 <script>
 import {Cell,Cinput} from '../component/cele'
 import {mapMutations} from 'vuex'
+import {API_LOGIN} from '../assets/api'
   export default{
      components:{
         Cell,Cinput
@@ -29,9 +30,10 @@ import {mapMutations} from 'vuex'
      methods:{
         ...mapMutations(['updateUserInfo']),
         _login(){
-            this.$http.post('http://localhost:3000/api/login',this.formData).then(res=>{
+            this.$http.post(API_LOGIN,this.formData).then(res=>{
                  if(res.data.code=='200'){
                      this.updateUserInfo({'token':res.data.rst.token})
+                     this.$router.push({path:'/manage'})
                  }
             })
         }

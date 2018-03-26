@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-
+import {API_UP_IMG,API_UP_ARTICLE} from '../../assets/api'
 import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
   export default{
      components:{
@@ -39,7 +39,7 @@ import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
        initData(){
           this.$http.post('http://localhost:3000/api/editor/searchArtical',{_id:this.formData.id}).then(res=>{
               this.formData=res.data.rst
-              
+
           })
        },
        uploadimg($vm){
@@ -49,7 +49,7 @@ import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
                formdata.append(_img, $vm.img_file[_img]);
            }
            this.$http.axios({
-               url: 'http://localhost:3000/api/editor/multipleImgUpLoad',
+               url: API_UP_IMG,
                method: 'post',
                data: formdata,
                headers: { 'Content-Type': 'multipart/form-data' },
@@ -75,7 +75,7 @@ import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
            })
        },
        submit(){
-          this.$http.post("http://localhost:3000/api/editor/articleUpLoad",{formData:this.formData}).then((res)=>{
+          this.$http.post(API_UP_ARTICLE,{formData:this.formData}).then((res)=>{
               console.log(res)
           })
        }

@@ -1,30 +1,20 @@
 require('babel-polyfill')
-const restify = require('restify')
-const ip_addr = '127.0.0.1'
+const express = require('express')
+const app=express()
 const port =  '3000'
-const server = restify.createServer({name : "server",version:'1.0.0'})
-const assert = require('assert');
 const path=require('path')
-// var clients = require('restify-clients');
+const bodyParser=require('body-parser')
 const db=require('./mongodb')
 const utils=require('./utils')
-// var client = clients.createJsonClient({
-//   url: 'http://localhost:3000',
-//   version: '~1.0'
-// });
 
 utils.formatDate();
-server.get(/\/uploads\/?.*/, restify.serveStatic({
-    directory: __dirname
-}));
-server.use(restify.plugins.acceptParser(server.acceptable));
-server.use(restify.plugins.queryParser());
-server.use(restify.plugins.bodyParser());
 
+const crossDomain = require('./middleware/crossDomain.js')
+app.use(crossDomain)
+app.use(express.static(__dirname + '/uploads'));
 
-// server.use(function crossDomain(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-// });
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const web=require('./api/web')
 const admin=require('./api/admin')
@@ -35,8 +25,8 @@ db.on('error',(res)=>{
 db.once('open',function(){
   //一次打开记录
 
- web(server)
- admin(server)
+ web(app)
+ admin(app)
  console.log('mongodb is running')
 });
 
@@ -44,4 +34,4 @@ db.once('open',function(){
 
 
 
-server.listen(port ,ip_addr, ()=>{console.log('%s listening at %s ', server.name , server.url)})
+app.listen(port, ()=>{console.log('%s listening at %s ', port)})

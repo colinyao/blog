@@ -55,6 +55,7 @@ const router = new Router({
           meta: {
               'notKeepAlive': true
           }
-        }]
+        },
+      ]
 })
 export default router
