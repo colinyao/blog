@@ -4,7 +4,7 @@ const upLoad=require('./upLoad.js')
 const search=require('./search.js')
 const routes=(server)=>{
 server.use('/api/editor',jwtAuth)  //验证token
-server.post('/api/register' , user.register)
+// server.post('/api/register' , user.register)
 server.post('/api/login' , user.login)
 
 server.post('/api/editor/articleUpLoad',upLoad.articleUpLoad)

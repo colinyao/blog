@@ -1,7 +1,7 @@
 const ArticalModel = require('../../mongodb/db/artical.js')
 const methods = {
      searchList:(req,res,next)=>{
-          let condition=req.body.formData,
+          let condition=req.body.formData||{},
               pageIndex=condition.pageIndex||1,
               pageSize=condition.pageSize||20,
               searchCondition=condition.type?{type:condition.type}:'';

@@ -30,10 +30,12 @@
     }
     Pagination.prototype = {
         constructor: Pagination,
+        initStatus:false,
         init() {
-            if (this.options.total > 1) {
+            if (this.options.total > 1&& !this.initStatus) {
                 this.createELe();
                 this.bindEvent()
+                this.initStatus=true;
             }
         },
         createELe() {
@@ -174,7 +176,7 @@
                 }
                 if(that.options.current!=prevCurrent){
                    that.createELe();
-                   that.trigger('change', current)              
+                   that.trigger('change', current)
                 }
 
             }
@@ -193,6 +195,10 @@
                     fn.apply(fn, args)
                 })
             }
+        },
+        update(ops){
+             this.options = merge(this.options , ops);
+             this.init()
         }
     }
     function merge() {

@@ -19,16 +19,18 @@ const methods = {
         })
     },
     articleUpLoad:(req,res,next)=>{
-        let formData=req.body.formData;
+        let formData=req.body.formData,
+            date=new Date();
         if(formData.id){  //更新操作
-            ArticalModel.update({_id:formData.id},Object.assign({},formData,{'update_time':new Date()})).then(result=>{
+            ArticalModel.update({_id:formData.id},Object.assign({},formData,{'update_time':date})).then(result=>{
               res.json({
                   code:'200',
                   msg:'文章更新成功'
               })
             })
         }else{   //创建操作
-            ArticalModel.create(formData).then(result=>{
+
+            ArticalModel.create(Object.assign({},formData,{month:date.Format('yyyy-MM'),'update_time':date})).then(result=>{
               res.json({
                   code:'200',
                   msg:'文章保存成功'

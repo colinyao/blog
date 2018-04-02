@@ -13,25 +13,29 @@ var Pagination=require('../../assets/plugin/pagination.js')
 class Home extends Component{
        constructor(props){
             super(props)
+            this.state={
+               pagination:'',
+               total:0,
+            }
             this._clickItem=this._clickItem.bind(this)
        }
        componentWillMount(){
-            this.props.queryArticalList({type:'totalList',pageIndex:1});
-
+            this.props.queryArticalList({pageIndex:1});
        }
        componentWillReceiveProps(nextProps){
 
        }
        componentDidMount(){
-           var pagination=new Pagination({container:document.getElementById('pagination'),total:20})
-           pagination.addListener('change',(index)=>{
-                 let {articalList}=this.props
+           this.state.pagination=new Pagination({container:document.getElementById('pagination')})
+           this.state.pagination.addListener('change',(index)=>{
+                let {articalList}=this.props
                 if(typeof articalList.totalList==='object'&&typeof articalList.totalList.list==='object'&&articalList.totalList.list[index]){
+                    this.props._setPageIndex({pageIndex:index})
 
-                    this.props._setPageIndex({type:'totalList',pageIndex:index})
                 }else{
-                   this.props.queryArticalList({type:'totalList',pageIndex:index})
+                   this.props.queryArticalList({pageIndex:index})
                 }
+
            })
        }
        _clickItem(id){
@@ -44,6 +48,12 @@ class Home extends Component{
               totalList=(typeof articalList.totalList==='object'&&typeof articalList.totalList.list==='object'&&articalList.totalList.list[articalList.totalList.pageIndex])?articalList.totalList.list[articalList.totalList.pageIndex].map((ele,i)=>{
                  return <ArticalItem _classNames={styles.articalItem} articalInfo={ele} key={i} onClick={this._clickItem}></ArticalItem>
               }):'';
+
+              if(this.state.pagination&&articalList.totalList&&articalList.totalList.total&&!this.state.total){
+                  this.state.total=articalList.totalList.total;
+                  this.state.pagination.update({total:articalList.totalList.total})
+              }
+
               // if(!this.state.totalList.length&&typeof articalList.totalList==='object'&& typeof articalList.totalList.list==='object'&&articalList.totalList.list[articalList.totalList.pageIndex]){
               //         new Promise((resolve,reject)=>{
               //             ArticalItem(resolve)
@@ -56,7 +66,7 @@ class Home extends Component{
               //     }
           let {userInfo={},labels=[],latestArticals=[]}=collectionInfo
             return(<div className={styles.content}>
-                       <div className={styles.mainContent}>
+                       <div className='flexFull'>
                            {totalList}
                            <div id="pagination" className={styles.pagination}></div>
                        </div>

@@ -8,5 +8,6 @@ module.exports=new Schema({
      reads:{type:Number,default:0},
      messages:{type:Number,default:0},
      type:String,
-     update_time:{type:Date,default:Date.now}
+     month:{type:String},
+     update_time:{type:Date}
 })

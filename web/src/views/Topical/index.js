@@ -16,12 +16,12 @@ class Topical extends Component{
 
      return(<div className="mainContent">
                     {this.props.topical.map(ele=>{
-                        return <dl className={styles.archive} key={ele.topic}>
-                                     <dt className={styles.archive_item}>{ele.topic} ({ele.num})</dt>
+                        return <dl className={styles.archive} key={ele.name}>
+                                     <dt className={styles.archive_item}>{ele.name} ({ele.list.length})</dt>
                                      <dd className={styles.archiveItem_list}>
                                           <ul>
                                           {ele.list.map((_ele,index)=>
-                                                <li className={classNames(styles.archiveItemList_item,'vc')} key={_ele.createDate}><span>{index+1}</span><span>{_ele.title}</span></li>
+                                                <li className={classNames(styles.archiveItemList_item,'vc')} key={_ele.update_time}><span>{index+1}</span><span>{_ele.title}</span></li>
                                           )}
                                           </ul>
                                      </dd>

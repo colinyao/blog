@@ -27,7 +27,7 @@ class Aside extends PureComponent{
                              <div className='flex'>
                                     <div className="aside-avator" style={{backgroundImage:'url('+userInfo.avator+')'}}></div>
                                     <div className='ml10 flexFull'>
-                                         <p>{userInfo.name}</p>
+                                         <p>{userInfo.userName}</p>
                                          <p className="aside-motto">{userInfo.motto}</p>
                                      </div>
                               </div>
@@ -40,7 +40,7 @@ class Aside extends PureComponent{
                       <div className="aside-aside_item">
                              <h4>最新文章</h4>
                              <ul className="aside-latestArticals">
-                                    {latestArticals.map((ele,index)=><li key={index}><span>{ele.title}</span><span>{ele.createDate}</span></li>)}
+                                    {latestArticals.map((ele,index)=><li key={index}><span>{ele.title}</span><span>{ele.update_time}</span></li>)}
                              </ul>
                       </div>
                 </div>

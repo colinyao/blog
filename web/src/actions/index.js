@@ -5,12 +5,14 @@ export const queryArticalList=(ops)=>(dispatch,getState)=>{
       let state=getState();
       if(typeof state.articalList[ops.type] !=='object' || typeof state.articalList[ops.type]['list'] !=='object' || !state.articalList[ops.type]['list'][ops.pageIndex]){
 
-           api.getArticalList(ops).then((res)=>{
+           api.getArticalList({formData:ops}).then((res)=>{
+
                 dispatch({
                      type:SET_ARTICALLIST,
                      payload:{
                       type:ops.type,
                       pageIndex:ops.pageIndex,
+                      total:res.rst.total,
                       list:{[ops.pageIndex]:res.rst.list}
                     }
                 })
@@ -49,7 +51,7 @@ export const queryArchive=()=>(dispatch,getState)=>{
             api.getArchive().then((res)=>{
                    dispatch({
                       type:SET_ARCHIVE,
-                      payload:res.rst
+                      payload:res.rst.list
                    })
             })
       }
@@ -57,12 +59,12 @@ export const queryArchive=()=>(dispatch,getState)=>{
 }
 export const queryTopical=()=>(dispatch,getState)=>{
       let state=getState()
-      
+
       if(!state.topical.load){
             api.getTopical().then((res)=>{
                    dispatch({
                       type:SET_TOPICAL,
-                      payload:res.rst
+                      payload:res.rst.list
                    })
             })
       }
