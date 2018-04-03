@@ -25,12 +25,12 @@
                        <div class="selected">
                          <Ccheckbox v-model="checkAll[index]" :option="item._id"></Ccheckbox>
                        </div>
-                       <div class="order">{{index+1}}</div>
+                       <div class="order">{{((searchCondition.pageIndex-1)*searchCondition.pageSize)+index+1}}</div>
                        <div class="title">{{item.title}}</div>
                        <div class="createDate">{{item.update_time}}</div>
                        <div class="opreate">
                            <span class="btn" @click="_toEdit(item._id)">修改</span>
-                           <span class="btn delete danger" @click="_toDelete(item._id)">删除</span>
+                           <span class="btn delete danger" @click="_toDelete(item._id,index)">删除</span>
                        </div>
                    </li>
               </ul>
@@ -41,6 +41,7 @@
     </div>
 </template>
 <script>
+import {API_SEARCHMAIN,API_SEARCHLIST,API_DELETEALL,API_DELETEARTICAL} from '../../assets/api/index'
 import {Cselect,Ccheckbox,CcheckAllbox} from '../../component/cele';
 var Pagination =require('../../assets/plugin/pagination.js').Pagination;
    export default{
@@ -57,8 +58,8 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
        },
        data(){
           return{
-             sortOptions:[{text:'js',value:'js'}],
-             searchCondition:{pageIndex:1,type:''},
+             sortOptions:[{text:'全部',value:''}],
+             searchCondition:{pageIndex:1,pageSize:20,type:''},
              checkAll:[],
              list:[
              ],
@@ -66,6 +67,7 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
           }
        },
        created(){
+           this.initInfo();
            this._searchList();
        },
        mounted(){
@@ -73,8 +75,16 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
 
        },
        methods:{
+         initInfo(){
+              this.$http.post(API_SEARCHMAIN).then(res=>{
+                  if(res.data.code==200){
+                     let _res=res.data.rst;
+                     this.sortOptions=this.sortOptions.concat(_res.types.map(ele=>({text:ele.type,value:ele.type})))
+                  }
+              })
+         },
          _searchList(){
-            this.$http.post('http://localhost:3000/api/editor/searchList',{formData:this.searchCondition}).then(res=>{
+            this.$http.post(API_SEARCHLIST,{formData:this.searchCondition}).then(res=>{
                  this.list=res.data.rst.list;
                  if(!this.pagination&&res.data.rst.total){
                    this.pagination=new Pagination({container:document.getElementById('pagination'),total:res.data.rst.total})
@@ -90,8 +100,23 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
          _toEdit(id){
              this.$router.push({path:'manage/edit',query:{id:id}})
          },
+         _toDelete(id,index){
+            this.$http.post(API_DELETEARTICAL,{id:id}).then(res=>{
+                if(res.data.code=='200'){
+                    //删除成功
+                    this.list.splice(index,1)
+                }
+            })
+         },
          _deleteAll(){
 
+           let _checkAll=this.checkAll.filter(ele=>ele!=='');
+           this.$http.post(API_DELETEALL,{id:''}).then(res=>{
+               if(res.data.code=='200'){
+                   //删除成功
+                   this._searchList()
+               }
+           })
          }
        }
    }

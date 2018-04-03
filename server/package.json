@@ -9,8 +9,9 @@
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "jwt-simple": "^0.5.1",
+    "log4js": "^2.5.3",
     "mongoose": "^4.10.7",
-    "redis": "^2.7.1",
+    "redis": "^2.7.1"
   },
   "devDependencies": {
     "assert": "^1.4.1",

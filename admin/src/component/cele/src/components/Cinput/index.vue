@@ -184,7 +184,7 @@ export default {
 <style lang="less">
 .c_input {
     position: relative;
-    width: 100%;
+    width: auto;
     font-size: 0;
 }
 .flexfull{

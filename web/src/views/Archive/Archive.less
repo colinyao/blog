@@ -3,6 +3,8 @@
     margin-top:20px;
     padding:20px;
     background:#e8e8e8;
+    border:1px solid #ddd;
+    border-radius: 5px;
     box-shadow:0 0 3px 0 #999
 }
 .archive_item{
@@ -16,6 +18,10 @@
 }
 .archiveItemList_item{
     list-style:circle;
+    cursor:pointer;
+    &:hover{
+       text-decoration: underline;
+    }
     & span:first-child{
         width:40px;
     }

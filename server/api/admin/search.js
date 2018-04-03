@@ -1,5 +1,20 @@
 const ArticalModel = require('../../mongodb/db/artical.js')
+const UserModel=require('../../mongodb/db/user')
+const TypesModel =require('../../mongodb/db/types')
+const logger=require('../../utils/logger')
 const methods = {
+     searchMain:(req,res,next)=>{
+         logger.info("This is an index page! -- log4js");
+         Promise.all([UserModel.findOne(),TypesModel.find().lean()]).then(result=>{
+             res.json({
+                 code:'200',
+                 rst:{
+                     userInfo:{userName:result[0].userName,motto:result[0].motto},
+                     types:result[1]
+                 }
+             })
+         })
+     },
      searchList:(req,res,next)=>{
           let condition=req.body.formData||{},
               pageIndex=condition.pageIndex||1,

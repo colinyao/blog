@@ -21,7 +21,8 @@
                 type:String
             },
             options:{
-                type:Array
+                type:Array,
+                default:()=>[]
             }
         },
         data(){
@@ -32,8 +33,9 @@
             }
         },
         created(){
-            this.currentVal=this.options[0].value;
-            this.currentText=this.options[0].text;
+
+            this.currentVal=this.options[0]&&this.options[0].value;
+            this.currentText=this.options[0]&&this.options[0].text;
         },
         methods:{
             handleTrigger(){
@@ -49,6 +51,10 @@
             }
         },
         watch:{
+           options(newVal){
+             this.currentVal=this.options[0]&&this.options[0].value;
+             this.currentText=this.options[0]&&this.options[0].text;
+           },
            currentVal(newVal,oldVal){
                 if(!!this.disabled){
                     return false
@@ -64,13 +70,14 @@
      .c_select{
           position:relative;
           width:200px;
-          height:26px;
-          line-height: 24px;
+          height:32px;
+          line-height: 30px;
           padding:0 20px 0 3px;
           border:1px solid #ddd;
           font-size:14px;
           color:#333;
-          box-sizing: border-box;
+          box-sizing:border-box;
+          border-radius: 3px;
           &:after{
                 content:'';
                 display: inline-block;

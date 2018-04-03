@@ -3,7 +3,7 @@
     <div class="mainMenu">
          <div class="top"></div>
          <ul>
-              <li v-for="item in menus" class="selected">{{item.name}}</li>
+              <router-link tag='li' v-for="item in menus" :to="item.link" exact>{{item.name}}</router-link>
          </ul>
     </div>
     <div class="container">
@@ -21,7 +21,8 @@ export default{
     },
     data(){
         return{
-           menus:[{name:'首页',link:'/manage'}]
+
+           menus:[{name:'首页',link:'/manage'},{name:'文章',link:'/manage/list'}]
         }
     }
 }
@@ -48,7 +49,7 @@ export default{
         line-height: 100px;
         text-align: center;
     }
-    li.selected{
+    li.router-link-active{
         background:#005da6;
     }
 }

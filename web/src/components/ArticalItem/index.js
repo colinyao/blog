@@ -5,21 +5,21 @@ import styles from './ArticalItem.less'
 export default class ArticalItem extends PureComponent{
     constructor(props){
        super(props)
+       this._onClick=this._onClick.bind(this)
     }
     componentDidMount(){
        // console.log(this.props)
     }
 
-    _onClick(e,id){
-        console.log(e.target)
-         //this.props.onClick(id)
+    _onClick(id){
+         this.props.onClick(id)
     }
     render(){
 
-      let {title,headImg,abstract,createDate,messages,reads,id}=this.props.articalInfo,
+      let {title,headImg,abstract,createDate,messages,reads,_id}=this.props.articalInfo,
            {type,_classNames,_styles={}}=this.props;
       return(
-         <div className={classNames(styles.articalItem,_classNames)} style={_styles} onClick={this._onClick}>
+         <div className={classNames(styles.articalItem,_classNames)} style={_styles} onClick={()=>{this._onClick(_id)}}>
              <div>
                      {type!='1'?<h3 className={styles.title}>{title}</h3>:''}
                      <div className={classNames("flex",type!='1'?'mt10':'')}>

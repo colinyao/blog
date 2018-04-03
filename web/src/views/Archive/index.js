@@ -13,8 +13,8 @@ class Archive extends Component{
        this.props.queryArchive();
   }
   _clickItem(id){
-      console.log(id)
-     //this.props.history.push('/detail/'+id)
+
+     this.props.history.push('/detail/'+id)
   }
   render(){
 

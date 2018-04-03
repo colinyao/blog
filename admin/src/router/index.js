@@ -27,7 +27,17 @@ const router = new Router({
           children:[
             {
               path: '/',
-              name: 'listSort',
+              name: 'main',
+              component: function(resolve) {
+                  require(['../container/manage/Main.vue'], resolve)
+              },
+              meta: {
+                  'notKeepAlive': true
+              }
+            },
+            {
+              path: 'list',
+              name: 'list',
               component: function(resolve) {
                   require(['../container/manage/ListSort.vue'], resolve)
               },
