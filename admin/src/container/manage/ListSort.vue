@@ -98,30 +98,53 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
             })
          },
          _toEdit(id){
-             this.$router.push({path:'manage/edit',query:{id:id}})
+             this.$router.push({path:'/manage/edit',query:{id:id}})
          },
          _toDelete(id,index){
-            this.$http.post(API_DELETEARTICAL,{id:id}).then(res=>{
-                if(res.data.code=='200'){
-                    //删除成功
-                    this.list.splice(index,1)
+            this.$cele.confirm.show({
+                title:'提示',
+                content:'确定要删除选中项吗？',
+                onCertain:()=>{
+                  this.$http.post(API_DELETEARTICAL,{id:id}).then(res=>{
+                      if(res.data.code=='200'){
+                          //删除成功
+                          this.list.splice(index,1)
+                          this.$cele.toast.show({
+                              text:'删除成功'
+                          })
+                      }
+                  })
                 }
             })
+
          },
          _deleteAll(){
-
-           let _checkAll=this.checkAll.filter(ele=>ele!=='');
-           this.$http.post(API_DELETEALL,{id:''}).then(res=>{
-               if(res.data.code=='200'){
-                   //删除成功
-                   this._searchList()
+           this.$cele.confirm.show({
+               title:'提示',
+               content:'确定要删除选中项吗？',
+               onCertain:()=>{
+                 let _checkAll=this.checkAll.filter(ele=>ele!=='');
+                 this.$http.post(API_DELETEALL,{id:''}).then(res=>{
+                     if(res.data.code=='200'){
+                         //删除成功
+                         this._searchList()
+                         this.$cele.toast.show({
+                             text:'删除成功'
+                         })
+                     }
+                 })
                }
            })
+
+
          }
        }
    }
 </script>
 <style lang="less" scoped>
+.w100{
+  width:100%;
+}
 .content{
    flex:1;
    height: 100%;

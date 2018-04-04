@@ -8,6 +8,7 @@ module.exports=new Schema({
      reads:{type:Number,default:0},
      messages:{type:Number,default:0},
      type:String,
+     imgs:Array,
      month:{type:String},
      update_time:{type:Date}
 })

@@ -8,5 +8,7 @@ export const API_UPDATEMAIN=utils.domain+'/api/editor/updateMain'  //更新首�
 export const API_ADDTYPE=utils.domain+'/api/editor/addType' //增加类型
 
 export const API_SEARCHLIST=utils.domain+'/api/editor/searchList'
+export const API_SEARCHARTICAL=utils.domain+'/api/editor/searchArtical'
 export const API_DELETEARTICAL=utils.domain+'/api/editor/deleteArtical'
 export const API_DELETEALL=utils.domain+'/api/editor/deleteAll'
+export const API_DELETEIMG=utils.domain+'/api/editor/deleteImg'

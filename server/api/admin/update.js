@@ -34,7 +34,7 @@ const methods = {
      deleteAll:(req,res,next)=>{
          let id=req.body.id;
          let validate=new validation(res);
-         validate.addList('id',id,'noEmpty')
+         validate.addList('id',id,['noEmpty','isArray'])
          if(validate.start()){
              id=id.map(ele=>({'_id':ele}));
              ArticalModel.remove({'$or':id}).then(result=>{
@@ -44,13 +44,24 @@ const methods = {
                  })
              })
          }
-
-
+     },
+     deleteImg:(req,res,next)=>{
+         let imgUrl=req.imgUrl;
+         //删除文件
+         fs.unlink(imgUrl, function() {
+             if (err) {
+                 throw err;
+             }
+             res.json({
+               code:'200',
+               msg:'删除成功'
+             })
+          })
      },
      deleteArtical:(req,res,next)=>{
          let id=req.body.id;
          let validate=new validation(res);
-         validate.addList('id',id,'isArray')
+         validate.addList('id',id,'noEmpty')
          if(validate.start()){
            ArticalModel.remove({_id:id}).then(result=>{
                res.json({

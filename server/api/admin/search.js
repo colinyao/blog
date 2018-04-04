@@ -1,10 +1,14 @@
 const ArticalModel = require('../../mongodb/db/artical.js')
 const UserModel=require('../../mongodb/db/user')
 const TypesModel =require('../../mongodb/db/types')
-const logger=require('../../utils/logger')
+const logger=require('../../utils/logger').logger('log_file')
+
+// const loggerError=require('../../middleware/loggerError').getLogger('log_errorFile')
+
 const methods = {
      searchMain:(req,res,next)=>{
-         logger.info("This is an index page! -- log4js");
+         logger.info("首页查询！");
+         //loggerError.error('查询错误了')
          Promise.all([UserModel.findOne(),TypesModel.find().lean()]).then(result=>{
              res.json({
                  code:'200',
@@ -23,7 +27,7 @@ const methods = {
               total='',
           ArticalModel.find(searchCondition).count().then(result=>{
               if(!result){
-                  throw '没有查询到符合'+JSON.stringify(searchCondition)+'条件的文章'
+                  logger.error(`没有查询到符合${JSON.stringify(searchCondition)}条件的文章`);
               }
               total=Math.ceil(result/pageSize);
               return ArticalModel.find(searchCondition).skip((pageIndex-1)*pageSize).limit(pageSize).lean()
@@ -43,7 +47,7 @@ const methods = {
           let condition=req.body.formData;
           ArticalModel.find(condition).then(result=>{
             if(!result.length){
-              throw '没有查询到符合'+JSON.stringify(condition)+'条件的文章'
+              logger.error(`没有查询到符合${JSON.stringify(searchCondition)}条件的文章`);
             }
             res.json({
                code:'200',

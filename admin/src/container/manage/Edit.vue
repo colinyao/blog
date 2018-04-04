@@ -1,16 +1,17 @@
 <template>
   <div class="content" id="editPage">
-      <Cell><Cinput type="text" :titleStyle="{fontSize:'14px'}" title="标题：" v-model="formData.title"></Cinput></Cell>
-      <Cell class='mt10'><Cinput type="text" :titleStyle="{fontSize:'14px'}" title="摘要：" v-model='formData.abstract'></Cinput></Cell>
+      <Cell><Cinput type="text" class="w100" :titleStyle="{fontSize:'14px'}" title="标题：" v-model="formData.title"></Cinput></Cell>
+      <Cell class='mt10'><Cinput class="w100" type="text" :titleStyle="{fontSize:'14px'}" title="摘要：" v-model='formData.abstract'></Cinput></Cell>
       <Cell class="mt10"><span class="label">分类：</span><Cselect :options="typeOptions" v-model="formData.type"></Cselect></Cell>
-      <MarkDown class="markDown mt20" :imgUpLoad='uploadimg' v-model="formData.content"></MarkDown>
+      <!-- <Cell class="mt10"><span class="label">图片：</span><Cselect :options="formData.imgs" v-model="img"></Cselect><button>删除</button></Cell> -->
+      <MarkDown class="markDown mt20" @imgUpLoad="_imgUpLoad" :imgUpUrl='imgUpUrl' v-model="formData.content"></MarkDown>
       <Cell>
           <div class="btn" @click="submit">提交</div>
       </Cell>
   </div>
 </template>
 <script>
-import {API_UP_IMG,API_UP_ARTICLE} from '../../assets/api'
+import {API_UP_IMG,API_SEARCHMAIN,API_UP_ARTICLE,API_SEARCHARTICAL,API_DELETEIMG} from '../../assets/api'
 import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
   export default{
      components:{
@@ -21,12 +22,16 @@ import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
      },
      data(){
          return{
-             typeOptions:[{text:'js',value:'js'}],
+
+             img:'',   //选中的图片
+             imgUpUrl:API_UP_IMG,
+             typeOptions:[],
              formData:{
                  id:'',
                  title:'',
                  abstract:'',
                  content:'',
+                 imgs:[],  //此篇文章上传的图片
                  type:''
              }
          }
@@ -37,42 +42,18 @@ import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
      },
      methods:{
        initData(){
-          this.$http.post('http://localhost:3000/api/editor/searchArtical',{_id:this.formData.id}).then(res=>{
-              this.formData=res.data.rst
-
-          })
-       },
-       uploadimg($vm){
-           // 第一步.将图片上传到服务器.
-           var formdata = new FormData();
-           for(var _img in $vm.img_file){
-               formdata.append(_img, $vm.img_file[_img]);
-           }
-           this.$http.axios({
-               url: API_UP_IMG,
-               method: 'post',
-               data: formdata,
-               headers: { 'Content-Type': 'multipart/form-data' },
-           }).then((res) => {
-               /**
-                * 例如：返回数据为 [[pos: url], [pos, url]...]
-                * pos 为原图片标志（./0）
-                * url 为上传后图片的url地址
-                */
-                // 第二步.将返回的url替换到文本原位置![...](./0) -> ![...](url)
-               let urls=res.data.rst;
-               let imgList=[]
-               for(let i in urls){
-                 for(let key in urls[i]){
-                    imgList.push([key,urls[i][key]])
-                 }
-               }
-               for (var i in imgList) {
-                   // $vm.$img2Url 详情见本页末尾
-                   //img2Url方法，通过正则，把param1替换为param2
-                   $vm.$refs.md.$img2Url(imgList[i][0],imgList[i][1]);
+           this.$http.post(API_SEARCHMAIN).then(res=>{
+               if(res.data.code==200){
+                  let _res=res.data.rst;
+                  this.typeOptions=this.typeOptions.concat(_res.types.map(ele=>({text:ele.type,value:ele.type})))
                }
            })
+           this.$http.post(API_SEARCHARTICAL,{_id:this.formData.id}).then(res=>{
+               this.formData=res.data.rst
+           })
+       },
+       _imgUpLoad(url){
+           this.formData.imgs.push(url)
        },
        submit(){
           this.$http.post(API_UP_ARTICLE,{formData:this.formData}).then((res)=>{
@@ -88,6 +69,9 @@ import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
 }
 </style>
 <style lang="less" scoped>
+.w100{
+  width:100%;
+}
 .content{
    padding:20px 20px 0;
 }

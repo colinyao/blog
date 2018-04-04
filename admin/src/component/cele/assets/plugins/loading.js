@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import LoadingComponent from '../../src/components/Cloading/index.vue'
+import LoadingComponent from '../../src/components/loading/index.vue'
 let $vm;
 export default {
     install(Vue) {
@@ -24,7 +24,7 @@ export default {
         }
 
         Vue.plugin=Object.assign({},Vue.plugin,{loading:loading})
-        
+
         Vue.mixin({
             created: function() {
                 this.$cele = Vue.plugin

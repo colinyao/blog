@@ -42,11 +42,12 @@ import {API_LOGIN} from '../assets/api'
   }
 </script>
 <style lang='less'>
-#login input{
 
-}
 </style>
 <style lang='less' scoped>
+.w100{
+  width:100%;
+}
 .fixWrapper{
    position: absolute;
    width:100%;

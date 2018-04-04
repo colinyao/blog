@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="mainMenu">
          <div class="top"></div>
-         <ul>
+         <ul class="menus">
               <router-link tag='li' v-for="item in menus" :to="item.link" exact>{{item.name}}</router-link>
          </ul>
     </div>
@@ -22,7 +22,7 @@ export default{
     data(){
         return{
 
-           menus:[{name:'首页',link:'/manage'},{name:'文章',link:'/manage/list'}]
+           menus:[{name:'首页',link:'/manage'},{name:'列表',link:'/manage/list'}]
         }
     }
 }
@@ -55,5 +55,8 @@ export default{
 }
 .container{
    padding-left:120px;
+}
+.menus li{
+  cursor: pointer
 }
 </style>

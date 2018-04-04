@@ -4,11 +4,13 @@ import Vue from 'vue'
 
 import App from './App'
 import router from './router'
-import {HttpPlugin,AlertPlugin,ToastMPlugin} from './component/cele/index.js'
+import {HttpPlugin,AlertPlugin,ConfirmPlugin,ToastPlugin} from './component/cele/index.js'
 import MetaInfo from 'vue-meta-info'
 Vue.use(HttpPlugin)
 Vue.use(AlertPlugin)
-Vue.use(ToastMPlugin)
+Vue.use(ToastPlugin)
+Vue.use(ConfirmPlugin)
+
 Vue.use(MetaInfo)
 import axios from 'axios'
 // // for Vue 2.0
@@ -20,9 +22,20 @@ import store from './store'
 //try: 1 // default 1
 //})
 
+
+
+//
+// FastClick.attach(document.body)
+
+/* eslint-disable no-new */
+let instance=new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app-box')
+
 axios.interceptors.request.use(
     config => {
-
         if (store.state.userInfo&&store.state.userInfo.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
            config.headers.authorization = `${store.state.userInfo.token}`;
 
@@ -33,14 +46,17 @@ axios.interceptors.request.use(
         return Promise.reject(err);
 });
 
-
-
-//
-// FastClick.attach(document.body)
-
-/* eslint-disable no-new */
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app-box')
+axios.interceptors.response.use(
+     response =>{
+          if(response.data.code=='-1'){
+             instance.$cele.toast.show({
+                 text:response.data.msg,
+                 type:'error'
+             })
+          }
+          return response;
+     },
+     err =>{
+        return Promise.reject(err);
+     }
+)

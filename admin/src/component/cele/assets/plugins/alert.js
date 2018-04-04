@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import AlertComponent from '../../src/components/Calert/index.vue'
+import AlertComponent from '../../src/components/alert/index.vue'
 let $vm;
 export default {
     install(Vue) {
@@ -27,7 +27,7 @@ export default {
         }
 
         Vue.plugin=Object.assign({},Vue.plugin,{alert:alert})
-        
+
         Vue.mixin({
             created: function() {
                 this.$cele = Vue.plugin

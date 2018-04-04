@@ -1,18 +1,19 @@
-import Calert from './src/components/Calert/index.vue'
-import Ccheckbox from './src/components/Ccheckbox/index.vue'
-import CcheckAllbox from './src/components/CcheckAllbox/index.vue'
-import Cinput from './src/components/Cinput/index.vue'
-import Cloading from './src/components/Cloading/index.vue'
-import Cradio from './src/components/Cradio/index.vue'
-import Cselect from './src/components/Cselect/index.vue'
-import Ctextarea from './src/components/Cloading/index.vue'
-import Ctoggle from './src/components/Ctoggle/index.vue'
-import Range from './src/components/Range/index.vue'
+import Calert from './src/components/alert/index.vue'
+import Ccheckbox from './src/components/checkbox/index.vue'
+import CcheckAllbox from './src/components/checkAllbox/index.vue'
+import Cinput from './src/components/input/index.vue'
+import Cloading from './src/components/loading/index.vue'
+import Cradio from './src/components/radio/index.vue'
+import Cselect from './src/components/select/index.vue'
+import Ctextarea from './src/components/loading/index.vue'
+import Ctoggle from './src/components/toggle/index.vue'
+import Range from './src/components/range/index.vue'
 
 import Previewer from './src/components/Previewer/index.vue'
-import Cell from './src/components/Cell/index.vue'
+import Cell from './src/components/cell/index.vue'
 import CselectM from './src/components_m/Cselect/index.vue'
 import AlertPlugin from './assets/plugins/alert.js'
+import ConfirmPlugin from './assets/plugins/confirm.js'
 import HttpPlugin from './assets/plugins/http.js'
 import LoadingPlugin from './assets/plugins/loading.js'
 import ToastPlugin from './assets/plugins/toast.js'
@@ -45,6 +46,7 @@ export{
     CselectM,
     previewerMixin,
     AlertPlugin,
+    ConfirmPlugin,
     HttpPlugin,
     LoadingPlugin,
     TabBar,

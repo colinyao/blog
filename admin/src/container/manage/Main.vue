@@ -31,7 +31,6 @@ export default {
    methods:{
       initInfo(){
            this.$http.post(API_SEARCHMAIN).then(res=>{
-               console.log(res)
                if(res.data.code==200){
                   let _res=res.data.rst;
                   this.userInfo=_res.userInfo
@@ -59,9 +58,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.w100{
-   width:100%;
-}
+
 .wrapper{
    padding:30px;
 }

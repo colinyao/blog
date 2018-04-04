@@ -39,6 +39,16 @@ validation.prototype={
             this.list.forEach(ele=>{
                 if(typeof ele.rule==='function'){
                     result=ele.rule(ele.val);
+                }else if(Array.isArray(ele.rule)){
+                    let _valid=true,_message='';
+                    ele.rule.forEach(_ele=>{
+                        let _res=methods[_ele](ele.val)
+                        if(!_res.valid){
+                           _valid=false;
+                           _message+=_message?'、'+_res.msg:_res.msg;
+                        }
+                    })
+                    result={valid:_valid,msg:_message}
                 }else{
                     result=methods[ele.rule](ele.val)
                 }
