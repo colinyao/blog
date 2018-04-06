@@ -11,6 +11,7 @@
   "dependencies": {
     "eventsource-polyfill": "^0.9.6",
     "fastclick": "^1.0.6",
+    "log4js": "^2.5.3",
     "mavon-editor": "^2.5.2",
     "ora": "^1.2.0",
     "shelljs": "^0.7.7",
