@@ -58,7 +58,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+.w100{
+   width:100%;
+}
 .wrapper{
    padding:30px;
 }

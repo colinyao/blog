@@ -1,0 +1,2 @@
+[2018-04-07T23:18:42.552] [INFO] default - [Sat, 07 Apr 2018 15:18:42 GMT ::1 POST /api/editor/searchMain 200 181ms][http://localhost:8001/manage/list HTTP/1.1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36]
+[2018-04-07T23:18:42.597] [INFO] default - [Sat, 07 Apr 2018 15:18:42 GMT ::1 POST /api/editor/searchList 200 131ms][http://localhost:8001/manage/list HTTP/1.1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36]

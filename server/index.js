@@ -6,7 +6,7 @@ const path=require('path')
 const bodyParser=require('body-parser')
 const db=require('./mongodb')
 const utils=require('./utils')
-const log4=require('./middleware/logger')
+const log4=require('./utils/logger.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,9 +15,8 @@ app.use(express.static(__dirname + '/'));
 utils.formatDate();
 const crossDomain = require('./middleware/crossDomain.js')
 app.use(crossDomain)
-const logger = log4.getLogger('log_file');
-
-//app.use(log4.connectLogger(logger, {format:':method :url'}));
+//将路由router信息加入到日志中
+log4.useLogger(app,log4.getLogger())
 
 const web=require('./api/web')
 const admin=require('./api/admin')

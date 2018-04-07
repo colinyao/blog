@@ -3,8 +3,8 @@
           <div class="contentArea">
                <div class="title">登录</div>
                <div class="content">
-                    <Cell class="mt10"><Cinput type="text"   leftPos="inner" :border="false" rightPos="inner" v-model="formData.userName"><span slot="left" class="icon"><img src="../../static/images/icon/user.svg"></span></Cinput></Cell>
-                    <Cell class="mt10"><Cinput type="password"   leftPos="inner" :border="false" rightPos="inner" v-model="formData.password"><span slot="left" class="icon"><img src="../../static/images/icon/password.svg"></span></Cinput></Cell>
+                    <Cell class="mt10"><Cinput class="w100" type="text"   leftPos="inner" :border="false" rightPos="inner" v-model="formData.userName"><span slot="left" class="icon"><img src="../../static/images/icon/user.svg"></span></Cinput></Cell>
+                    <Cell class="mt10"><Cinput class="w100" type="password"   leftPos="inner" :border="false" rightPos="inner" v-model="formData.password"><span slot="left" class="icon"><img src="../../static/images/icon/password.svg"></span></Cinput></Cell>
                     <div class="btn" @click="_login">登录</div>
                </div>
           </div>

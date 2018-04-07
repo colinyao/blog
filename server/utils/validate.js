@@ -1,3 +1,5 @@
+const log4js= require('./logger')
+const errlogger=log4js.getLogger('err')
 const methods={
     noEmpty:(val)=>{
         if(val==''||val===null||val===undefined){
@@ -57,6 +59,7 @@ validation.prototype={
                 }
             })
            if(message.length){
+              errlogger.error(`${this.res.req.url} ${message.join(',')}`)
               this.res.json({
                   code:'-1',
                   msg:message.join(',')

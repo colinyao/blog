@@ -59,7 +59,7 @@ var Pagination =require('../../assets/plugin/pagination.js').Pagination;
        data(){
           return{
              sortOptions:[{text:'全部',value:''}],
-             searchCondition:{pageIndex:1,pageSize:20,type:''},
+             searchCondition:{pageIndex:1,pageSize:20,type:'123'},
              checkAll:[],
              list:[
              ],

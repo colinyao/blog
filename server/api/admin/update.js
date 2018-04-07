@@ -2,6 +2,7 @@ let validation =require('../../utils/validate')
 const ArticalModel = require('../../mongodb/db/artical.js')
 const UserModel=require('../../mongodb/db/user')
 const TypesModel =require('../../mongodb/db/types')
+
 const methods = {
      addType:(req,res,next)=>{
         let type=req.body.type;

@@ -38,7 +38,8 @@ axios.interceptors.request.use(
     config => {
         if (store.state.userInfo&&store.state.userInfo.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
            config.headers.authorization = `${store.state.userInfo.token}`;
-
+        }else{
+           router.push({path:'/'})
         }
         return config;
     },
