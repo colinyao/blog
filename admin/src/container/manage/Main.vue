@@ -10,7 +10,7 @@
 
 <script>
 import {API_SEARCHMAIN,API_UPDATEMAIN,API_ADDTYPE} from '../../assets/api/index'
-import {Cell,Cselect,Cinput} from '../../component/cele';
+import {Cell,Cselect,Cinput} from '../../component/cele/index.js';
 export default {
    components:{
       Cell,Cselect,Cinput

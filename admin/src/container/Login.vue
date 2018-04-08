@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {Cell,Cinput} from '../component/cele'
+import {Cell,Cinput} from '../component/cele/index.js'
 import {mapMutations} from 'vuex'
 import {API_LOGIN} from '../assets/api'
   export default{

@@ -12,7 +12,7 @@
 </template>
 <script>
 import {API_UP_IMG,API_SEARCHMAIN,API_UP_ARTICLE,API_SEARCHARTICAL,API_DELETEIMG} from '../../assets/api'
-import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele'
+import {Cell,Cselect,Cinput,MarkDown} from '../../component/cele/index.js'
   export default{
      components:{
         Cell,

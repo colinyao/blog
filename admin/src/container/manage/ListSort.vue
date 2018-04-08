@@ -42,7 +42,7 @@
 </template>
 <script>
 import {API_SEARCHMAIN,API_SEARCHLIST,API_DELETEALL,API_DELETEARTICAL} from '../../assets/api/index'
-import {Cselect,Ccheckbox,CcheckAllbox} from '../../component/cele';
+import {Cselect,Ccheckbox,CcheckAllbox} from '../../component/cele/index.js';
 var Pagination =require('../../assets/plugin/pagination.js').Pagination;
    export default{
        components:{

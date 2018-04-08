@@ -8,7 +8,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var PrerenderSpaPlugin=require('prerender-spa-plugin')
 var bundleConfig = require("../bundle-config.json")
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var env = config.build.env
+// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -33,11 +35,14 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false
+        }
       },
-      sourceMap: true
+      sourceMap: false,
+      parallel: true
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -62,27 +67,27 @@ var webpackConfig = merge(baseWebpackConfig, {
       chunksSortMode: 'dependency'
     }),
     // split vendor js into its own file
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'vendor',
-    //   minChunks: function (module, count) {
-    //     // any required modules inside node_modules are extracted to vendor
-    //     return (
-    //       module.resource &&
-    //       /\.js$/.test(module.resource) &&
-    //       module.resource.indexOf(
-    //         path.join(__dirname, '../node_modules')
-    //       ) === 0
-    //     )
-    //   },
-    //   //children:true
-    // }),
-    // // extract webpack runtime and module manifest to its own file in order to
-    // // prevent vendor hash from being updated whenever app bundle is updated
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'manifest',
-    //   chunks: ['vendor']
-    // }),
-
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common',
+      minChunks: function (module, count) {
+        // any required modules inside node_modules are extracted to vendor
+        return (
+          module.resource &&
+          /\.js$/.test(module.resource) &&
+          module.resource.indexOf(
+            path.join(__dirname, '../node_modules')
+          ) === 0
+        )
+      },
+      //children:true
+    }),
+    // extract webpack runtime and module manifest to its own file in order to
+    // prevent vendor hash from being updated whenever app bundle is updated
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      chunks: ['common']
+    }),
+    // new BundleAnalyzerPlugin()
     // new PrerenderSpaPlugin(
     // //将渲染的文件放到dist目录下
     //   path.join(__dirname, '../dist'),

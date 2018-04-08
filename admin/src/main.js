@@ -4,7 +4,8 @@ import Vue from 'vue'
 
 import App from './App'
 import router from './router'
-import {HttpPlugin,AlertPlugin,ConfirmPlugin,ToastPlugin} from './component/cele/index.js'
+import {HttpPlugin,AlertPlugin,ConfirmPlugin,ToastPlugin} from './component/cele'
+
 import MetaInfo from 'vue-meta-info'
 Vue.use(HttpPlugin)
 Vue.use(AlertPlugin)

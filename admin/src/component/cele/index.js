@@ -8,7 +8,6 @@ import Cselect from './src/components/select/index.vue'
 import Ctextarea from './src/components/loading/index.vue'
 import Ctoggle from './src/components/toggle/index.vue'
 import Range from './src/components/range/index.vue'
-
 import Previewer from './src/components/Previewer/index.vue'
 import Cell from './src/components/cell/index.vue'
 import CselectM from './src/components_m/Cselect/index.vue'
@@ -40,7 +39,6 @@ export{
     Ctextarea,
     Ctoggle,
     Range,
-
     Previewer,
     Cell,
     CselectM,

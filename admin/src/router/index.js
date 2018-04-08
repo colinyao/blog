@@ -15,7 +15,8 @@ const router = new Router({
         meta: {
             'notKeepAlive': true
         }
-      },{
+      },
+      {
           path: '/manage',
           name: 'manage',
           component: function(resolve) {
@@ -56,16 +57,17 @@ const router = new Router({
               }
             }
           ]
-        },{
-          path: '/example',
-          name: 'login',
-          component: function(resolve) {
-              require(['../container/example.vue'], resolve)
-          },
-          meta: {
-              'notKeepAlive': true
-          }
         },
+        // {
+        //   path: '/example',
+        //   name: 'login',
+        //   component: function(resolve) {
+        //       require(['../container/example.vue'], resolve)
+        //   },
+        //   meta: {
+        //       'notKeepAlive': true
+        //   }
+        // },
       ]
 })
 export default router

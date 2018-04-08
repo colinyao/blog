@@ -1,3 +1,4 @@
+//webpack.dll.conf.js
 const webpack = require('webpack');
 const config = require('../config')
 const AssetsPlugin = require('assets-webpack-plugin')
@@ -8,7 +9,6 @@ const vendors = [
   'vue-meta-info',
   'axios'
 ];
-console.log(__dirname)
 module.exports = {
   output: {
     path: __dirname+'/../static/dll',
