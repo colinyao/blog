@@ -6,6 +6,7 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 var PrerenderSpaPlugin=require('prerender-spa-plugin')
+var bundleConfig = require("../bundle-config.json")
 var path = require('path')
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -22,6 +23,11 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('../static/dll/manifest.json'),
+
+    }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -29,7 +35,9 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      // 加载dll文件
+      vendorJsName: bundleConfig.vendor.js,
     }),
     new FriendlyErrorsPlugin()
   ]

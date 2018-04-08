@@ -1,5 +1,6 @@
 const log4 = require('log4js');
 
+
 log4.configure({
   replaceConsole: true,
   appenders: {

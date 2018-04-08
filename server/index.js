@@ -15,8 +15,10 @@ app.use(express.static(__dirname + '/'));
 utils.formatDate();
 const crossDomain = require('./middleware/crossDomain.js')
 app.use(crossDomain)
+
 //将路由router信息加入到日志中
 log4.useLogger(app,log4.getLogger())
+
 
 const web=require('./api/web')
 const admin=require('./api/admin')
